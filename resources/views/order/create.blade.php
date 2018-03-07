@@ -71,13 +71,12 @@
 										{{ Form::label('jobtype', 'Job Type:') }}
 										<select class="form-control" id="jobtype" name="jobtype">
 										<option value="0"> -- </option>
-										<option value="2"> Poster </option>
-										<option value="3"> Book </option>
-										<option value="4"> Magazine </option>
-										<option value="5"> Yearbook </option>
-										<option value="6"> Brochure </option>
-										<option value="7"> Calendar </option>
-										<option value="8"> Customized </option>
+										<option value="1"> Poster </option>
+										<option value="2"> Book </option>
+										<option value="3"> Magazine </option>
+										<option value="4"> Yearbook </option>
+										<option value="5"> Brochure </option>
+										<option value="6"> Calendar </option>
 										</select>
 									</div>
 								</div>
@@ -97,7 +96,7 @@
 											{{ Form::label('quantity', 'Quantity') }}
 											<div class="container">
 												<div class="count-input space-bottom">
-													{{ Form::number('quantity', '1', ['class' => 'form-control border-input', 'min' => '1'])}}
+													{{ Form::number('quantity', '1', ['class' => 'form-control border-input', 'min' => '0'])}}
 												</div>
 											</div>
 										</div>
@@ -109,7 +108,7 @@
 											{{ Form::label('page_count', 'Number of Pages') }}
 											<div class="container">
 												<div class="count-input space-bottom">
-													{{ Form::number('page_count', '1', ['class' => 'form-control border-input', 'min' => '1'])}}
+													{{ Form::number('page_count', '1', ['class' => 'form-control border-input', 'min' => '0'])}}
 												</div>
 											</div>
 										</div>
@@ -121,7 +120,10 @@
 										{{ Form::label('size', 'Size') }}
 										<select class="form-control" id="size" name="size">
 										<option value="0"> -- </option>
-										<option value="2"> Letter (8.5 x 11) </option>
+										<option value="1"> Letter (8.5 x 11 in) </option>
+										<option value="2"> Legal (8.5 x 13 in) </option>
+										<option value="3"> Broadsheet (24 x 18 in) </option>
+										<option value="4"> C4 (9 x 12 in) </option>
 										</select>
 									</div>
 								</div>

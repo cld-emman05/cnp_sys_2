@@ -13,7 +13,7 @@ class JobTypeTableSeeder extends Seeder
     {
       DB::table('job_types')->insert([
         [
-            'name' => '--', 
+            'name' => '--',
             'description' => 'null'
         ],
           ['name' => 'Brochure', 'description' => 'it is a brochure'],
@@ -22,6 +22,7 @@ class JobTypeTableSeeder extends Seeder
           ['name' => 'Book', 'description' => 'it is a book'],
           ['name' => 'Magazine', 'description' => 'it is a magazine'],
           ['name' => 'Yearbook', 'description' => 'it is a yearbook'],
+          ['name' => 'Flyer', 'description' => 'it is a yearbook'],
       ]);
     }
 }

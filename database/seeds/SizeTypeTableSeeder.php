@@ -13,13 +13,13 @@ class SizeTypeTableSeeder extends Seeder
     {
       DB::table('size_types')->insert([
         [
-          'name' => '--', 
+          'name' => '--',
           'description' => 'null'
       ],
-      ['name' => 'Letter', 'description' => '8.5 x 11'],
-      ['name' => 'Legal', 'description' => '8.5 x 13'],
-      ['name' => '24 x 18', 'description' => '24 x 18'],
-      ['name' => '9 x 12', 'description' => '9x12'],
+      ['name' => 'Letter (8.5 x 11 in)', 'description' => '8.5 x 11'],
+      ['name' => 'Legal (8.5 x 13 in)', 'description' => '8.5 x 13'],
+      ['name' => 'Broadsheet (24 x 18)', 'description' => '24 x 18'],
+      ['name' => 'C4 (9 x 12)', 'description' => '9x12'],
     ]);
     }
 }
