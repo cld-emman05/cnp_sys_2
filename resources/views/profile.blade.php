@@ -46,7 +46,7 @@
                             </div>
                         </div>
 
-                        @if(auth::user()->user_type == 1)
+                        @if(@auth::user()->user_types->type == 'Customer')
                         <div class="form-group row">
                             <label for="company" class="col-md-4 col-form-label text-md-right">Company</label>
 
@@ -64,7 +64,7 @@
                         @endif
 
                         <div class="form-group row">
-                          @if(auth::user()->user_type == 1)
+                          @if(@auth::user()->user_types->type == 'Customer')
                             <label for="address" class="col-md-4 col-form-label text-md-right">Company Address</label>
                           @else
                             <label for="address" class="col-md-4 col-form-label text-md-right">Residential Address</label>
