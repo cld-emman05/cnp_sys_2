@@ -15,6 +15,10 @@ class CreateCoverSpecsTable extends Migration
     {
         Schema::create('cover__specs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('description');
+
+            $table->integer('paper_type_id')->nullable()->unsigned();
+            $table->integer('paper_color_id')->nullable()->unsigned();
             $table->timestamps();
         });
     }

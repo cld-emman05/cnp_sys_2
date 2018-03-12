@@ -24,8 +24,8 @@
 		<script type ='text/javascript'>
 		$(document).ready(function(){
 
-			$('.container-fluid').hide(50);
+			$('.container-fluid').hide(5);
 
-			$('.container-fluid').fadeIn(1000);
+			$('.container-fluid').fadeIn(500);
 		});
 		</script>

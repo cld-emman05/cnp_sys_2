@@ -15,6 +15,9 @@ class CreateJobOrderStatusesTable extends Migration
     {
         Schema::create('job__order__statuses', function (Blueprint $table) {
             $table->increments('id');
+            $table->enum('status',['printing','paid','delivered','received','in_progress','ready_for_delivery']);
+
+            $table->integer('order_id')->nullable()->unsigned();
             $table->timestamps();
         });
     }

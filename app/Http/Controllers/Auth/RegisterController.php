@@ -51,7 +51,7 @@ class RegisterController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'company' => 'string|max:255',
-            'user_type' => 'integer',
+            'user_type' => 'integer|max:255',
             'address' => 'string|max:255',
             'contact' => 'string|max:11',
             'email' => 'required|string|email|max:255|unique:users',

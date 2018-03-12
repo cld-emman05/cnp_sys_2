@@ -7,7 +7,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                  <h5 class="card-category">Manage Suppliers</h5>
+                  <a href = '/supplier'>
+        						<btn class = 'btn btn-primary' id = 'return'>
+        						<i class="now-ui-icons arrows-1_minimal-left"></i> Return</btn>
+        					</a>
+                  <h5 class="card-category">Suppliers</h5>
                   <h4 class="card-title">Add Suppliers</h4>
                 </div>
 
@@ -34,8 +38,8 @@
                             <label for="cred_limit" class="col-md-4 col-form-label text-md-right">Credit Limit (in PhP)</label>
 
                             <div class="col-md-6">
-                                <input id="cred_limit" type="text" class="form-control{{ $errors->has('cred_limit') ? ' is-invalid' : '' }}" name="cred_limit" value="{{ old('cred_limit') }}" required autofocus
-                                placeholder="">
+                                <input id="cred_limit" type="number" min = '1000000' class="form-control{{ $errors->has('cred_limit') ? ' is-invalid' : '' }}" name="cred_limit" required autofocus
+                                value = '1000000'/>
 
                                 @if ($errors->has('cred_limit'))
                                     <span class="invalid-feedback">
@@ -96,7 +100,7 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-12 offset-md-4 text-center">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>

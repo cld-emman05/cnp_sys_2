@@ -11,6 +11,10 @@
 		<div class="card card-chart">
 			<div class = 'card-header'>
 				<table class="table table-hover" style="width:100%">
+					<a href = '/order'>
+						<btn class = 'btn btn-primary' id = 'return'>
+						<i class="now-ui-icons arrows-1_minimal-left"></i> Return</btn>
+					</a>
 					<div class="card-header">
           <h5 class='card-category'>Orders</h5>
             <h4 class="card-title">Create Request</h4>
@@ -54,6 +58,7 @@
 						<div class= 'card-body'>
 							<div class="row">
 								<div class="col-md-6 pr-5">
+
 									<div class="form-group">
 										{{ Form::label('job_name', 'Job Name:') }}
 										{{ Form::text('job_name', '', [
@@ -68,7 +73,7 @@
 									<div class="form-group">
 										<!-- {{ Form::label('jobtype', 'Job Type') }}
 										{{ Form::text('jobtype', '', ['class' => 'form-control border-input', 'placeholder' => 'Enter','id'=>'jobtype'])}} -->
-										{{ Form::label('jobtype', 'Job Type:') }}
+										{{ Form::label('job_type', 'Job Type:') }}
 										<select class="form-control" id="jobtype" name="jobtype">
 										<option value="0"> -- </option>
 										<option value="1"> Poster </option>
@@ -77,6 +82,7 @@
 										<option value="4"> Yearbook </option>
 										<option value="5"> Brochure </option>
 										<option value="6"> Calendar </option>
+										<option value="7"> Flyer </option>
 										</select>
 									</div>
 								</div>
@@ -96,7 +102,7 @@
 											{{ Form::label('quantity', 'Quantity') }}
 											<div class="container">
 												<div class="count-input space-bottom">
-													{{ Form::number('quantity', '1', ['class' => 'form-control border-input', 'min' => '0'])}}
+													{{ Form::number('quantity', '1', ['class' => 'form-control border-input', 'min' => '1'])}}
 												</div>
 											</div>
 										</div>
@@ -108,7 +114,7 @@
 											{{ Form::label('page_count', 'Number of Pages') }}
 											<div class="container">
 												<div class="count-input space-bottom">
-													{{ Form::number('page_count', '1', ['class' => 'form-control border-input', 'min' => '0'])}}
+													{{ Form::number('page_count', '1', ['class' => 'form-control border-input', 'min' => '1'])}}
 												</div>
 											</div>
 										</div>

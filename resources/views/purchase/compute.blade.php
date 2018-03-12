@@ -47,7 +47,7 @@
                         <div class="row">
                           <div class="col-md-6 pr-5">
                             <div class="form-group">
-                              {{ Form::label('job_name', 'Job Type:') }}
+                              {{ Form::label('job_name', 'Job Name') }}
                               {{ Form::text('job_name', 'Sample Job', [
                                 'class' => 'form-control border-input',
                                 'readonly placeholder'
@@ -179,6 +179,7 @@
 													<div class = 'col-md-6'>
 														<label><b>Computation</b></label>
 													</div>
+												</div>
 
 										<div class = 'row'>
 											<div class = 'col-md-6 pl-1'>
@@ -202,7 +203,6 @@
 									</div>
 									</div>
 								</div>
-							</div>
 
 
                         <div class="container-fluid text-center">

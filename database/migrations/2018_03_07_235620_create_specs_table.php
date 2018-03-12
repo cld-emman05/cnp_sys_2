@@ -15,6 +15,15 @@ class CreateSpecsTable extends Migration
     {
         Schema::create('specs', function (Blueprint $table) {
             $table->increments('id');
+            $table->mediumInteger('quantity');
+            $table->mediumInteger('description');
+
+            $table->integer('size_id')->nullable()->unsigned();
+            $table->integer('cover_id')->nullable()->unsigned();
+            $table->integer('inside_id')->nullable()->unsigned();
+            $table->integer('lamination_id')->nullable()->unsigned();
+            $table->integer('binding_id')->nullable()->unsigned();
+
             $table->timestamps();
         });
     }

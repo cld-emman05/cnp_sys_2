@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title', "Debt Tracker")
+@section('title', "Manage Haggling Request")
 
 @include('headers.table')
 
@@ -9,8 +9,8 @@
     <div class="col-md-12">
       <div class="card card-chart">
           <div class="card-header">
-            <h5 class='card-category'>Supplier</h5>
-            <h4 class="card-title">Debt Tracker</h4>
+          <h5 class='card-category'>Quotations</h5>
+            <h4 class="card-title">Requests</h4>
           </div>
 
           <!-- FORM CONTENT -->
@@ -20,22 +20,35 @@
   								<table class="table table-hover">
     								<thead>
       								<tr>
-        								<th>Supplier</th>
-        								<th>Accumulated Credit (in PhP)</th>
-        								<th>Transaction</th>
+        								<th>Quote #</th>
+        								<th>Job Title</th>
+        								<th>Customer</th>
+                        <th>Status</th>
+        								<th>Remarks</th>
       								</tr>
     								</thead>
 
     								<tbody>
-      								<tr>
-        								<td>Dhunwell</td>
-        								<td>15000</td>
+                      <tr>
+        								<td>1</td>
+        								<td>Job Sample</td>
+        								<td><a>Crisostomo Ibarra</a></td>
+        								<td>New order</i></td>
         								<td>
-        									<btn class = 'btn btn-success'>Pay</btn>
-        									<btn class = 'btn btn-primary'>Details</btn>
+        									<a href = 'quotation/create'><btn class = 'btn btn-primary'>Create Quotation</btn></a>
         								</td>
       								</tr>
 
+      								<tr>
+        								<td>2</td>
+        								<td>Rejected for Haggling</td>
+        								<td><a>Crisostomo Ibarra</a></td>
+        								<td>Haggle</i></td>
+        								<td>
+        									<btn class = 'btn btn-warning' id = 'approved'>Update</btn>
+        									<btn class = 'btn btn-danger' id = 'terminated'>Reject</btn>
+        								</td>
+      								</tr>
     								</tbody>
   								</table>
               </div>

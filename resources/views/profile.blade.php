@@ -1,18 +1,15 @@
 @extends('layout.main')
 
-@section('title', 'Add New Customer')
+@section('title', 'Profile')
+@include('headers.profile')
 
 @section('main-content')
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                  <a href = '/customer'>
-        						<btn class = 'btn btn-primary' id = 'return'>
-        						<i class="now-ui-icons arrows-1_minimal-left"></i> Return</btn>
-        					</a>
-                  <h5 class="card-category">Manage Customer</h5>
-                  <h4 class="card-title">Add Customer</h4>
+                  <h5 class="card-category">Account</h5>
+                  <h4 class="card-title">Profile</h4>
                 </div>
 
                 <div class="card-body">
@@ -23,8 +20,8 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">First Name</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required autofocus
-                                placeholder="Juan">
+                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" required autofocus
+                                value = "{{auth::user()->first_name}}">
 
                                 @if ($errors->has('first_name'))
                                     <span class="invalid-feedback">
@@ -38,8 +35,8 @@
                             <label for="last_name" class="col-md-4 col-form-label text-md-right">Last Name</label>
 
                             <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus
-                                placeholder="de la Cruz">
+                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" required autofocus
+                                value = "{{auth::user()->last_name}}">
 
                                 @if ($errors->has('last_name'))
                                     <span class="invalid-feedback">
@@ -49,12 +46,13 @@
                             </div>
                         </div>
 
+                        @if(auth::user()->user_type == 1)
                         <div class="form-group row">
                             <label for="company" class="col-md-4 col-form-label text-md-right">Company</label>
 
                             <div class="col-md-6">
-                                <input id="company" type="text" class="form-control{{ $errors->has('company') ? ' is-invalid' : '' }}" name="company" value="{{ old('company') }}"
-                                placeholder="Name of organization or company">
+                                <input id="company" type="text" class="form-control{{ $errors->has('company') ? ' is-invalid' : '' }}" name="company"
+                                value = "{{auth::user()->company}}">
 
                                 @if ($errors->has('company'))
                                     <span class="invalid-feedback">
@@ -63,13 +61,18 @@
                                 @endif
                             </div>
                         </div>
+                        @endif
 
                         <div class="form-group row">
+                          @if(auth::user()->user_type == 1)
                             <label for="address" class="col-md-4 col-form-label text-md-right">Company Address</label>
+                          @else
+                            <label for="address" class="col-md-4 col-form-label text-md-right">Residential Address</label>
+                          @endif
 
                             <div class="col-md-6">
-                                <textarea id="address" row = '2' class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}" required autofocus
-                                >
+                                <textarea id="address" row = '2' class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" required autofocus
+                                > {{auth::user()->address}}
                                 </textarea>
 
                                 @if ($errors->has('address'))
@@ -84,8 +87,8 @@
                             <label for="contact" class="col-md-4 col-form-label text-md-right">Contact Number</label>
 
                             <div class="col-md-6">
-                                <input id="contact" type="text" class="form-control{{ $errors->has("contact") ? ' is-invalid' : '' }}" name="contact" value="{{ old("contact") }}"
-                                placeholder="09xxxxxxxxx">
+                                <input id="contact" type="text" class="form-control{{ $errors->has("contact") ? ' is-invalid' : '' }}" name="contact"
+                                value = "{{auth::user()->contact}}">
 
                                 @if ($errors->has("contact"))
                                     <span class="invalid-feedback">
@@ -99,8 +102,8 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required
-                                placeholder="example@domain.com">
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required
+                                value = '{{auth::user()->email}}'>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -110,7 +113,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="pw form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
 
                             <div class="col-md-6">
@@ -125,7 +128,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="pw form-group row">
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
 
                             <div class="col-md-6">
@@ -134,9 +137,12 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-12 offset-md-4 text-center">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
+                            <div class="col-md-12 offset-md-3 text-center">
+                                <button id = 'modify' class="btn btn-warning">
+                                    Modify
+                                </button>
+                                <button id = 'update' type="submit" class="btn btn-submit">
+                                    Update
                                 </button>
                             </div>
                         </div>

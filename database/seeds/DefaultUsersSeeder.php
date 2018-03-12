@@ -38,7 +38,7 @@ class DefaultUsersSeeder extends Seeder
         'address' => null,
         'company' => null,
         'email' => 'admin@gemc.com',
-        'password' => bcrypt('likeaboss')],
+        'password' => bcrypt('administrator')],
 
       ['first_name' => 'Fernando',
       'last_name' => 'Amorsolo',
@@ -46,8 +46,8 @@ class DefaultUsersSeeder extends Seeder
       'contact' => null,
       'address' => null,
       'company' => null,
-      'email' => 'pre_press@gemc.com',
-      'password' => bcrypt('pre_press')],
+      'email' => 'production@gemc.com',
+      'password' => bcrypt('production')],
 
       ['first_name' => 'Andres',
       'last_name' => 'Bonifacio',

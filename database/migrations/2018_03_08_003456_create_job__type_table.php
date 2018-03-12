@@ -18,7 +18,7 @@ class CreateJobTypeTable extends Migration
             $table->string('type');
             $table->string('description');
 
-            $table->mediumInteger('specs_id')->nullable()->unsigned();
+            $table->integer('specs_id')->nullable()->unsigned();
             $table->timestamps();
         });
     }

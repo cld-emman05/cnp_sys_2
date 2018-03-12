@@ -11,6 +11,10 @@
 			<div class = 'card-header'>
 				<table class="table table-hover" style="width:100%">
 					<div class="card-header">
+						<a href = '/quotation'>
+							<btn class = 'btn btn-primary' id = 'return'>
+							<i class="now-ui-icons arrows-1_minimal-left"></i> Return</btn>
+						</a>
           <h5 class='card-category'>Quotation</h5>
             <h4 class="card-title">Create Quotation</h4>
           </div>

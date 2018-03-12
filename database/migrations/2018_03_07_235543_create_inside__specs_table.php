@@ -15,7 +15,11 @@ class CreateInsideSpecsTable extends Migration
     {
         Schema::create('inside__specs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('description');
             $table->timestamps();
+
+            $table->integer('paper_type_id')->nullable()->unsigned();
+            $table->integer('paper_color_id')->nullable()->unsigned();
         });
     }
 

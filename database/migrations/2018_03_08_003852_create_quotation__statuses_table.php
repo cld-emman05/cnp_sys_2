@@ -15,6 +15,9 @@ class CreateQuotationStatusesTable extends Migration
     {
         Schema::create('quotation__statuses', function (Blueprint $table) {
             $table->increments('id');
+            $table->enum('status',['approve','reject','haggling']);
+
+            $table->integer('quotation_id')->nullable()->unsigned();
             $table->timestamps();
         });
     }

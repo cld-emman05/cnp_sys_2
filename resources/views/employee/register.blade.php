@@ -7,6 +7,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
+                  <a href = '/employee'>
+      							<btn class = 'btn btn-primary' id = 'return'>
+      							<i class="now-ui-icons arrows-1_minimal-left"></i> Return</btn>
+      						</a>
                   <h5 class="card-category">Manage Employees</h5>
                   <h4 class="card-title">Add Employee</h4>
                 </div>
@@ -134,7 +138,7 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-12 offset-md-4 text-center">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>

@@ -2,13 +2,13 @@
 
 @section('title', "Approve Quotation")
 
-@include('headers.table')
+@include('headers.quotation')
 
 @section('main-content')
   <div class="row">
     <div class="col-md-12">
       <div class="card card-chart">
-          <div classA="card-header">
+          <div class="card-header">
           <h5 class='card-category'>Quotations</h5>
             <h4 class="card-title">Approval</h4>
           </div>
@@ -24,19 +24,26 @@
         								<th>Job Title</th>
         								<th>Agent</th>
         								<th>Job Price</th>
-        								<th>Confirm</th>
+        								<th>Remarks</th>
       								</tr>
     								</thead>
 
     								<tbody>
-      								<tr>
+      								<tr id = '1'>
         								<td>1</td>
         								<td>Job Sample</td>
         								<td><a>Crisostomo Ibarra</a></td>
         								<td><a>PhP 30.00</a></td>
         								<td>
-        									<btn class = 'btn btn-success'>Approve</btn>
-        									<btn class = 'btn btn-danger'>Reject ()</btn>
+        									<btn class = 'btn btn-success' id = 'approved'>Approve</btn>
+        									<btn class = 'btn btn-primary nav-item dropdown-toggle' href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown">Reject
+
+                            <div class = "dropdown-menu px-2">
+                              <a class = 'btn btn-info' href = '#' id = 'haggle'> Haggle (3) </a>
+                              <a class = 'btn btn-danger' href = '#' id = 'terminated'> Terminate </a>
+                            </div>
+
+                            </btn>
         								</td>
       								</tr>
     								</tbody>

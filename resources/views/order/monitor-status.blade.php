@@ -10,6 +10,10 @@
 					<div class="col-md-12">
 							<div class="card card-chart">
 									<div class="card-header">
+										<a href = '/order'>
+											<btn class = 'btn btn-primary' id = 'return'>
+											<i class="now-ui-icons arrows-1_minimal-left"></i> Return</btn>
+										</a>
 											<h5 class="card-category">Order</h5>
 											<h4 class="card-title">Status</h4>
 									</div>
@@ -23,7 +27,6 @@
 														<thead>
 															<th width="25%">Order #</th>
 															<th width="25%">Title of Job</th>
-															<th width="25%">Customer</th>
 															<th width="25%">Salesman</th>
                               <th width="25%">Updated at</th>
 														</thead>
@@ -47,31 +50,30 @@
 
 											<div class="row">
                   			<!-- JOB TYPE -->
-                  			<div class="col-md-3 pr-1">
-                  				<div class="form-group">
-                  					{{ Form::label('job_status', 'Job Status') }}
-														<div class="alert alert-info">
-														<span><b> In Process </b></span>
-														</div>
+                  			<div class="col-md-12">
+													{{ Form::label('job_status', 'Job Status') }}
+                  				<div class="row form-group col-md-12">
+														<span class="alert alert-info col-md-4 pr-2">
+															<b> In Process </b>
+														</span>
 
-														<div class="alert alert-warning">
-														<span><b> Ongoing Process </b></span>
-														</div>
+														<span class="alert alert-warning col-md-4 px-2">
+															<b> Ongoing Process </b>
+														</span>
 
-														<div class="alert alert-success">
-														<span><b> Ready for Delivery </b></span>
+														<span class="alert alert-success col-md-4 pl-2">
+														<b> Ready for Delivery </b></span>
 														</div>
-                  				</div>
-                  			</div>
-                  		</div>
+													</div>
+												</div>
 
                       <div class="row">
-                      <div class="col-md-12">
+                      <div class="col-md-12 text-right pl-2">
                         <div class="form-group">
                         <!-- COMMENTS -->
-												{{ Form::label('comments', 'Comments') }}
-												<textarea name = 'comments'
-													class = 'form-control border-input' row = 5 id = 'comments' readonly placeholder>This is a sample comment</textarea>
+												{{ Form::label('updated', 'Latest update') }}
+												<p name = 'updated'
+													class = 'text-muted' id = 'updated'><i>{{Carbon\Carbon::now()}}</i></p>
                         </div>
                       </div>
                     </div>

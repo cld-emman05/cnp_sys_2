@@ -11,6 +11,10 @@
 		<div class="card card-chart">
 			<div class = 'card-header'>
 				<table class="table table-hover" style="width:100%">
+					<a href = '/order'>
+						<btn class = 'btn btn-primary' id = 'return'>
+						<i class="now-ui-icons arrows-1_minimal-left"></i> Return</btn>
+					</a>
 					<div class="card-header">
           <h5 class='card-category'>Orders</h5>
             <h4 class="card-title">View Specifications</h4>
@@ -22,6 +26,8 @@
 							<col width="130">
 							<col width="80">
 								<thead>
+									<tr>
+									</tr>
 									<th width="25%">Order #</th>
 									<th width="25%">Customer</th>
 									<th width="25%">Date</th>
@@ -257,15 +263,11 @@
 					<p class="alert alert-danger"></p> -->
 					<!-- <hr> -->
 	<div class="text-center">
-		{{Form::button('Return to Orders', ['class' => 'btn btn-info btn-info btn-wd ', 'id'=>'return'])}} </i>
+	@if(auth::user()->user_type == 4)
+		<btn class = 'btn btn-primary' id = 'download'> Download File</btn>
 
-	@if(auth::user()->user_type == 2)
-	<!-- SUBMUT BUTTON -->
-	{{Form::submit('Submit for Quotation', ['class' => 'btn btn-info btn-warning btn-wd', 'id'=>'submit'])}}
-
-	@elseif(auth::user()->user_type == 4)
-	{{Form::button('Download File', ['class' => 'btn btn-primary btn-wd', 'id'=>'download'])}}
-
+		<btn class = 'btn btn-success' id = 'production'> Submit for Production</btn>
+	</a>
 	@endif
 	</div>
 </form>

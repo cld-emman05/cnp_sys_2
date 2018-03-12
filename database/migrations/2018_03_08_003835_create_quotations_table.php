@@ -15,6 +15,8 @@ class CreateQuotationsTable extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->increments('id');
+            $table->bigInteger('unit_price');
+            $table->bigInteger('total_amount');
             $table->timestamps();
         });
     }

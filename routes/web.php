@@ -11,49 +11,41 @@
 |
 */
 
-// Registration
+// Customer
 Route::get('/customer/register', function () {
     return view('customer.register');
+  });
+
+Route::get('/customer', function(){
+  return view('customer.index');
 });
 
+// Employees
 Route::get('/employee/register', function () {
     return view('employee.register');
 });
 
+Route::get('/employee', function(){
+  return view('employee.index');
+});
+
+// Suppliers
 Route::get('/supplier/register', function () {
     return view('supplier.register');
 });
 
-// User Dashviards
-Route::get('/customer', function () {
-    return view('dashboard.customer');
+Route::get('/supplier/', function () {
+    return view('supplier.index');
 });
 
-Route::get('/sales', function () {
-    return view('dashboard.agent');
-});
-
-Route::get('/administrator', function () {
-    return view('dashboard.admin');
-});
-
-Route::get('/pre-press', function () {
-    return view('dashboard.pre-press');
-});
-
-Route::get('/purchasing', function () {
-    return view('dashboard.purchasing');
-});
-
-Route::get('/finance', function () {
-    return view('dashboard.finance');
+Route::get('/profile', function(){
+  return view('profile');
 });
 
 // Orders Function
+Route::get('/order', 'OrderController@index');
 
-Route::get('/order/create', function () {
-    return view('order.create');
-});
+Route::get('/order/create', 'OrderController@create');
 
 Route::get('/order/view', function () {
     return view('order.view');
@@ -85,8 +77,8 @@ Route::get('/quotation/approve', function () {
     return view('quotation.approve');
 });
 
-Route::get('/quotation/haggle', function () {
-    return view('quotation.haggle');
+Route::get('/quotation', function () {
+    return view('quotation.index');
 });
 
 //Purchase Function
@@ -97,6 +89,10 @@ Route::get('/purchase/create', function () {
 
 Route::get('/purchase/compute', function () {
     return view('purchase.compute');
+});
+
+Route::get('/purchase', function(){
+  return view('purchase.index');
 });
 
 // Supplier Functions
@@ -114,12 +110,14 @@ Route::get('/about-us', function () {
   return view('about.info');
 });
 
-Route::get('/', function () {
-    return view('about.info');
-});
+Route::get('/', 'HomeController@index');
 
 Route::get('/contact-us', function () {
     return view('about.contact');
 });
 
 Auth::routes();
+
+// Resources
+
+Route::resource('job_orders', 'Job_Orders');

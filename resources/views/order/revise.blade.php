@@ -10,6 +10,10 @@
 					<div class="col-md-12">
 							<div class="card card-chart">
 									<div class="card-header">
+										<a href = '/order'>
+											<btn class = 'btn btn-primary' id = 'return'>
+											<i class="now-ui-icons arrows-1_minimal-left"></i> Return</btn>
+										</a>
 											<h5 class="card-category">Order Request</h5>
 											<h4 class="card-title">Revise Order</h4>
 									</div>
