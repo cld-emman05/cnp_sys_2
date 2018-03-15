@@ -17,6 +17,8 @@
 <script src="{{ asset('demo/demo.js')  }}">></script>
 
 <script>
+
+// for terminating button
 $(document).ready(function(){
   $('btn#terminated').click(function(){
     $('tr#1').fadeOut('slow', function(){
@@ -33,5 +35,4 @@ $(document).ready(function(){
       });
     });
   });
-});
 </script>

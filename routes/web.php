@@ -47,8 +47,14 @@ Route::get('/order', 'OrderController@index');
 
 Route::get('/order/create', 'OrderController@create');
 
+Route::post('/uploadfile','UploadFileController@showUploadFile');
+
 Route::get('/order/view', function () {
     return view('order.view');
+});
+
+Route::get('/order/to-do', function () {
+    return view('order.to-do');
 });
 
 Route::get('/order/revise', function () {

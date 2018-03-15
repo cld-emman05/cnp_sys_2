@@ -210,9 +210,19 @@
 								<div class="form-group">
 									<!-- JOB SAMPLE -->
 									{{ Form::label('job_sample', 'Job Sample') }}
-									<input type="file" name="job_sample" />
-									<input class = 'btn btn-primary' type="submit" name="submit" value="Upload File" />
-								</div>
+									<br>
+									{{ Form::open(array('url' => '/uploadfile','files'=>'true')) }}
+									<br>
+									{{ Form::file('job_sample') }}
+
+									{{ Form::submit('Upload File',  ['class' => 'btn btn-primary btn-fill btn-wd', 'id'=>'upload']) }}
+
+									@if(Request::hasFile('job_sample'))
+									{{ Request::file('job_sample')->getClientOriginalName() }}
+
+									@endif
+									{{ Form::close() }}
+									</div>
 							</div>
 						</div>
 
@@ -239,7 +249,11 @@
 								<option value="0"> -- </option>
 								<option value="1"> Perfect </option>
 								<option value="2"> Wire-O </option>
-								<option value="2"> Saddle Stitch </option>
+								<option value="3"> Saddle Stitch </option>
+								<option value="4"> Padded Stitch </option>
+								<option value="5"> Folded </option>
+								<option value="6"> Smythsewn Perfect </option>
+								<option value="6"> Smythsewn Hardbound </option>
 							</select>
 						</div>
 					</div>

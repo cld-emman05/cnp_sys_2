@@ -13,11 +13,11 @@
 	<div class="wrapper">
 		@else
 
-		@if(auth::user()->user_type == 1 || auth::user()->user_type == 3)
+		@if((@auth::user()->user_types->type == 'Customer'  || @auth::user()->user_types->type == 'Administrator'))
     <div class="sidebar" data-color="blue">
-		@elseif(auth::user()->user_type == 2 || auth::user()->user_type == 4)
+		@elseif(@auth::user()->user_types->type == 'Sales' || @auth::user()->user_types->type == 'Production'))
 		<div class="sidebar" data-color="yellow">
-		@elseif(auth::user()->user_type == 5 || auth::user()->user_type == 6)
+		@elseif(@auth::user()->user_types->type == 'Purchasing' || @auth::user()->user_types->type == 'Finance'))
 		<div class="sidebar" data-color="green">
 		@endif
 
@@ -34,15 +34,14 @@
 		@endguest
 		@include('layout.topbar')
 
-		@if(Request:: is(@Auth::user()->user_types->type))
+		<!--
 		<div class="panel-header panel-header-lg">
 				<canvas id="bigDashboardChart"></canvas>
 			</div>
+		-->
 
-		@else
 		<div class="panel-header panel-header-sm">
 		</div>
-		@endif
 
 			<div class="content">
 				<div class="container-fluid">
