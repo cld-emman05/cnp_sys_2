@@ -6,28 +6,29 @@
 
 @section('main-content')
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-6">
 				<div class="card card-chart">
 						<div class="card-header">
 								<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
-									<h4 class="card-title">Ongoing Jobs</h4>
+									<h4 class="card-title">Recent orders</h4>
 								</div>
 								<div class="card card-chart">
 									<table class="table table-hover">
 										<thead>
 											<tr>
-												<th>Updates</th>
+												<th>Date</th>
+												<th>Job Title	</th>
+												<th>Job Price</th>
+												<th>Job Status</th>
 											</tr>
 										</thead>
 
 										<tbody>
 											<tr>
-												<td><a href= '#'>Order 'Job Sample' needs quotation approval</a></td>
-												<td><a href= '#'>{{Carbon\Carbon::now()->format('M d, Y')}}</a></td>
-											</tr>
-
-											<tr>
-												<td><a href= '#'>Order 'Job Sample' is ongoing production</a></td>
+												<td>{{Carbon\Carbon::now()->format('M d, Y')}}</td>
+												<td>Job Sample</td>
+												<td>PhP 30</td>
+												<td>In Process</td>
 											</tr>
 										</tbody>
 								</table>
@@ -35,7 +36,7 @@
 				</div>
 			</div>
 
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<div class="card card-chart">
 							<div class="card-header">
 								<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>

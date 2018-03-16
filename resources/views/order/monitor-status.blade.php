@@ -35,8 +35,11 @@
 															<tr>
 															<td>1</td>
 															<td>Journal</td>
+															@if(@auth::user()->user_types->type == 'Sales')
 															<td><a>Crisostomo Ibarra</a></td>
+															@elseif(@auth::user()->user_types->type == 'Customer')
 															<td><a>Nidora Zobeyala</a></td>
+															@endif
                               <td>{{ Carbon\Carbon::now() }}</a></td>
 															</tr>
 														</tbody>
@@ -49,23 +52,40 @@
                     <div class="card-body">
 
 											<div class="row">
+												<div class="col-md-12">
                   			<!-- JOB TYPE -->
-                  			<div class="col-md-12">
-													{{ Form::label('job_status', 'Job Status') }}
-                  				<div class="row form-group col-md-12">
-														<span class="alert alert-info col-md-4 pr-2">
-															<b> In Process </b>
-														</span>
+												<table class="table table-hover">
+													<thead>
+														<th>Job Status</th>
+														<th></th>
+														<th></th>
+													</thead>
 
-														<span class="alert alert-warning col-md-4 px-2">
-															<b> Ongoing Process </b>
-														</span>
-
-														<span class="alert alert-success col-md-4 pl-2">
-														<b> Ready for Delivery </b></span>
-														</div>
+													<tbody class = 'col-md-12'>
+													<td class = 'alert alert-info'><i class = 'now-ui-icons ui-1_check'></i> In Process</td>
+													<td class = 'alert alert-warning'><i class="now-ui-icons loader_refresh spin"></i> Ongoing Production</td>
+													<td class = 'alert alert-success'>Ready for Delivery</td>
+												</tbody>
+												</table>
 													</div>
 												</div>
+
+												<div class="row">
+													<div class="col-md-12">
+	                  			<!-- JOB TYPE -->
+													<table class="table table-hover">
+														<thead>
+															<th>Date</th>
+															<th>Status</th>
+														</thead>
+
+														<tbody class = 'col-md-12'>
+														<td>{{Carbon\Carbon::now()->format('M d, Y')}}</td>
+														<td>Your order has sent for produced.</td>
+													</tbody>
+													</table>
+														</div>
+													</div>
 
                       <div class="row">
                       <div class="col-md-12 text-right pl-2">
@@ -79,10 +99,7 @@
                     </div>
                   </div>
                 </div>
-								<div class="text-center">
-								<!-- SUBMUT BUTTON -->
-								{{Form::submit('Submit Revision', ['class' => 'btn btn-info btn-fill btn-wd', 'id'=>'submit'])}}
-								</div>
+
               </div>
             </div>
           </div>
