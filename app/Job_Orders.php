@@ -15,10 +15,10 @@ class Job_Orders extends Model
   }
 
   public function customer(){
-    return $this->belongsTo('App\Order', 'user_id');
+    return $this->belongsTo('App\Order');
   }
 
   public function quotation(){
-    return $this->hasOne('App\Quotation', quotation_id);
+    return $this->hasMany('App\Quotation', quotation_id);
   }
 }
