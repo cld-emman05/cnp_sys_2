@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use DB;
 
-class MaterialsController extends Controller
+class PaymentsController extends Controller
 {
     /**
      * Display a listing of the resource.

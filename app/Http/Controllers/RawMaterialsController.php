@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use DB;
 
+use App\Suppliers; // Suppliers ID
+use App\Specs; // Specs ID
+
 class RawMaterialsController extends Controller
 {
     /**

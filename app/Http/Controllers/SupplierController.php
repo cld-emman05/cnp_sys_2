@@ -19,9 +19,9 @@ class SupplierController extends Controller
      */
     public function index()
     {
-      $supplier = Suppliers::all();
+      $suppliers = Suppliers::all();
 
-      return view('order.index')->with('orders', $supplier);
+      return view('order.index')->with('orders', $suppliers);
     }
 
     /**
@@ -42,17 +42,17 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-      $supplier = new Order; //Create Order table
+      $suppliers = new suppliers; //Create Order table
 
-      $supplier->user_id = \Auth::user()->id;
-      $supplier->name = $request->input('supplierName');
-      $supplier->contact_no = $request->input('contactNo');
+      $suppliers->user_id = \Auth::user()->id;
+      $suppliers->name = $request->input('supplierName');
+      $suppliers->contact_no = $request->input('contactNo');
 
-      $supplier->term_id = $request->input('termId');
-      $supplier->material_id = $request->input('materialId');
-      $supplier->payment_id = $request->input('paymentId');
+      $suppliers->term_id = $request->input('termId');
+      $suppliers->material_id = $request->input('materialId');
+      $suppliers->payment_id = $request->input('paymentId');
 
-      $supplier->save();
+      $suppliers->save();
 
       //return redirect('directory of view')->with('condition', 'what happened');
 
@@ -66,7 +66,7 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-      $supplier = Suppliers::find($id);
+      $suppliers = Suppliers::find($id);
 
       //return view associated
       //return view('order.view', compact('order'));
