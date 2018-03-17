@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use DB;
 
-class FileNameController extends Controller
+class UserTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class FileNameController extends Controller
      */
     public function index()
     {
-      $fileName = File_Name::all();
+      $userType = UserType::all();
 
-      return view('order.index')->with('orders', $fileName);
+      return view('order.index')->with('orders', $userType);
     }
 
     /**
@@ -38,13 +38,12 @@ class FileNameController extends Controller
      */
     public function store(Request $request)
     {
-      $fileName = new fileName; //Create Order table
+      $userType = new userType; //Create Order table
 
-      $fileName->user_id = \Auth::user()->id;
-      $fileName->name = $request->input('fileName');
-      $fileName->mime_file = $request->input('mimeFile');
+      $userType->user_id = \Auth::user()->id;
+      $userType->user_type = $request->input('userType');
 
-      $fileName->save();
+      $userType->save();
 
       //return redirect('directory of view')->with('condition', 'what happened');
 
@@ -58,7 +57,7 @@ class FileNameController extends Controller
      */
     public function show($id)
     {
-      $fileName = File_Name::find($id);
+      $userType = UserType::find($id);
 
       //return view associated
       //return view('order.view', compact('order'));

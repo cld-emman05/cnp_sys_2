@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use DB;
 
-class FileNameController extends Controller
+class SpecsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class FileNameController extends Controller
      */
     public function index()
     {
-      $fileName = File_Name::all();
+      $specs = Specs::all();
 
-      return view('order.index')->with('orders', $fileName);
+      return view('order.index')->with('orders', $specs);
     }
 
     /**
@@ -38,13 +38,19 @@ class FileNameController extends Controller
      */
     public function store(Request $request)
     {
-      $fileName = new fileName; //Create Order table
+      $specs = new specs; //Create Order table
 
-      $fileName->user_id = \Auth::user()->id;
-      $fileName->name = $request->input('fileName');
-      $fileName->mime_file = $request->input('mimeFile');
+      $specs->user_id = \Auth::user()->id;
+      $specs->quantity = $request->input('specsQuantity');
+      $specs->description = $request->input('specsDescription');
 
-      $fileName->save();
+      $specs->size_id = $request->input('sizeId');
+      $specs->cover_id = $request->input('coverId');
+      $specs->inside_id = $request->input('insideId');
+      $specs->lamination_id = $request->input('laminationId');
+      $specs->binding_id = $request->input('bindingId');
+
+      $specs->save();
 
       //return redirect('directory of view')->with('condition', 'what happened');
 
@@ -58,7 +64,7 @@ class FileNameController extends Controller
      */
     public function show($id)
     {
-      $fileName = File_Name::find($id);
+      $specs = Specs::find($id);
 
       //return view associated
       //return view('order.view', compact('order'));

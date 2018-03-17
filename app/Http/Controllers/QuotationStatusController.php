@@ -40,11 +40,11 @@ class QuotationStatusController extends Controller
      */
     public function store(Request $request)
     {
-      $quotationStatus = new Order; //Create Order table
+      $quotationStatus = new quotationStatus; //Create Order table
 
       $quotationStatus->user_id = \Auth::user()->id;
-      $quotationStatus->status = $request->input('QuotationStatus');
-      $quotationStatus->quotation_id = $request->input('Quotation');
+      $quotationStatus->status = $request->input('quotationStatus');
+      $quotationStatus->quotation_id = $request->input('quotation');
 
       $quotationStatus->save();
 

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use DB;
 
-class FileNameController extends Controller
+class RawMaterialsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class FileNameController extends Controller
      */
     public function index()
     {
-      $fileName = File_Name::all();
+      $rawMaterials = Raw_Materials::all();
 
-      return view('order.index')->with('orders', $fileName);
+      return view('order.index')->with('orders', $rawMaterials);
     }
 
     /**
@@ -38,13 +38,13 @@ class FileNameController extends Controller
      */
     public function store(Request $request)
     {
-      $fileName = new fileName; //Create Order table
+      $rawMaterials = new rawMaterials; //Create Order table
 
-      $fileName->user_id = \Auth::user()->id;
-      $fileName->name = $request->input('fileName');
-      $fileName->mime_file = $request->input('mimeFile');
+      $rawMaterials->user_id = \Auth::user()->id;
+      $rawMaterials->specs_id = $request->input('specsId');
+      $rawMaterials->supplies_id = $request->input('suppliesId');
 
-      $fileName->save();
+      $rawMaterials->save();
 
       //return redirect('directory of view')->with('condition', 'what happened');
 
@@ -58,7 +58,7 @@ class FileNameController extends Controller
      */
     public function show($id)
     {
-      $fileName = File_Name::find($id);
+      $rawMaterials = Raw_Materials::find($id);
 
       //return view associated
       //return view('order.view', compact('order'));

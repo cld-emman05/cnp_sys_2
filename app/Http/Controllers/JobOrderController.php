@@ -21,9 +21,9 @@ class JobOrderController extends Controller
      */
     public function index()
     {
-      $orders = Job_Orders::all();
+      $jobOrders = Job_Orders::all();
 
-      return view('order.index')->with('orders', $orders);
+      return view('order.index')->with('orders', $jobOrders);
     }
 
     /**
@@ -44,17 +44,17 @@ class JobOrderController extends Controller
      */
     public function store(Request $request)
     {
-      $order = new Order; //Create Order table
+      $jobOrder = new jobOrder; //Create Order table
 
-      $order->user_id = \Auth::user()->id;
-      $order->name = $request->input('JobName');
-      $order->comments = $request->input('comment');
+      $jobOrder->user_id = \Auth::user()->id;
+      $jobOrder->name = $request->input('jobName');
+      $jobOrder->comments = $request->input('comment');
 
 
-      $order->job_type_id = $request->input('JobType');
-      $order->file_id = $request->input('FileName');
-      $order->user_id = $request->input('User');
-      $order->quotation_id = $request->input('Quotation');
+      $jobOrder->job_type_id = $request->input('jobType');
+      $jobOrder->file_id = $request->input('fileName');
+      $jobOrder->user_id = $request->input('user');
+      $jobOrder->quotation_id = $request->input('quotation');
 
       $order->save();
 
@@ -70,7 +70,7 @@ class JobOrderController extends Controller
      */
     public function show($id)
     {
-      $order = Job_Orders::find($id);
+      $jobOrder = Job_Orders::find($id);
 
       //return view associated, to be changed
       return view('order.view', compact('order'));

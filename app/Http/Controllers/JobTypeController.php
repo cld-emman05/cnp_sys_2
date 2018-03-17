@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use DB;
 
-class FileNameController extends Controller
+class JopTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class FileNameController extends Controller
      */
     public function index()
     {
-      $fileName = File_Name::all();
+      $jobType = Job_Type::all();
 
-      return view('order.index')->with('orders', $fileName);
+      return view('order.index')->with('orders', $jobType);
     }
 
     /**
@@ -38,13 +38,15 @@ class FileNameController extends Controller
      */
     public function store(Request $request)
     {
-      $fileName = new fileName; //Create Order table
+      $jobType = new jobType; //Create Order table
 
-      $fileName->user_id = \Auth::user()->id;
-      $fileName->name = $request->input('fileName');
-      $fileName->mime_file = $request->input('mimeFile');
+      $jobType->user_id = \Auth::user()->id;
+      $jobType->type = $request->input('jobTypeName');
+      $jobType->description = $request->input('jobTypeDescription');
 
-      $fileName->save();
+      $jobType->specs_id = $request->input('specsId');
+
+      $jobType->save();
 
       //return redirect('directory of view')->with('condition', 'what happened');
 
@@ -58,7 +60,7 @@ class FileNameController extends Controller
      */
     public function show($id)
     {
-      $fileName = File_Name::find($id);
+      $jobType = Job_Type::find($id);
 
       //return view associated
       //return view('order.view', compact('order'));

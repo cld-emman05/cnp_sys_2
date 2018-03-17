@@ -17,10 +17,10 @@ class JobOrderStatusController extends Controller
      */
     public function index()
     {
-      $orderStatus = Job_Order_Status::all();
+      $jobOrderStatus = Job_Order_Status::all();
 
       //to be changed
-      return view('order.index')->with('orders', $orderStatus);
+      return view('order.index')->with('orders', $jobOrderStatus);
     }
 
     /**
@@ -42,14 +42,14 @@ class JobOrderStatusController extends Controller
      */
     public function store(Request $request)
     {
-      $orderStatus = new Order; //Create Order table
+      $jobOrderStatus = new jobOrderStatus; //Create Order table
 
-      $orderStatus->user_id = \Auth::user()->id;
-      $orderStatus->status = $request->input('jobStatus');
+      $jobOrderStatus->user_id = \Auth::user()->id;
+      $jobOrderStatus->status = $request->input('jobStatus');
 
-      $orderStatus->order_id = $request->input('JobOrder');
+      $jobOrderStatus->order_id = $request->input('jobOrder');
 
-      $orderStatus->save();
+      $jobOrderStatus->save();
 
       //return redirect('directory of view')->with('condition', 'what happened');
 
@@ -63,7 +63,7 @@ class JobOrderStatusController extends Controller
      */
     public function show($id)
     {
-      $orderStatus = Job_Order_Status::find($id);
+      $jobOrderStatus = Job_Order_Status::find($id);
 
       //return view associated, to be changed
       return view('order.view', compact('order'));
