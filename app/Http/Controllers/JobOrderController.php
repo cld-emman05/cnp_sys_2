@@ -7,15 +7,12 @@ use Illuminate\Http\Request;
 use DB;
 
 use App\Job_Orders;
-use App\Job_Type;
-use App\Specs;
-use App\Size_Types; // size
-use App\Cover_Specs; // cover_id
-use App\Inside_Specs; // inside_id
-use App\Lamination_Types; // lamination
-use App\Binding_Types; // binding_type_id
+use App\Job_Type; //Job type ID
+use App\File_Name; //File name ID
+use App\User; // User ID
+use App\Quotation; // Quotation ID
 
-class OrderController extends Controller
+class JobOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,33 +44,21 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-      $order = new Order;
-      $specs = new Specs;
-      $size = new Size_Types; // size
-      $cover = new Cover_Specs; // cover_id
-      $inside = new Inside_Specs; // inside_id
-      $lamination = new Lamination_Types; // lamination
-      $bind = new Binding_Types; // binding_type_id
+      $order = new Order; //Create Order table
 
       $order->user_id = \Auth::user()->id;
-      $order->name = $request->input('job_name');
+      $order->name = $request->input('JobName');
+      $order->comments = $request->input('comment');
 
-      $order->quantity = $request->input('quantity');
-      $order->page_count = $request->input('page_count');
-      $order->date_due = $request->input('date_due');
-      $order->file = $request->input('myFile');
-      $order->comments = $request->input('comments');
 
-      $order->job_type_id = $request->input('job_type');
-      $order->type->specs->cover_specs->paper_type_id = $request->input('cover_paper');
-      $order->type->specs->cover_specs->paper_color_id = $request->input('cover_color');
-      $order->type->specs->inside_specs->paper_type_id = $request->input('inside_paper');
-      $order->type->specs->inside_specs->paper_color_id = $request->input('inside_color');
-      $order->specs->lamination_id = $request->input('lamination');
-      $order->specs->binding_id = $request->input('binding');
-      $order->specs->size_type_id = $request->input('size');
+      $order->job_type_id = $request->input('JobType');
+      $order->file_id = $request->input('FileName');
+      $order->user_id = $request->input('User');
+      $order->quotation_id = $request->input('Quotation');
 
       $order->save();
+
+      //return redirect('directory of view')->with('condition', 'what happened');
 
     }
 
@@ -85,8 +70,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-      $order = Job_Order::find($id);
+      $order = Job_Orders::find($id);
 
+      //return view associated, to be changed
       return view('order.view', compact('order'));
     }
 
@@ -98,7 +84,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        return view('order.revise', compact('order'));
+        // return view('order.revise', compact('order'));
     }
 
     /**
