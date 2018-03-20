@@ -11,12 +11,12 @@ class PaperColorSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('paper_color')->insert([
-        ['name' => 'Black and White'
+      DB::table('paper__colors')->insert([
+        ['name' => 'Black and White',
          'description'=> '0/0'
         ],
 
-        ['name' => 'Full Color'
+        ['name' => 'Full Color',
          'description'=> '4/0'
         ],
     ]);

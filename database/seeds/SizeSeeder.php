@@ -11,17 +11,17 @@ class SizeSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('size_types')->insert([
-        ['name' => 'Letter'
+      DB::table('size__types')->insert([
+        ['name' => 'Letter',
          'description'=> '8.5 x 11'
         ],
-        ['name' => 'Legal'
+        ['name' => 'Legal',
          'description'=> '8.5 x 13'
         ],
-        ['name' => 'Broadsheet'
+        ['name' => 'Broadsheet',
          'description'=> '24 x 18'
         ],
-        ['name' => 'C4'
+        ['name' => 'C4',
          'description'=> '9 x 12'
         ],
     ]);

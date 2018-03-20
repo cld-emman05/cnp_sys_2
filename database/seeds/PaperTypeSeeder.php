@@ -12,45 +12,45 @@ class PaperTypeSeeder extends Seeder
     public function run()
     {
       //for Inside
-      DB::table('paper_type')->insert([
-        ['name' => 'BP50'
+      DB::table('paper__types')->insert([
+        ['name' => 'BP50',
          'description'=> 'for Inside Paper'
         ],
 
-        ['name' => 'BP60'
+        ['name' => 'BP60',
          'description'=> 'for Inside Paper'
         ],
 
-        ['name' => 'BP70'
+        ['name' => 'BP70',
          'description'=> 'for Inside Paper'
         ],
 
-        ['name' => 'C2S70'
+        ['name' => 'C2S70',
          'description'=> 'for Inside Paper'
         ],
 
-        ['name' => 'C2S80'
+        ['name' => 'C2S80',
          'description'=> 'for Inside Paper'
         ],
 
-        ['name' => 'C2S100'
+        ['name' => 'C2S100',
          'description'=> 'for Inside Paper'
         ],
 
         //for Covers
-        ['name' => 'C2S140'
+        ['name' => 'C2S140',
          'description'=> 'for Cover Paper'
         ],
 
-        ['name' => 'C2S160'
+        ['name' => 'C2S160',
          'description'=> 'for Cover Paper'
         ],
 
-        ['name' => 'C2S180'
+        ['name' => 'C2S180',
          'description'=> 'for Cover Paper'
         ],
 
-        ['name' => 'C2S220'
+        ['name' => 'C2S220',
          'description'=> 'for Cover Paper'
         ],
     ]);
