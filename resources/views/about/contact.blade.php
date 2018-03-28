@@ -1,10 +1,3 @@
-@extends('layout.main')
-
-@section('title', "Contact Us")
-
-@include('headers.contact')
-
-@section('main-content')
 <div class="col-md-12">
 											 <div class="card">
 													 <div class="card-header">
@@ -71,4 +64,3 @@
 
 								 </div>
 							 </div>
-@endsection

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends Model
 {
-  public function suppliers(){
-    return $this->belongsTo('App\Suppliers');
+  protected $guarded = [];
+  
+  public function supplier(){
+    $this->belongsTo('App\Suppliers');
   }
 }

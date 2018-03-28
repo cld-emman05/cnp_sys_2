@@ -23,12 +23,12 @@
 
   <div class="sidebar-wrapper font-weight-bold">
       <ul class="nav">
-          <li class = "{{Request:: is('/') ? 'active' : ''}}">
+        <!--  <li class = "{{Request:: is('/') ? 'active' : ''}}">
               <a href="/">
                   <i class="now-ui-icons design_app"></i>
                   <p>Dashboard</p>
               </a>
-          </li>
+          </li> -->
 
           @if(@auth::user()->user_types->type == 'Customer')
           <li class = "{{Request:: is('order/*') ? 'active' : ''}}
@@ -38,6 +38,27 @@
                   <p>Orders</p>
               </a>
           </li>
+
+                <li class = "{{Request:: is('order/create') ? 'active' : ''}}">
+                    <a href= '/order/create'>
+                        <i class="now-ui-icons ui-1_email-85"></i>
+                        <p>Create</p>
+                    </a>
+                </li>
+
+                <li class = "{{Request:: is('order/revise') ? 'active' : ''}}">
+                    <a href= '/order/revise'>
+                        <i class="now-ui-icons design_image"></i>
+                        <p>Revise</p>
+                    </a>
+                </li>
+
+                <li class = "{{Request:: is('order/monitor-status') ? 'active' : ''}}">
+                    <a href= '/order/monitor-status'>
+                        <i class="now-ui-icons travel_info"></i>
+                        <p>Status</p>
+                    </a>
+                </li>
 
           <li class = "{{Request:: is('quotation/*') ? 'active' : ''}}
                       {{Request:: is('quotation') ? 'active' : ''}}">

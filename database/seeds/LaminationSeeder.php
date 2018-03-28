@@ -11,21 +11,25 @@ class LaminationSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('lamination_types')->insert([
-        ['name' => 'Matte (1-sided)'
+      DB::table('lamination__types')->insert([
+        ['name' => 'Matte (1-sided)',
          'description'=> 'One-sided Matte Lamination'
         ],
 
-        ['name' => 'Matte (2-sided)'
+        ['name' => 'Matte (2-sided)',
          'description'=> 'Double-sided Matte Lamination'
         ],
 
-        ['name' => 'Plastic Lamination'
+        ['name' => 'Plastic Lamination',
          'description'=> 'Traditional Plastic Lamination'
         ],
 
-        ['name' => 'Ultraviolet Coating'
+        ['name' => 'Ultraviolet Coating',
          'description'=> 'UV Coating'
+        ],
+
+        ['name' => 'Scoring Cover',
+         'description'=> '--'
         ],
     ]);
     }

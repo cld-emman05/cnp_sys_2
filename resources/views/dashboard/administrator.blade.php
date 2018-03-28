@@ -2,7 +2,7 @@
 
 @section('title', "Admin Dashboard")
 
-@include('headers.dashboard')
+@include('headers.table')
 
 @section('main-content')
 <div class="content">

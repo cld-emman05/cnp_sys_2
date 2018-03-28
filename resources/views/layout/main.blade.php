@@ -16,7 +16,7 @@
 		@if((@auth::user()->user_types->type == 'Customer'  || @auth::user()->user_types->type == 'Administrator'))
     <div class="sidebar" data-color="blue">
 		@elseif(@auth::user()->user_types->type == 'Sales' || @auth::user()->user_types->type == 'Production'))
-		<div class="sidebar" data-color="yellow">
+		<div class="sidebar" data-color="orange">
 		@elseif(@auth::user()->user_types->type == 'Purchasing' || @auth::user()->user_types->type == 'Finance'))
 		<div class="sidebar" data-color="green">
 		@endif

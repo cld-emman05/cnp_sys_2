@@ -2,7 +2,7 @@
 
 @section('title', "Finance Dashboard")
 
-@include('headers.dashboard')
+@include('headers.table')
 
 @section('main-content')
 <div class="content">
@@ -10,7 +10,6 @@
 		<div class="col-md-6">
 				<div class="card card-chart">
 						<div class="card-header">
-							<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
 								<h4 class="card-title">Debt Tracker</h4>
 							</div>
 							<div class="card card-chart">
@@ -35,23 +34,9 @@
 				</div>
 			</div>
 
-			<div class="col-md-6">
-					<div class="card card-chart">
-							<div class="card-header">
-									<h4 class="card-title">Time check</h4>
-									<h5 class="card-category"> <i class = "date"> </i></h5>
-								</div>
-								<div class="card-body">
-									<h1><b class="clock"></b></h1>
-								</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
 				<div class="col-md-6">
 						<div class="card card-chart">
 								<div class="card-header">
-									<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
 										<h4 class="card-title">Cashflow</h4>
 									</div>
 									<div class="card card-chart">
@@ -60,7 +45,7 @@
 												<tr>
 													<th>Date</th>
 													<th>Source</th>
-													<th>Amount/th>
+													<th>Amount</th>
 													<th>Method</th>
 												</tr>
 											</thead>

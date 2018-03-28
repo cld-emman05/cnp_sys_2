@@ -6,12 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quotation extends Model
 {
-  //Order
-  public function order(){
-    return $this->belongsTo('App\Job_Orders');
+  protected $guarded = [];
+  
+  public function quotation_statuses(){
+    $this->hasMany('App\Quotation_Status');
   }
 
-  public function quotation_status(){
-    return this->hasMany('App\Quotation_Status');
+  public function orders(){
+    $this->belongsTo('App\Orders', order_id);
   }
 }

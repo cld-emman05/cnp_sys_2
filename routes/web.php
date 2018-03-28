@@ -43,9 +43,9 @@ Route::get('/profile', function(){
 });
 
 // Orders Function
-Route::get('/order', 'OrderController@index');
+Route::get('/order', 'OrderController@index')->middleware('auth');
 
-Route::get('/order/create', 'OrderController@create');
+Route::get('/order/create', 'OrderController@create')->middleware('auth');;
 
 Route::post('/uploadfile','UploadFileController@showUploadFile');
 
@@ -118,9 +118,9 @@ Route::get('/about-us', function () {
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/contact-us', function () {
+/*Route::get('/contact-us', function () {
     return view('about.contact');
-});
+});*/
 
 Auth::routes();
 

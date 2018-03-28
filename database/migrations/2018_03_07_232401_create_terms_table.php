@@ -15,9 +15,7 @@ class CreateTermsTable extends Migration
     {
         Schema::create('terms', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('credit_balance');
             $table->mediumInteger('days');
-            $table->timestamps();
         });
     }
 

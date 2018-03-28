@@ -17,8 +17,9 @@ class CreateMaterialsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('description');
-            $table->decimal('price',10,2);
-            $table->timestamps();
+            $table->decimal('price', 10, 2);
+
+            $table->integer('paper_type_id')->nullable()->unsigned();  
         });
     }
 

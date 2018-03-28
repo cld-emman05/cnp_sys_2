@@ -2,19 +2,18 @@
 
 @section('title', "Dashboard")
 
-@include('headers.dashboard')
+@include('headers.table')
 
 @section('main-content')
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-9">
 				<div class="card card-chart">
 						<div class="card-header">
-								<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
 									<h4 class="card-title">Recent orders</h4>
 								</div>
 								<div class="card card-chart">
 									<table class="table table-hover">
-										<thead>
+										<thead data-color = "blue">
 											<tr>
 												<th>Date</th>
 												<th>Job Title	</th>
@@ -36,27 +35,22 @@
 				</div>
 			</div>
 
-				<div class="col-md-6">
+				<div class="col-md-3">
 					<div class="card card-chart">
 							<div class="card-header">
-								<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
-									<h4 class="card-title">Your agents</h4>
+									<h4 class="card-title">Sales Agent</h4>
 							</div>
 							<div class="card card-chart">
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>Name</th>
+											<td><a href= '#'>Nidora Zobeyala</a></td>
 										</tr>
 									</thead>
 
 									<tbody>
 										<tr>
-											<td><a href= '#'>Nidora Zobeyala</a></td>
-										</tr>
-
-										<tr>
-											<td><a href= '#'>Tidora Zobeyala</a></td>
+											<td>09221168711</td>
 										</tr>
 									</tbody>
 							</table>

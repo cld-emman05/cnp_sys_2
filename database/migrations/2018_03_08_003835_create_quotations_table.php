@@ -17,7 +17,8 @@ class CreateQuotationsTable extends Migration
             $table->increments('id');
             $table->bigInteger('unit_price');
             $table->bigInteger('total_amount');
-            $table->timestamps();
+
+            $table->integer('order_id')->nullable()->unsigned();
         });
     }
 

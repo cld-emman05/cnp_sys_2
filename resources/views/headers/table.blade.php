@@ -1,3 +1,5 @@
+@include('headers.main')
+
 <!--   Core JS Files   -->
 <script src="{{ asset('js/core/jquery.min.js') }}">></script>
 <script src="{{ asset('js/core/popper.min.js')  }}">></script>
@@ -15,6 +17,24 @@
 <script src="{{ asset('js/now-ui-dashboard.js?v=1.0.0')  }}">></script>
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 <script src="{{ asset('demo/demo.js')  }}">></script>
+
+<style>
+@if(@auth::user()->user_types->type == 'Customer'  || @auth::user()->user_types->type == 'Administrator')
+.table thead{
+  background-color: #2CA8FF;
+}
+
+@elseif(@auth::user()->user_types->type == 'Sales' || @auth::user()->user_types->type == 'Production')
+.table thead{
+  background-color: #f96332;
+}
+
+@elseif(@auth::user()->user_types->type == 'Purchasing' || @auth::user()->user_types->type == 'Finance')
+.table thead{
+  background-color: #18ce0f;;
+}
+@endif
+</style>
 
 <script>
 

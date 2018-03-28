@@ -11,26 +11,26 @@ class BindingSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('binding_types')->insert([
-          ['name' => 'Perfect'
+        DB::table('binding__types')->insert([
+          ['name' => 'Perfect',
            'description'=> 'Song of Ed Sheeran'
           ],
-          ['name' => 'Wire-O'
+          ['name' => 'Wire-O',
            'description'=> 'Cousin of Stick-O'
           ],
-          ['name' => 'Saddle Stitch'
+          ['name' => 'Saddle Stitch',
            'description'=> 'Cowboy style'
           ],
-          ['name' => 'Padded Stitch'
+          ['name' => 'Padded Stitch',
            'description'=> 'Need cover!'
           ],
-          ['name' => 'Folded'
+          ['name' => 'Folded',
            'description'=> 'Double-sided Matte Lamination'
           ],
-          ['Smythsewn Perfect'
+          ['name' => s'Smythsewn Perfect',
            'description'=> 'Double-sided Matte Lamination'
           ],
-          ['name' => 'Smythsewn Hardbound'
+          ['name' => 'Smythsewn Hardbound',
            'description'=> 'Double-sided Matte Lamination'
           ],
         ]);

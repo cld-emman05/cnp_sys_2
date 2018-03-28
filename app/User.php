@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'company', 'address', 'contact', 'email', 'password', 'user_type',
+        'first_name', 'last_name', 'contact', 'address', 'email',
     ];
 
     /**
@@ -27,7 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function user_types(){
-    return $this->hasOne('App\UserType', 'id');
+    public function customer(){
+      return $this->hasMany('App\Customer');
+    }
+
+    public function employee(){
+      return $this->hasMany('App\Employee');
     }
 }

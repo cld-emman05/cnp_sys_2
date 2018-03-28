@@ -15,8 +15,12 @@
                              <iframe src="https://www.google.com/maps/embed?pb=!4v1519610666135!6m8!1m7!1stlSrqfLkqim88PZPSXjrMA!2m2!1d14.58267070020254!2d121.016117658042!3f353.76827095109314!4f-28.266224259852784!5f0.7820865974627469" width="100%" height="480" frameborder="0" style="border:0" allowfullscreen></iframe>
 													 </div>
 
-                           <div class = 'row`'>
-                             <div class="col-lg-12 md-4">
+                           <div class = 'row'>
+														 <div class="col-lg-3 md-4"><div class = 'card card-body'>
+														 <img src = "{{ asset('img/logo1.png') }}" height = '30%'></div>
+													 </div>
+
+                             <div class="col-lg-9 md-4">
                                <div class="card card-chart">
                                     <div class="card-header">
                                        <h5> History </h5></div>
@@ -66,6 +70,7 @@
 													 </div>
 											 </div>
 									 </div>
+									 @include('about.contact');
 									 </div>
           </div>
 @endsection

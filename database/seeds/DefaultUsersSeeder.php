@@ -14,57 +14,55 @@ class DefaultUsersSeeder extends Seeder
       DB::table('users')->insert([
         ['first_name' => 'Juan',
           'last_name' => 'Dela Cruz',
-          'user_type' => 1, // User is the administrator
-          'contact' => null,
-          'address' => null,
-          'company' => null,
+          'contact' => '09221168711',
+          'address' => 'Sta. Ana, Manila',
           'email' => 'admin@gemc.com',
           'password' => bcrypt('administrator')],
+        ]);
 
-          ['first_name' => 'Andres',
-            'last_name' => 'Bonifacio',
-            'user_type' => 2, // User is a purchasing officer
-            'contact' => null,
-            'address' => null,
-            'company' => null,
-            'email' => 'purchasing@gemc.com',
-            'password' => bcrypt('purchasing')],
-
-            ['first_name' => 'Nidora',
-            'last_name' => 'Zobeyala',
-            'user_type' => 3, // User is a sales agent
-            'contact' => null,
-            'address' => null,
-            'company' => null,
-            'email' => 'agent@gemc.com',
-            'password' => bcrypt('salesagent')],
-
-            ['first_name' => 'Crisostomo',
+        DB::table('users')->insert([
+          ['first_name' => 'Crisostomo',
             'last_name' => 'Ibarra',
-            'user_type' => 4, // User is a customer
-            'contact' => null,
-            'address' => '2401 Taft Avenue, Manila 1004',
-            'company' => 'De La Salle University',
+            'contact' => '09221168711',
+            'address' => 'Intramuros, Manila',
             'email' => 'customer@gemc.com',
             'password' => bcrypt('customer')],
+          ]);
 
-            ['first_name' => 'Fernando',
-              'last_name' => 'Amorsolo',
-              'user_type' => 5, // User is a pre-press
-              'contact' => null,
-              'address' => null,
-              'company' => null,
-              'email' => 'production@gemc.com',
-              'password' => bcrypt('production')],
+          DB::table('users')->insert([
+            ['first_name' => 'Maria Clara',
+              'last_name' => 'Damaso',
+              'contact' => '09221168711',
+              'address' => 'Intramuros, Manila',
+              'email' => 'agent@gemc.com',
+              'password' => bcrypt('salesagent')],
+            ]);
 
-              ['first_name' => 'Emilio',
-                'last_name' => 'Jacinto',
-                'contact' => null,
-                'user_type' => 6, // User is a purchasing officer
-                'address' => null,
-                'company' => null,
-                'email' => 'finance@gemc.com',
-                'password' => bcrypt('finance')],
+              DB::table('users')->insert([
+                ['first_name' => 'Juan',
+                  'last_name' => 'Luna',
+                  'contact' => '09221168711',
+                  'address' => 'Nueva Ecija',
+                  'email' => 'production@gemc.com',
+                  'password' => bcrypt('production')],
                 ]);
-              }
-            }
+
+                DB::table('users')->insert([
+                  ['first_name' => 'Jose',
+                    'last_name' => 'Rizal',
+                    'contact' => '09221168711',
+                    'address' => 'Calamba, Laguna',
+                    'email' => 'purchasing@gemc.com',
+                    'password' => bcrypt('purchasing')],
+                  ]);
+
+              DB::table('users')->insert([
+                ['first_name' => 'Simoun',
+                  'last_name' => 'Ibarra',
+                  'contact' => '09221168711',
+                  'address' => 'Intramuros, Manila',
+                  'email' => 'finance@gemc.com',
+                  'password' => bcrypt('finance')],
+                ]);
+      }
+    }
