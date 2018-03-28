@@ -16,7 +16,7 @@ class DefaultUsersSeeder extends Seeder
           'last_name' => 'Dela Cruz',
           'contact' => '09221168711',
           'address' => 'Sta. Ana, Manila',
-          'email' => 'admin@gemc.com',
+          'email' => 'administrator@gemc.com',
           'password' => bcrypt('administrator')],
         ]);
 
@@ -34,7 +34,7 @@ class DefaultUsersSeeder extends Seeder
               'last_name' => 'Damaso',
               'contact' => '09221168711',
               'address' => 'Intramuros, Manila',
-              'email' => 'agent@gemc.com',
+              'email' => 'sales@gemc.com',
               'password' => bcrypt('salesagent')],
             ]);
 

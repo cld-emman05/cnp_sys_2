@@ -12,11 +12,11 @@ class IndustrySeeder extends Seeder
     public function run()
     {
       DB::table('industries')->insert([
-        ['type' => 'Academe,
-         'description'=> 'schools and universities',
+        ['type' => 'Academe',
+         'description' => 'schools and universities',
         ],
         ['type' => 'NGO',
-         'description'=> 'non-government organizations',
+         'description' => 'non-government organizations',
         ],
         ['type' => 'Spiritual Services',
          'description'=> 'churches',

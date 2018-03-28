@@ -18,6 +18,7 @@
                     </button>
 
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                      @auth
                         <form>
                             <div class="input-group no-border">
                                 <input type="text" value="" class="form-control" placeholder="Search...">
@@ -26,6 +27,7 @@
                                 </span>
                             </div>
                         </form>
+                      @endauth
 
                         <ul class="navbar-nav">
                           @guest
