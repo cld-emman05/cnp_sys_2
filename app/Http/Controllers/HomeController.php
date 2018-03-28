@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 use DB;
@@ -24,9 +23,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+
+    public function index()
     {
-      //try{
       $current = Auth::user()->id;
 
       $user = DB::table('departments')
@@ -35,13 +34,10 @@ class HomeController extends Controller
                   ->select('departments.name')
                   ->where('users.id', '=', $current)->value('departments.name');
 
-        return view('dashboard.'.$user);
-      //}
+        if($user != null)
+          return view('dashboard.'.$user);
 
-      /*catch(\Exception $e){
-        return view('dashboard.Customer');
-      }*/
-
-      dd($user);
+        else
+          return view('dashboard.Customer');
     }
 }

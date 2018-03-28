@@ -6,10 +6,9 @@ use Illuminate\Http\Request;
 
 use DB;
 
-use App\Job_Orders;
-use App\Job_Type;
-use App\Specs;
-use App\Size_Types; // size
+use App\Order;
+use App\Specification;
+use App\Size; // size
 use App\Cover_Specs; // cover_id
 use App\Inside_Specs; // inside_id
 use App\Lamination_Types; // lamination
@@ -24,7 +23,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-      $orders = Job_Orders::all();
+      $orders = Order::all();
 
       return view('order.index')->with('orders', $orders);
     }
@@ -49,7 +48,7 @@ class OrderController extends Controller
     {
       $order = new Order;
       $specs = new Specs;
-      $size = new Size_Types; // size
+      $size = new Size; // size
       $cover = new Cover_Specs; // cover_id
       $inside = new Inside_Specs; // inside_id
       $lamination = new Lamination_Types; // lamination
@@ -64,7 +63,7 @@ class OrderController extends Controller
       $order->file = $request->input('myFile');
       $order->comments = $request->input('comments');
 
-      $order->job_type_id = $request->input('job_type');
+      $order->Specification_id = $request->input('Specification');
       $order->type->specs->cover_specs->paper_type_id = $request->input('cover_paper');
       $order->type->specs->cover_specs->paper_color_id = $request->input('cover_color');
       $order->type->specs->inside_specs->paper_type_id = $request->input('inside_paper');

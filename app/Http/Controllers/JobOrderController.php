@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 use DB;
 
-use App\Job_Orders;
-use App\Job_Type; //Job type ID
-use App\File_Name; //File name ID
+use App\Order;
+use App\Specification; //Job type ID
+use App\File; //File name ID
 use App\User; // User ID
 use App\Quotation; // Quotation ID
 
@@ -21,7 +21,7 @@ class JobOrderController extends Controller
      */
     public function index()
     {
-      $jobOrders = Job_Orders::all();
+      $jobOrders = Order::all();
 
       return view('order.index')->with('orders', $jobOrders);
     }
@@ -51,7 +51,7 @@ class JobOrderController extends Controller
       $jobOrder->comments = $request->input('comment');
 
 
-      $jobOrder->job_type_id = $request->input('jobType');
+      $jobOrder->Specification_id = $request->input('jobType');
       $jobOrder->file_id = $request->input('fileName');
       $jobOrder->user_id = $request->input('user');
       $jobOrder->quotation_id = $request->input('quotation');
@@ -70,7 +70,7 @@ class JobOrderController extends Controller
      */
     public function show($id)
     {
-      $jobOrder = Job_Orders::find($id);
+      $jobOrder = Order::find($id);
 
       //return view associated, to be changed
       return view('order.view', compact('order'));

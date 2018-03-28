@@ -1,3 +1,15 @@
+@auth
+
+{{ $current = Auth::user()->id }}
+
+{{  $user = DB::table('departments')
+            ->join('employees', 'employees.department_id', '=', 'departments.id')
+            ->join('users', 'employees.user_id', '=', 'users.id')
+            ->select('departments.name')
+            ->where('users.id', '=', $current)->value('departments.name') }}
+
+@endauth
+
 <div class="logo" align = 'center'>
       <a href="/" class="simple-text logo-normal">
         <img src = "{{ asset('img/logo1.png') }}">
@@ -9,13 +21,13 @@
 
   <div class="logo text-center">
     <br>
-    @if(@auth::user()->user_types->type == 'Customer')
+    @if($user == null)
       <h6 class = 'font-weight-bold'> {{ auth::user()->first_name }} {{ auth::user()->last_name }} </h6>
       <small class = "font-weight-bold text-white"> {{ @auth::user()->company }} </small>
 
       @else
       <h6 class = 'font-weight-bold'> {{ auth::user()->first_name }} {{ auth::user()->last_name }} </h6>
-      <small class = "font-weight-bold text-white text-uppercase"> {{ @auth::user()->user_types->type }} </small>
+      <small class = "font-weight-bold text-white text-uppercase"> {{ $user }} </small>
     @endif
 
 
@@ -30,7 +42,7 @@
               </a>
           </li> -->
 
-          @if(@auth::user()->user_types->type == 'Customer')
+          @if($user == null)
           <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                       {{Request:: is('order') ? 'active' : ''}}">
               <a href= '/order/'>
@@ -68,7 +80,7 @@
               </a>
           </li>
 
-          @elseif(@auth::user()->user_types->type == 'Sales')
+          @elseif($user == 'Sales')
           <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                       {{Request:: is('order') ? 'active' : ''}}">
               <a href= '/order/'>
@@ -78,14 +90,14 @@
           </li>
 
           <li class = "{{Request:: is('customer/*') ? 'active' : ''}}
-                        {{Request:: is('customer') ? 'active' : ''}}">
+                        {{Request:: is(null) ? 'active' : ''}}">
               <a href="/customer/">
                   <i class="now-ui-icons business_badge"></i>
                   <p>Customers</p>
               </a>
           </li>
 
-          @elseif(@auth::user()->user_types->type == 'Administrator')
+          @elseif($user == 'Administrator')
           <li class = "{{Request:: is('quotation/*') ? 'active' : ''}}
                        {{Request:: is('quotation') ? 'active' : ''}}">
                        <a href="/quotation">
@@ -102,7 +114,7 @@
               </a>
           </li>
 
-		  @elseif(@auth::user()->user_types->type == 'Production')
+		  @elseif($user == 'Production')
       <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                   {{Request:: is('order') ? 'active' : ''}}">
           <a href= '/order/'>
@@ -111,7 +123,7 @@
           </a>
       </li>
 
-          @elseif(@auth::user()->user_types->type == 'Purchasing')
+          @elseif($user == 'Purchasing')
           <li class = "{{Request:: is('purchase/compute') ? 'active' : ''}}">
               <a href="/purchase/compute">
                   <i class="now-ui-icons files_single-copy-04"></i>
@@ -135,7 +147,7 @@
               </a>
           </li>
 
-          @elseif(@auth::user()->user_types->type == 'Finance')
+          @elseif($user == 'Finance')
           <li class = "{{Request:: is('supplier/track') ? 'active' : ''}}">
               <a href="/supplier/track">
                   <i class="now-ui-icons travel_info"></i>

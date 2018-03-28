@@ -29,7 +29,7 @@
                       </tr>
                       @endif
 
-      								<tr class = 'font-weight-bold'>
+      								<tr>
         								<th>Order #</th>
         								<th>Job Title</th>
         								<th>Date of Order</th>

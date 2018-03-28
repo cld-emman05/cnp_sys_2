@@ -1,3 +1,15 @@
+@auth
+
+{{ $current = Auth::user()->id }}
+
+{{  $user = DB::table('departments')
+            ->join('employees', 'employees.department_id', '=', 'departments.id')
+            ->join('users', 'employees.user_id', '=', 'users.id')
+            ->select('departments.name')
+            ->where('users.id', '=', $current)->value('departments.name') }}
+
+@endauth
+
 <!doctype html>
 <html lang="en">
 
@@ -13,11 +25,11 @@
 	<div class="wrapper">
 		@else
 
-		@if((@auth::user()->user_types->type == 'Customer'  || @auth::user()->user_types->type == 'Administrator'))
+		@if(($user == null  || $user == 'Administrator'))
     <div class="sidebar" data-color="blue">
-		@elseif(@auth::user()->user_types->type == 'Sales' || @auth::user()->user_types->type == 'Production'))
-		<div class="sidebar" data-color="orange">
-		@elseif(@auth::user()->user_types->type == 'Purchasing' || @auth::user()->user_types->type == 'Finance'))
+		@elseif($user == 'Sales' || $user == 'Production'))
+		<div class="sidebar" data-color="yellow">
+		@elseif($user == 'Purchasing' || $user == 'Finance'))
 		<div class="sidebar" data-color="green">
 		@endif
 
