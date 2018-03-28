@@ -11,9 +11,11 @@ class StatusSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('status')->insert([
+      DB::table('statuses')->insert([
         ['status' => 'Approved'],
+
         ['status' => 'Change Deal'],
+
         ['status' => 'Rejected'],
     ]);
     }

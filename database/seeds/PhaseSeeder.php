@@ -13,37 +13,37 @@ class PhaseSeeder extends Seeder
     {
       DB::table('phases')->insert([
         ['name' => 'Rejected',
-          'description' => '',
+          'description' => 'Job order Rejected'],
+
         ['name' => 'For Revision',
-          'description' => 'agents who are responsible for orders
-          , and customer management'],
+          'description' => 'agents who are responsible for orders and customer management'],
+
         ['name' => 'In Process',
-          'description' => 'internal officers that are responsible
-            for suppliers and purchasing of raw materials.'],
+          'description' => 'internal officers that are responsible for suppliers and purchasing of raw materials.'],
+
         ['name' => 'Layoutting/Typesetting',
-          'description' => 'internal officers that are responsible for
-          the cashflow, and debts incurred by the company.'],
+          'description' => 'internal officers that are responsible for the cashflow, and debts incurred by the company.'],
+
         ['name' => 'Imagesetting',
-          'description' => 'internal officers who are rensponsible for
-           the layout and production of the orders.'],
-           ['name' => 'Platemaking',
-             'description' => 'internal officers who are rensponsible for
-              the layout and production of the orders.'],
-              ['name' => 'Offset/Press',
-                'description' => 'internal officers who are rensponsible for
-                 the layout and production of the orders.'],
-                 ['name' => 'Stripping',
-                   'description' => 'internal officers who are rensponsible for
-                    the layout and production of the orders.'],
-                    ['name' => 'Bindery',
-                      'description' => 'internal officers who are rensponsible for
-                       the layout and production of the orders.'],
-                       ['name' => 'Ready For Delivery',
-                         'description' => 'internal officers who are rensponsible for
-                          the layout and production of the orders.'],
-                          ['name' => 'Delivered',
-                            'description' => 'internal officers who are rensponsible for
-                             the layout and production of the orders.'],
+          'description' => 'internal officers who are rensponsible for the layout and production of the orders.'],
+
+        ['name' => 'Platemaking',
+             'description' => 'internal officers who are rensponsible for the layout and production of the orders.'],
+
+        ['name' => 'Offset/Press',
+         'description' => 'internal officers who are rensponsible for the layout and production of the orders.'],
+
+        ['name' => 'Stripping',
+         'description' => 'internal officers who are rensponsible for the layout and production of the orders.'],
+
+        ['name' => 'Bindery',
+         'description' => 'internal officers who are rensponsible for the layout and production of the orders.'],
+
+        ['name' => 'Ready For Delivery',
+         'description' => 'internal officers who are rensponsible for the layout and production of the orders.'],
+
+        ['name' => 'Delivered',
+         'description' => 'internal officers who are rensponsible for the layout and production of the orders.'],
       ]);
     }
 }
