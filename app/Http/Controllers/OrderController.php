@@ -47,15 +47,17 @@ class OrderController extends Controller
     public function store(Request $request)
     {
       $order = new Order;
-      $specs = new Specs;
+      $specs = new Specification;
       $size = new Size; // size
-      $cover = new Cover_Specs; // cover_id
-      $inside = new Inside_Specs; // inside_id
+      $cover_paper = new Cover_Paper; // cover_id
+      $inside_paper = new Inside_Paper; // inside_id
+      $cover_color = new Color;
+      $inside_color = new Color;
       $lamination = new Lamination_Types; // lamination
       $bind = new Binding_Types; // binding_type_id
 
-      $order->user_id = \Auth::user()->id;
-      $order->name = $request->input('job_name');
+      $order->customer_id = \Auth::user()->id;
+      $order->title = $request->input('job_name');
 
       $order->quantity = $request->input('quantity');
       $order->page_count = $request->input('page_count');

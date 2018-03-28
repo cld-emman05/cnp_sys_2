@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Customer;
+use App\Agent;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+
+use DB;
 
 class RegisterController extends Controller
 {
@@ -51,7 +56,6 @@ class RegisterController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'company' => 'string|max:255',
-            'user_type' => 'integer|max:255',
             'address' => 'string|max:255',
             'contact' => 'string|max:11',
             'email' => 'required|string|email|max:255|unique:users',
@@ -65,17 +69,20 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create(Request $request)
     {
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'company' => $data['company'],
-            'user_type' => $data['user_type'],
-            'address' => $data['address'],
-            'contact' => $data['contact'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+      $user = new User;
+      $customer = new Customer;
+      $agent = new Agent;
+
+      $user->first_name = $request->input('first_name');
+      $user->last_name = $request->input('last_name');
+      $user->customer->company = $request->input('company');
+      $user->customer->industry = $request->input('industry');
+      $user->address = $request->input('address');
+      $user->email = $request->input('email');
+      $user->password = bcrypt($request->input('password'));
+
+      $user->customer->agent_id = $agent->random();
     }
 }

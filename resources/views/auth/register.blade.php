@@ -57,6 +57,17 @@
                             </div>
                         </div>
 
+                        <!-- JOB TYPE -->
+        									<div class="form-group row">
+        									  <label for="industry" class="col-md-4 col-form-label text-md-right">Industry</label>
+
+                            <div class="col-md-6">
+        										<select class="form-control" id="industry" class="form-control {{ $errors->has('industry') ? ' is-invalid' : '' }}" name="industry">
+        										<option value="0"> -- </option>
+        										</select>
+        									</div>
+        								</div>
+
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">Company Address</label>
 
@@ -138,5 +149,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

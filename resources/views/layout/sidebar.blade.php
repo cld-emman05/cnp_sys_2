@@ -23,7 +23,7 @@
     <br>
     @if($user == null)
       <h6 class = 'font-weight-bold'> {{ auth::user()->first_name }} {{ auth::user()->last_name }} </h6>
-      <small class = "font-weight-bold text-white"> {{ @auth::user()->company }} </small>
+      <small class = "font-weight-bold text-white"> {{ @auth::user()->customer()->value('company') }} </small>
 
       @else
       <h6 class = 'font-weight-bold'> {{ auth::user()->first_name }} {{ auth::user()->last_name }} </h6>
