@@ -44,7 +44,6 @@ class SupplierController extends Controller
     {
       $suppliers = new suppliers; //Create Order table
 
-      $suppliers->user_id = \Auth::user()->id;
       $suppliers->name = $request->input('supplierName');
       $suppliers->contact_no = $request->input('contactNo');
 

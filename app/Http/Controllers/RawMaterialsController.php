@@ -43,7 +43,6 @@ class RawMaterialsController extends Controller
     {
       $rawMaterials = new rawMaterials; //Create Order table
 
-      $rawMaterials->user_id = \Auth::user()->id;
       $rawMaterials->specs_id = $request->input('specsId');
       $rawMaterials->supplies_id = $request->input('suppliesId');
 

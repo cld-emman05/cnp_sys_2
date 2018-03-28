@@ -40,7 +40,7 @@ class UsersController extends Controller
     {
       $users = new User; //Create Order table
 
-      $users->user_id = \Auth::user()->id;
+      //if statement for customer
       $users->first_name = $request->input('userFirstName');
       $users->last_name = $request->input('userLastName');
       $users->email = $request->input('userEmail');

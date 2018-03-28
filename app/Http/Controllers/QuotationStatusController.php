@@ -42,7 +42,6 @@ class QuotationStatusController extends Controller
     {
       $quotationStatus = new quotationStatus; //Create Order table
 
-      $quotationStatus->user_id = \Auth::user()->id;
       $quotationStatus->status = $request->input('quotationStatus');
       $quotationStatus->quotation_id = $request->input('quotation');
 

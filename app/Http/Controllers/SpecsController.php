@@ -40,7 +40,6 @@ class SpecsController extends Controller
     {
       $specs = new specs; //Create Order table
 
-      $specs->user_id = \Auth::user()->id;
       $specs->quantity = $request->input('specsQuantity');
       $specs->description = $request->input('specsDescription');
 

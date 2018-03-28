@@ -40,7 +40,6 @@ class JopTypeController extends Controller
     {
       $jobType = new jobType; //Create Order table
 
-      $jobType->user_id = \Auth::user()->id;
       $jobType->type = $request->input('jobTypeName');
       $jobType->description = $request->input('jobTypeDescription');
 

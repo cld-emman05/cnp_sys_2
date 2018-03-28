@@ -40,7 +40,6 @@ class QuotationController extends Controller
     {
       $quotation = new Quotation; //Create Order table
 
-      $quotation->user_id = \Auth::user()->id;
       $quotation->unit_price = $request->input('UnitPrice');
       $quotation->total_amount = $request->input('TotalAmount');
 

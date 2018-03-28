@@ -44,7 +44,6 @@ class JobOrderStatusController extends Controller
     {
       $jobOrderStatus = new jobOrderStatus; //Create Order table
 
-      $jobOrderStatus->user_id = \Auth::user()->id;
       $jobOrderStatus->status = $request->input('jobStatus');
 
       $jobOrderStatus->order_id = $request->input('jobOrder');

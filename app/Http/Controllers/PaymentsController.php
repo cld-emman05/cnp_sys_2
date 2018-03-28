@@ -40,7 +40,6 @@ class PaymentsController extends Controller
     {
       $payments = new payments; //Create Order table
 
-      $payments->user_id = \Auth::user()->id;
       $payments->comment = $request->input('paymentComment');
 
       $payments->save();

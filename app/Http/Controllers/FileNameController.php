@@ -40,7 +40,6 @@ class FileNameController extends Controller
     {
       $fileName = new fileName; //Create Order table
 
-      $fileName->user_id = \Auth::user()->id;
       $fileName->name = $request->input('fileName');
       $fileName->mime_file = $request->input('mimeFile');
 

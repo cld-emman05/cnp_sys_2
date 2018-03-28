@@ -40,7 +40,6 @@ class MaterialsController extends Controller
     {
       $materials = new materials; //Create Order table
 
-      $materials->user_id = \Auth::user()->id;
       $materials->name = $request->input('materialName');
       $materials->description = $request->input('materialDescription');
       $materials->price = $request->input('materialPrice');
