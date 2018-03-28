@@ -44,7 +44,22 @@
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<td><a href= '#'>Nidora Zobeyala</a></td>
+											<td><a href= '#'>{{ DB::table('users')
+											  									->join('employees', 'employees.user_id', '=', 'users.id')
+																					->join('agents', 'agents.employee_id', '=', 'employees.id')
+																					->join('customers', 'customers.agent_id', '=', 'agents.id')
+																					->select('users.last_name')
+																					->value('users.last_name')
+																				}}
+																				,
+																				{{ DB::table('users')
+																														->join('employees', 'employees.user_id', '=', 'users.id')
+																														->join('agents', 'agents.employee_id', '=', 'employees.id')
+																														->join('customers', 'customers.agent_id', '=', 'agents.id')
+																														->select('users.first_name')
+																														->value('users.first_name')
+																													}}
+																			</a></td>
 										</tr>
 									</thead>
 

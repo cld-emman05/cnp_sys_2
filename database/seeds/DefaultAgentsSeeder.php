@@ -15,11 +15,7 @@ class DefaultAgentsSeeder extends Seeder
         [
           'employee_id' => '2',
           'industry_id' => '1',
-        ],
-        [
-          'employee_id' => '2',
-          'industry_id' => '4',
-        ],
+        ]
      ]);
     }
 }
