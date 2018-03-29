@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ColorSeeder extends Seeder
+class ColorsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,7 @@ class ColorSeeder extends Seeder
       DB::table('colors')->insert([
         ['name' => 'Black and White',
           'description' => 'there is no color used',
+
         ['name' => 'Full Color',
           'description' => 'used variety of colors'],
         ]);

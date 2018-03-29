@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class BindingSeeder extends Seeder
+class Binding_TypesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -27,9 +27,9 @@ class BindingSeeder extends Seeder
           ['name' => 'Folded',
            'description'=> 'Double-sided Matte Lamination'
           ],
-		  
+
           ['name' => s'Smythsewn Perfect',
-		  
+
           ['Smythsewn Perfect',
            'description'=> 'Double-sided Matte Lamination'
           ],

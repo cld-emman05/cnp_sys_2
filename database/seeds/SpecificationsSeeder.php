@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PhaseSeeder extends Seeder
+class SpecificationsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,15 +14,15 @@ class PhaseSeeder extends Seeder
       //TODO
       DB::table('specifications')->insert([
         [
-          'type' => '',
-          'pages' => '',
-          'size_id' => '',
-          'cover_paper_id' => '',
-          'cover_color_id' => '',
-          'inside_paper_id' => '',
-          'inside_color_id' => '',
-          'lamination_id' => '',
-          'binding_id' => '',
+          'type' => 'Yearbook',
+          'pages' => '80',
+          'size_id' => '4',
+          'cover_paper_id' => '1',
+          'cover_color_id' => '2',
+          'inside_paper_id' => '6',
+          'inside_color_id' => '2',
+          'lamination_id' => '2',
+          'binding_id' => '1',
         ],
 
       ]);
