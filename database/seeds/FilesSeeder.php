@@ -15,7 +15,7 @@ class FilesSeeder extends Seeder
         [
          'name' => 'Graduation Book 2018',
          'mime_type' => 'pdf',
-         'version_id' => '0'
+         'version_id' => '1'
         ],
     ]);
     }

@@ -66,7 +66,7 @@ class Paper_TypeSeeder extends Seeder
          'description'=> 'for Cover Paper'
         ],
 
-		['name' => 'C2S220',
+		    ['name' => 'C2S220',
          'description'=> 'for Cover Paper'
         ],
     ]);

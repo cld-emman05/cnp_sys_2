@@ -16,6 +16,33 @@ class Cover_PapersSeeder extends Seeder
          'paper_type_id' => '7',
         ],
 
+        [
+         'paper_type_id' => '8',
+        ],
+
+        [
+         'paper_type_id' => '9',
+        ],
+
+        [
+         'paper_type_id' => '10',
+        ],
+
+        [
+         'paper_type_id' => '11',
+        ],
+
+        [
+         'paper_type_id' => '12',
+        ],
+
+        [
+         'paper_type_id' => '13',
+        ],
+
+        [
+         'paper_type_id' => '14',
+        ],
     ]);
     }
 }
