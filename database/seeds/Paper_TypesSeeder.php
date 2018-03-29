@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PaperTypeSeeder extends Seeder
+class Paper_TypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -53,7 +53,7 @@ class PaperTypeSeeder extends Seeder
         ['name' => 'C2S180',
          'description'=> 'for Cover Paper'
         ],
-		
+
         ['name' => 'C2S140',
          'description'=> 'for Cover Paper'
         ],

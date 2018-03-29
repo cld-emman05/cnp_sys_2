@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SizeSeeder extends Seeder
+class SizesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -10,19 +10,19 @@ class SizeSeeder extends Seeder
      * @return void
      */
     public function run()
-    {	 
-      DB::table('size__types')->insert([
+    {
+      DB::table('sizes')->insert([
         ['name' => 'Letter',
-         'description'=> '8.5 x 11'
+         'dimension'=> '8.5 x 11'
         ],
         ['name' => 'Legal',
-         'description'=> '8.5 x 13'
+         'dimension'=> '8.5 x 13'
         ],
         ['name' => 'Broadsheet',
-         'description'=> '24 x 18'
+         'dimension'=> '24 x 18'
         ],
         ['name' => 'C4',
-         'description'=> '9 x 12'
+         'dimension'=> '9 x 12'
         ],
     ]);
     }

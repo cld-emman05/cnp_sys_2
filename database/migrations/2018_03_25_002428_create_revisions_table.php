@@ -16,7 +16,7 @@ class CreateRevisionsTable extends Migration
         Schema::create('revisions', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('file_id')->nullable()->unsigned();
+            $table->integer('remarks')->nullable()->unsigned();
             $table->timestamps();
         });
     }
