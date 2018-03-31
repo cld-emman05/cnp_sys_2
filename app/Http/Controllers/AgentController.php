@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use DB;
+use App\Customer;
+use App\User;
 
-class UsersController extends Controller
+class AgentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-      $users = User::all();
-
-      return view('order.index')->with('orders', $users);
+        //
     }
 
     /**
@@ -27,7 +26,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('order.create');
+        //
     }
 
     /**
@@ -38,31 +37,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-      $users = new User; //Create Order table
-
-      $user = DB::table('users')->insertGetId([
-        'first_name' => $request->input['first_name'],
-        'last_name' => $request->input['last_name'],
-        'address' => $request->input['address'],
-        'email' => $request->input['email'],
-        'password' => $request->input(bcrypt(['password'])),
-      ]);
-
-      //if statement for customer
-      $users->first_name = $request->input('first_name');
-      $users->last_name = $request->input('last_name');
-      $users->address = $request->input('address');
-      $users->email = $request->input('email');
-      $users->password = $request->input('password');
-      $users->remember_token = $request->input('userRememberToken');
-
-      $users->agent_id = $request->input('agentId');
-      $users->user_type_id = $request->input('userTypeId');
-
-      $users->save();
-
-      //return redirect('directory of view')->with('condition', 'what happened');
-
+        //
     }
 
     /**
@@ -73,10 +48,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-      $users = User::find($id);
-
-      //return view associated
-      //return view('order.view', compact('order'));
+        //
     }
 
     /**
@@ -87,7 +59,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        // return view('order.revise', compact('order'));
+        //
     }
 
     /**

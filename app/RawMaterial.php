@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class RawMaterial extends Model
 {
   public function order(){
-    $this->hasMany('App\Order', 'order_id');
+    return $this->hasMany('App\Order', 'order_id');
   }
 
   public function supplier(){
-    $this->hasMany('App\Supplier', 'supplier_id');
+    return $this->hasMany('App\Supplier', 'supplier_id');
   }
 }

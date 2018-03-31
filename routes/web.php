@@ -12,22 +12,16 @@
 */
 
 // Customer
-Route::get('/customer/register', function () {
-    return view('customer.register');
-  });
+Route::get('/register', 'IndustryController@index');
 
-Route::get('/customer', function(){
-  return view('customer.index');
-});
+Route::get('/customer/register', 'CustomerController@create');
+Route::get('/customer', 'CustomerController@index');
+Route::post('/customer/store', 'CustomerController@store');
 
 // Employees
-Route::get('/employee/register', function () {
-    return view('employee.register');
-});
-
-Route::get('/employee', function(){
-  return view('employee.index');
-});
+Route::post('/employee/store', 'EmployeeController@store');
+Route::get('/employee/register', 'EmployeeController@create');
+Route::get('/employee', 'EmployeeController@index');
 
 // Suppliers
 Route::get('/supplier/register', function () {
@@ -43,9 +37,8 @@ Route::get('/profile', function(){
 });
 
 // Orders Function
-Route::get('/order', 'OrderController@index')->middleware('auth');
-
-Route::get('/order/create', 'OrderController@create')->middleware('auth');;
+Route::get('/order', 'OrderController@index');
+Route::get('/order/create', 'OrderController@create');
 
 Route::post('/uploadfile','UploadFileController@showUploadFile');
 
@@ -118,12 +111,12 @@ Route::get('/about-us', function () {
 
 Route::get('/', 'HomeController@index');
 
-/*Route::get('/contact-us', function () {
+Route::get('/about-us#contact', function () {
     return view('about.contact');
-});*/
+});
 
 Auth::routes();
 
 // Resources
 
-Route::resource('job_orders', 'Job_Orders');
+Route::resource('industries', 'IndustryController');

@@ -11,7 +11,7 @@ class LaminationSeeder extends Seeder
      */
     public function run()
     {
-      DB::table('lamination__types')->insert([
+      DB::table('lamination_types')->insert([
         ['name' => 'Matte (1-sided)',
          'description'=> 'One-sided Matte Lamination'
         ],

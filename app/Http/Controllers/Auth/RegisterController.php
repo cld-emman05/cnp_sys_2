@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Customer;
-use App\Agent;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -24,7 +22,6 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
     use RegistersUsers;
 
     /**
@@ -47,7 +44,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array  $$data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -55,9 +52,10 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'company' => 'string|max:255',
-            'address' => 'string|max:255',
-            'contact' => 'string|max:11',
+            'company' => 'string|max:255|nullable',
+            'industry' => 'int|max:1|nullable',
+            'address' => 'string|nullable',
+            'contact' => 'string|min:7|max:11|nullable',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -69,20 +67,24 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(Request $request)
+    protected function create(array $data)
     {
-      $user = new User;
-      $customer = new Customer;
-      $agent = new Agent;
+      $newUser = new User;
 
-      $user->first_name = $request->input('first_name');
-      $user->last_name = $request->input('last_name');
-      $user->customer->company = $request->input('company');
-      $user->customer->industry = $request->input('industry');
-      $user->address = $request->input('address');
-      $user->email = $request->input('email');
-      $user->password = bcrypt($request->input('password'));
+      $user = DB::table('users')->insertGetId([
+        'first_name' => $data['first_name'],
+        'last_name' => $data['last_name'],
+        'address' => $data['address'],
+        'email' => $data['email'],
+        'password' => bcrypt($data['password']),
+      ]);
 
-      $user->customer->agent_id = $agent->random();
-    }
+      $customer = DB::table('customers')->insert([
+        'company' => $data['company'],
+        'industry_id' => '6',
+        'user_id' => $user,
+      ]);
+
+      return $newUser->save();
+      }
 }

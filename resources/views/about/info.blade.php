@@ -6,12 +6,11 @@
 
 @section('main-content')
 <div class="col-md-12">
-											 <div class="card ">
-													 <div class="card-header">
+											 <div class="card">
+													 <div class="card card-header" id = 'about'>
 															 Get to know: <b>Cover & Pages</b>
-													 </div>
 
-                           <div class="card-body" align = 'center'>
+                           <div class="card card-body" align = 'center'>
                              <iframe src="https://www.google.com/maps/embed?pb=!4v1519610666135!6m8!1m7!1stlSrqfLkqim88PZPSXjrMA!2m2!1d14.58267070020254!2d121.016117658042!3f353.76827095109314!4f-28.266224259852784!5f0.7820865974627469" width="100%" height="480" frameborder="0" style="border:0" allowfullscreen></iframe>
 													 </div>
 
@@ -70,7 +69,11 @@
 													 </div>
 											 </div>
 									 </div>
-									 @include('about.contact');
+								 </div>
+
+										 <div class = 'card' id = 'contact'>
+											 @include('about.contact');
+										 </div>
 									 </div>
           </div>
 @endsection

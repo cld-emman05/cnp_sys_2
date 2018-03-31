@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Binding_TypesSeeder extends Seeder
+class BindingSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,7 +11,7 @@ class Binding_TypesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('binding__types')->insert([
+        DB::table('binding_types')->insert([
           ['name' => 'Perfect',
            'description'=> 'Song of Ed Sheeran'
           ],
@@ -28,7 +28,9 @@ class Binding_TypesSeeder extends Seeder
            'description'=> 'Double-sided Matte Lamination'
           ],
 
-          ['name' => s'Smythsewn Perfect',
+          ['name' => 'Smythsewn Perfect',
+          'description'=> 'Double-sided Matte Lamination'
+         ],
 
           ['Smythsewn Perfect',
            'description'=> 'Double-sided Matte Lamination'

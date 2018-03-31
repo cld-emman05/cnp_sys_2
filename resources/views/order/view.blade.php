@@ -263,7 +263,7 @@
 					<p class="alert alert-danger"></p> -->
 					<!-- <hr> -->
 	<div class="text-center">
-	@if(auth::user()->user_type == 4)
+	@if(session()->get('user') == 'Production')
 		<btn class = 'btn btn-primary' id = 'download'> Download File</btn>
 
 		<btn class = 'btn btn-success' id = 'production'> Submit for Production</btn>

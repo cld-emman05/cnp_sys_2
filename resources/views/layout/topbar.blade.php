@@ -1,4 +1,4 @@
-            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+          <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
                 <div class="container-fluid">
                     <div class="navbar-wrapper">
                         <div class="navbar-toggle">
@@ -18,7 +18,7 @@
                     </button>
 
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                      @auth
+                    <!--  @auth
                         <form>
                             <div class="input-group no-border">
                                 <input type="text" value="" class="form-control" placeholder="Search...">
@@ -27,7 +27,7 @@
                                 </span>
                             </div>
                         </form>
-                      @endauth
+                      @endauth !-->
 
                         <ul class="navbar-nav">
                           @guest
@@ -48,10 +48,22 @@
                             </li>
 
                             <li class="nav-item dropdown">
+                              @auth
                                 <a class="nav-link dropdown-toggle" href="#pablo" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="now-ui-icons users_single-02"></i>
                                     <p>
-                                        <span class="d-lg-none d-md-block">Account</span>
+                                      <i class="now-ui-icons users_single-02"></i>
+
+                                      @if(session()->get('user') == null)
+                                        <span class = "font-weight-bold"> {{ auth::user()->first_name }} {{ auth::user()->last_name }}</span>
+                                        <br>
+                                        <small class= 'text-left font-italic'>{{ session()->get('company') }}</small>
+
+                                      @else
+
+                                      <span class = "font-weight-bold"> {{ auth::user()->first_name }} {{ auth::user()->last_name }}</span>
+                                      <br>
+                                      <small class= 'text-left font-italic'>{{ session()->get('user') }}</small>
+                                      @endif
                                     </p>
                                 </a>
                                 <div class = "dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
@@ -63,6 +75,7 @@
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
+                                    @endauth
                             </div>
                             </li>
                         </ul>

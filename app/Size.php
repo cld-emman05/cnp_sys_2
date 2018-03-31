@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Size extends Model
 {
   public function specifications(){
-    $this->belongsTo('App\Specifications');
+    return $this->belongsTo('App\Specifications');
   }
 }

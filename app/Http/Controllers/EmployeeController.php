@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Department;
+use App\Employee;
+use App\User;
+
 use DB;
 
-class UsersController extends Controller
+class EmployeeController extends Controller
 {
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +23,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-      $users = User::all();
+      $employees = Employee::all();
 
-      return view('order.index')->with('orders', $users);
+      return view('employee.index')->with('employees', $employees);
     }
 
     /**
@@ -27,7 +35,13 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('order.create');
+
+      $departments = Department::all();
+      $data = json_encode($departments);
+
+      return view('employee.register', [
+        'departments' => json_decode($data, true),
+      ]);
     }
 
     /**
@@ -38,31 +52,32 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-      $users = new User; //Create Order table
+      $user = new User;
+      $employee = new Employee;
 
       $user = DB::table('users')->insertGetId([
-        'first_name' => $request->input['first_name'],
-        'last_name' => $request->input['last_name'],
-        'address' => $request->input['address'],
-        'email' => $request->input['email'],
-        'password' => $request->input(bcrypt(['password'])),
+        'first_name' => $request->input('first_name'),
+        'last_name' => $request->input('last_name'),
+        'address' => $request->input('address'),
+        'email' => $request->input('email'),
+        'password' => bcrypt($request->input('password')),
       ]);
 
-      //if statement for customer
-      $users->first_name = $request->input('first_name');
-      $users->last_name = $request->input('last_name');
-      $users->address = $request->input('address');
-      $users->email = $request->input('email');
-      $users->password = $request->input('password');
-      $users->remember_token = $request->input('userRememberToken');
+      $employee = DB::table('employees')->insertGetId([
+        'flag' => 1,
+        'user_id' => $user,
+        'department_id' => $request->input('user_type'),
+      ]);
 
-      $users->agent_id = $request->input('agentId');
-      $users->user_type_id = $request->input('userTypeId');
+      if(App\Employee::find('department_id')->get() == 2){
+        $agent = DB::table('agents')->insert([
+          'employee_id' => $employee,
+          'user_id' => $user,
+        ]);
+      }
 
-      $users->save();
 
-      //return redirect('directory of view')->with('condition', 'what happened');
-
+      return redirect('/employee')->with('success', "New Employee!");
     }
 
     /**
@@ -73,10 +88,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-      $users = User::find($id);
-
-      //return view associated
-      //return view('order.view', compact('order'));
+        //
     }
 
     /**
@@ -87,7 +99,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        // return view('order.revise', compact('order'));
+        //
     }
 
     /**

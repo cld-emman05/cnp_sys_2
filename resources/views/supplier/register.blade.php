@@ -1,6 +1,7 @@
 @extends('layout.main')
 
 @section('title', 'Add New Suppliers')
+@includes(headers.main)
 
 @section('main-content')
     <div class="row justify-content-center">

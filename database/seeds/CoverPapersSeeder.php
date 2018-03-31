@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class Cover_PapersSeeder extends Seeder
+class CoverPapersSeeder extends Seeder
 {
     /**
      * Run the database seeds.

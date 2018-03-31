@@ -1,12 +1,18 @@
 @auth
+{{session()->put('current', Auth::user()->id) }}
 
-{{ $current = Auth::user()->id }}
-
-{{  $user = DB::table('departments')
+{{session()->put('user', DB::table('departments')
             ->join('employees', 'employees.department_id', '=', 'departments.id')
-            ->join('users', 'employees.user_id', '=', 'users.id')
             ->select('departments.name')
-            ->where('users.id', '=', $current)->value('departments.name') }}
+            ->where('employees.user_id', '=', session()->get('current'))
+            ->value('departments.name')) }}
+
+{{
+  session()->put('company', DB::table('customers')
+            ->select('company')
+            ->where('user_id', '=', session()->get('current'))
+            ->value('customers.company'))
+}}
 
 @endauth
 
@@ -25,11 +31,11 @@
 	<div class="wrapper">
 		@else
 
-		@if(($user == null  || $user == 'Administrator'))
+		@if((@auth == true && session()->get('user') == null)  || session()->get('user') == 'Administrator')
     <div class="sidebar" data-color="blue">
-		@elseif($user == 'Sales' || $user == 'Production'))
+		@elseif(session()->get('user') == 'Sales' || session()->get('user') == 'Production')
 		<div class="sidebar" data-color="yellow">
-		@elseif($user == 'Purchasing' || $user == 'Finance'))
+		@elseif(session()->get('user') == 'Purchasing' || session()->get('user') == 'Finance')
 		<div class="sidebar" data-color="green">
 		@endif
 

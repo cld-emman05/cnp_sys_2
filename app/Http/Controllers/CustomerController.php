@@ -4,10 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Customer;
+use App\User;
+use App\Industry;
+
 use DB;
 
-class UsersController extends Controller
+class CustomerController extends Controller
 {
+
+  /**
+    * Instantiate a new controller instance.
+    *
+    * @return void
+    */
+   public function __construct()
+   {
+       $this->middleware('auth');
+   }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +29,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-      $users = User::all();
+      $customers = Customer::all();
 
-      return view('order.index')->with('orders', $users);
+      return view('customer.index')->with('customers', $customers);
     }
 
     /**
@@ -27,7 +41,12 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('order.create');
+      $industries = Industry::all();
+      $data = json_encode($industries);
+
+      return view('customer.register', [
+        'industries' => json_decode($data, true),
+      ]);
     }
 
     /**
@@ -38,31 +57,25 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-      $users = new User; //Create Order table
+      $user = new User;
+      $customer = new Customer;
 
       $user = DB::table('users')->insertGetId([
-        'first_name' => $request->input['first_name'],
-        'last_name' => $request->input['last_name'],
-        'address' => $request->input['address'],
-        'email' => $request->input['email'],
-        'password' => $request->input(bcrypt(['password'])),
+        'first_name' => $request->input('first_name'),
+        'last_name' => $request->input('last_name'),
+        'address' => $request->input('address'),
+        'email' => $request->input('email'),
+        'password' => bcrypt($request->input('password')),
       ]);
 
-      //if statement for customer
-      $users->first_name = $request->input('first_name');
-      $users->last_name = $request->input('last_name');
-      $users->address = $request->input('address');
-      $users->email = $request->input('email');
-      $users->password = $request->input('password');
-      $users->remember_token = $request->input('userRememberToken');
+      $customer = DB::table('customer')->insert([
+        'company' => $request->input('company'),
+        'industry_id' => $request->input('industry_id'),
+        'user_id' => $user,
+        'agent_id' => \Auth::user()->employee()->agent->id,
+      ]);
 
-      $users->agent_id = $request->input('agentId');
-      $users->user_type_id = $request->input('userTypeId');
-
-      $users->save();
-
-      //return redirect('directory of view')->with('condition', 'what happened');
-
+      return redirect('/customer')->with('success', 'New Customer Added!');
     }
 
     /**
@@ -73,10 +86,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-      $users = User::find($id);
-
-      //return view associated
-      //return view('order.view', compact('order'));
+      //
     }
 
     /**
@@ -87,7 +97,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        // return view('order.revise', compact('order'));
+        //
     }
 
     /**
