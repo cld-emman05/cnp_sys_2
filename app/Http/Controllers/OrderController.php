@@ -9,10 +9,11 @@ use DB;
 use App\Order;
 use App\Specification;
 use App\Size; // size
-use App\Cover_Specs; // cover_id
-use App\Inside_Specs; // inside_id
-use App\Lamination_Types; // lamination
-use App\Binding_Types; // binding_type_id
+use App\CoverPaper; // cover_id
+use App\InsidePaper; // inside_id
+use App\Color;
+use App\LaminationType; // lamination
+use App\BindingType; // binding_type_id
 
 class OrderController extends Controller
 {
@@ -35,7 +36,38 @@ class OrderController extends Controller
      */
     public function create()
     {
-        return view('order.create');
+      $specifications = Specification::all();
+      $data_specs = json_encode($specifications);
+
+      $size = Size::all();
+      $data_size = json_encode($size);
+
+      $inside_paper = InsidePaper::all();
+      $data_inside = json_encode($inside_paper);
+
+      $cover_paper = CoverPaper::all();
+      $data_cover = json_encode($cover_paper);
+
+      $color = Color::all();
+      $data_color = json_encode($color);
+
+      $lamination = LaminationType::all();
+      $data_lam = json_encode($lamination);
+
+      $binding = BindingType::all();
+      $data_bind = json_encode($binding);
+
+
+        return view('order.create',
+                                  [
+                                   'specifications' =>json_decode($data_specs, true),
+                                   'sizes' => json_decode($data_size , true),
+                                   'inside_papers' => json_decode($data_inside, true),
+                                   'cover_papers' => json_decode($data_cover, true),
+                                   'colors' => json_decode($data_color, true),
+                                   'laminations' => json_decode($data_lam, true),
+                                   'bindings' => json_decode($data_bind , true),
+                                 ]);
     }
 
     /**

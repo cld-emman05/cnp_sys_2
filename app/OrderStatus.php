@@ -11,10 +11,10 @@ class OrderStatus extends Model
   protected $guarded = [];
 
     public function order(){
-      $this->belongsTo('App\Order', 'order_id');
+      return $this->belongsTo('App\Order', 'order_id');
     }
 
     public function phase(){
-      $this->hasMany('App\Phase', 'phase_id');
+      return $this->hasMany('App\Phase', 'phase_id');
     }
 }

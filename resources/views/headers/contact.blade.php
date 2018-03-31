@@ -15,6 +15,7 @@
 <script src="js/now-ui-dashboard.js?v=1.0.0"></script>
 <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 <script src="demo/demo.js"></script>
+
 <script>
     $(document).ready(function() {
         // Javascript method's body can be found in assets/js/demos.js

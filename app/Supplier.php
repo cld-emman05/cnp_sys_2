@@ -9,18 +9,18 @@ class Supplier extends Model
   public $timestamps = true;
 
   public function term(){
-    $this->hasOne('App\Term', 'term_id');
+    return $this->hasOne('App\Term', 'term_id');
   }
 
   public function material(){
-    $this->hasMany('App\Material', 'material_id');
+    return $this->hasMany('App\Material', 'material_id');
   }
 
   public function payment(){
-    $this->hasMany('App\Payment', 'payment_id');
+    return $this->hasMany('App\Payment', 'payment_id');
   }
 
   public function raw_material(){
-    $this->hasMany('App\RawMaterial');
+    return $this->hasMany('App\RawMaterial');
   }
 }

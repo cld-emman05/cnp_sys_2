@@ -11,10 +11,10 @@ class QuotationStatus extends Model
   public $timestamps = true;
 
   public function quotations(){
-    $this->belongsTo('App\Quotation', 'quotation_id');
+    return $this->belongsTo('App\Quotation', 'quotation_id');
   }
 
   public function status(){
-    $this->hasOne('App\Status', 'status_id');
+    return $this->hasOne('App\Status', 'status_id');
   }
 }

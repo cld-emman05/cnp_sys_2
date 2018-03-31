@@ -9,10 +9,10 @@ class Quotation extends Model
   protected $guarded = [];
 
   public function quotation_statuses(){
-    $this->hasMany('App\Quotation_Status');
+    return $this->hasMany('App\Quotation_Status');
   }
 
   public function orders(){
-    $this->belongsTo('App\Orders', 'order_id');
+    return $this->belongsTo('App\Orders', 'order_id');
   }
 }

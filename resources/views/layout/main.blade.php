@@ -1,12 +1,18 @@
 @auth
+{{session()->put('current', Auth::user()->id) }}
 
-{{ $current = Auth::user()->id }}
-
-{{  $user = DB::table('departments')
+{{session()->put('dept', DB::table('departments')
             ->join('employees', 'employees.department_id', '=', 'departments.id')
-            ->join('users', 'employees.user_id', '=', 'users.id')
             ->select('departments.name')
-            ->where('users.id', '=', $current)->value('departments.name') }}
+            ->where('employees.user_id', '=', session()->get('current'))
+            ->value('departments.name')) }}
+
+{{
+  session()->put('company', DB::table('customers')
+            ->select('company')
+            ->where('user_id', '=', session()->get('current'))
+            ->value('customers.company'))
+}}
 
 @endauth
 
@@ -15,7 +21,6 @@
 
 <head><!-- Navbar --><!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
-	@include('headers.main')
 	<title>CnP - @yield('title')</title>
 </head>
 
@@ -25,11 +30,11 @@
 	<div class="wrapper">
 		@else
 
-		@if(($user == null  || $user == 'Administrator'))
+		@if((@auth == true && session()->get('dept') == null)  || session()->get('dept') == 'Administrator')
     <div class="sidebar" data-color="blue">
-		@elseif($user == 'Sales' || $user == 'Production'))
+		@elseif(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
 		<div class="sidebar" data-color="yellow">
-		@elseif($user == 'Purchasing' || $user == 'Finance'))
+		@elseif(session()->get('dept') == 'Purchasing' || session()->get('dept') == 'Finance')
 		<div class="sidebar" data-color="green">
 		@endif
 
@@ -66,6 +71,7 @@
 						@include('layout.footer')
 					</div>
 				</footer>
+
 			</div>
 		</div>
 </body>

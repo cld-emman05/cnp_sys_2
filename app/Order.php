@@ -9,26 +9,26 @@ class Order extends Model
   protected $guarded = [];
 
   public function specification(){
-    $this->hasOne('App\Specification', 'specification_id');
+    return $this->hasOne('App\Specification', 'specification_id');
   }
 
   public function customer(){
-    $this->belongsTo('App\Customer', 'customer_id');
+    return $this->belongsTo('App\Customer', 'customer_id');
   }
 
   public function file(){
-    $this->hasOne('App\File', 'file_id');
+  return $this->hasOne('App\File', 'file_id');
   }
 
   public function quotation(){
-    $this->hasMany('App\Quotation');
+    return $this->hasMany('App\Quotation');
   }
 
   public function raw_material(){
-    $this->hasMany('App\RawMaterial');
+    return $this->hasMany('App\RawMaterial');
   }
 
   public function order_status(){
-    $this->hasMany('App\OrderStatus');
+    return $this->hasMany('App\OrderStatus');
   }
 }

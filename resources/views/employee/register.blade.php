@@ -1,4 +1,5 @@
 @extends('layout.main')
+@include('headers.main')
 
 @section('title', 'Add New Employee')
 
@@ -16,7 +17,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                  {!! Form::open(['url' => '/employee/store', 'method' => 'post']) !!}
                         @csrf
 
                         <div class="form-group row">
@@ -53,11 +54,12 @@
                           {{ Form::label('user_type', 'Employee Type', ['class' => 'col-md-4 col-form-label text-md-right']) }}
                           <div class="col-md-6">
                           	<select class="form-control" id="user_type" name="user_type" required autofocus>
-                            	<option value="0"> -- </option>
-                            	<option value="2"> Sales </option>
-                              <option value="4"> Pre-Press </option>
-                              <option value="5"> Purchasing </option>
-                              <option value="6"> Finance </option>
+                            	<option value = null> -- </option>
+                                @foreach($departments as $dept)
+                                  @if(!($loop->first))
+                            	   <option value="{{$dept['id']}}"> {{$dept['name']}} </option>
+                                 @endif
+                              @endforeach
                           	</select>
 
                           @if ($errors->has('user_type'))
@@ -143,11 +145,8 @@
                                     Register
                                 </button>
                             </div>
-                        </div>
-                    </form>
+                        </div>{!! Form::close() !!}
                 </div>
             </div>
         </div>
-    </div>
-</div>
 @endsection

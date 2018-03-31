@@ -2,25 +2,26 @@
 
 @section('title', "About Us")
 
-@include('headers.contact')
+@include('headers.about')
 
 @section('main-content')
 <div class="col-md-12">
-											 <div class="card ">
-													 <div class="card-header">
+											 <div class="card">
+													 <div class="card card-header" id = 'about'>
 															 Get to know: <b>Cover & Pages</b>
+
+													<div class = 'row'>
+		 													<div class="col-lg-4 md-4"><div class = 'card card-body'>
+		 														<img src = "{{ asset('img/logo1.png') }}" height = 'auto' width = 'auto'></div>
+		 												</div>
+
+                           <div class="card card-body col-lg-8 md-4" align = 'center'>
+														 <img src = "{{ asset('img/cnp-site.jpg') }}" height = '60%' width = '100%'></div>
 													 </div>
 
-                           <div class="card-body" align = 'center'>
-                             <iframe src="https://www.google.com/maps/embed?pb=!4v1519610666135!6m8!1m7!1stlSrqfLkqim88PZPSXjrMA!2m2!1d14.58267070020254!2d121.016117658042!3f353.76827095109314!4f-28.266224259852784!5f0.7820865974627469" width="100%" height="480" frameborder="0" style="border:0" allowfullscreen></iframe>
-													 </div>
 
-                           <div class = 'row'>
-														 <div class="col-lg-3 md-4"><div class = 'card card-body'>
-														 <img src = "{{ asset('img/logo1.png') }}" height = '30%'></div>
-													 </div>
-
-                             <div class="col-lg-9 md-4">
+												 	<div class = 'row'>
+                             <div class="col-lg-12 md-4">
                                <div class="card card-chart">
                                     <div class="card-header">
                                        <h5> History </h5></div>
@@ -60,17 +61,11 @@
                                </div>
                               </div>
 
-                            <div class = 'row`'>
-                            <div class="col-lg-12 md-4">
-                              <div class="card card-chart">
-                           <div class="card-header">
-															 <h5> Who we are? </h5> </div>
-                              <div class="card-body">
-															 <p> Organizational chart </p> </div>
-													 </div>
-											 </div>
-									 </div>
-									 @include('about.contact');
+								 </div>
+
+										 <div class = 'card' id = 'contact'>
+											 @include('about.contact');
+										 </div>
 									 </div>
           </div>
 @endsection

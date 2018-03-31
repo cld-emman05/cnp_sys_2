@@ -17,7 +17,9 @@ class DefaultUsersSeeder extends Seeder
           'contact' => '09221168711',
           'address' => 'Sta. Ana, Manila',
           'email' => 'administrator@gemc.com',
-          'password' => bcrypt('administrator')],
+          'password' => bcrypt('administrator'),
+          'created_at' => \Carbon\Carbon::now(),
+          'updated_at' => \Carbon\Carbon::now(),]
         ]);
 
         DB::table('users')->insert([
@@ -26,7 +28,9 @@ class DefaultUsersSeeder extends Seeder
             'contact' => '09221168711',
             'address' => 'Intramuros, Manila',
             'email' => 'customer@gemc.com',
-            'password' => bcrypt('customer')],
+            'password' => bcrypt('customer'),
+            'created_at' => \Carbon\Carbon::now(),
+            'updated_at' => \Carbon\Carbon::now(),]
           ]);
 
           DB::table('users')->insert([
@@ -35,7 +39,9 @@ class DefaultUsersSeeder extends Seeder
               'contact' => '09221168711',
               'address' => 'Intramuros, Manila',
               'email' => 'sales@gemc.com',
-              'password' => bcrypt('salesagent')],
+              'password' => bcrypt('salesagent'),
+              'created_at' => \Carbon\Carbon::now(),
+              'updated_at' => \Carbon\Carbon::now(),]
             ]);
 
               DB::table('users')->insert([
@@ -44,7 +50,9 @@ class DefaultUsersSeeder extends Seeder
                   'contact' => '09221168711',
                   'address' => 'Nueva Ecija',
                   'email' => 'production@gemc.com',
-                  'password' => bcrypt('production')],
+                  'password' => bcrypt('production'),
+                  'created_at' => \Carbon\Carbon::now(),
+                  'updated_at' => \Carbon\Carbon::now(),]
                 ]);
 
                 DB::table('users')->insert([
@@ -53,7 +61,9 @@ class DefaultUsersSeeder extends Seeder
                     'contact' => '09221168711',
                     'address' => 'Calamba, Laguna',
                     'email' => 'purchasing@gemc.com',
-                    'password' => bcrypt('purchasing')],
+                    'password' => bcrypt('purchasing'),
+                    'created_at' => \Carbon\Carbon::now(),
+                    'updated_at' => \Carbon\Carbon::now(),]
                   ]);
 
               DB::table('users')->insert([
@@ -62,7 +72,9 @@ class DefaultUsersSeeder extends Seeder
                   'contact' => '09221168711',
                   'address' => 'Intramuros, Manila',
                   'email' => 'finance@gemc.com',
-                  'password' => bcrypt('finance')],
+                  'password' => bcrypt('finance'),
+                  'created_at' => \Carbon\Carbon::now(),
+                  'updated_at' => \Carbon\Carbon::now(),]
                 ]);
       }
     }

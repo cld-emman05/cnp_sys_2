@@ -1,48 +1,38 @@
-@auth
-
-{{ $current = Auth::user()->id }}
-
-{{  $user = DB::table('departments')
-            ->join('employees', 'employees.department_id', '=', 'departments.id')
-            ->join('users', 'employees.user_id', '=', 'users.id')
-            ->select('departments.name')
-            ->where('users.id', '=', $current)->value('departments.name') }}
-
-@endauth
-
 <div class="logo" align = 'center'>
       <a href="/" class="simple-text logo-normal">
         <img src = "{{ asset('img/logo1.png') }}">
       </a>
+    </div>
 
-        <small class ='font-weight-bold'>Today is <i> {{Carbon\Carbon::now()->format('M d, Y [D]')}}
+    <div class="logo text-center">
+        <small class ='font-weight-bold text-white'>Today is <i> {{today()->format('M d, Y [D]')}}
         </i></small>
 </div>
 
-  <div class="logo text-center">
+<!--  <div class="logo text-center">
     <br>
-    @if($user == null)
+    @if(session()->get('dept') == null)
       <h6 class = 'font-weight-bold'> {{ auth::user()->first_name }} {{ auth::user()->last_name }} </h6>
-      <small class = "font-weight-bold text-white"> {{ @auth::user()->customer()->value('company') }} </small>
+
 
       @else
       <h6 class = 'font-weight-bold'> {{ auth::user()->first_name }} {{ auth::user()->last_name }} </h6>
-      <small class = "font-weight-bold text-white text-uppercase"> {{ $user }} </small>
+      <small class = "font-weight-bold text-white text-uppercase"> {{ session()->get('dept') }} </small>
     @endif
 
 
-  </div>
+  </div> !-->
 
   <div class="sidebar-wrapper font-weight-bold">
       <ul class="nav">
-        <!--  <li class = "{{Request:: is('/') ? 'active' : ''}}">
+        <li class = "{{Request:: is('/') ? 'active' : ''}}">
               <a href="/">
                   <i class="now-ui-icons design_app"></i>
                   <p>Dashboard</p>
               </a>
-          </li> -->
+          </li>
 
-          @if($user == null)
+          @if(session()->get('dept') == null)
           <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                       {{Request:: is('order') ? 'active' : ''}}">
               <a href= '/order/'>
@@ -80,7 +70,7 @@
               </a>
           </li>
 
-          @elseif($user == 'Sales')
+          @elseif(session()->get('dept') == 'Sales')
           <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                       {{Request:: is('order') ? 'active' : ''}}">
               <a href= '/order/'>
@@ -97,7 +87,7 @@
               </a>
           </li>
 
-          @elseif($user == 'Administrator')
+          @elseif(session()->get('dept') == 'Administrator')
           <li class = "{{Request:: is('quotation/*') ? 'active' : ''}}
                        {{Request:: is('quotation') ? 'active' : ''}}">
                        <a href="/quotation">
@@ -114,7 +104,7 @@
               </a>
           </li>
 
-		  @elseif($user == 'Production')
+		  @elseif(session()->get('dept') == 'Production')
       <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                   {{Request:: is('order') ? 'active' : ''}}">
           <a href= '/order/'>
@@ -123,7 +113,7 @@
           </a>
       </li>
 
-          @elseif($user == 'Purchasing')
+          @elseif(session()->get('dept') == 'Purchasing')
           <li class = "{{Request:: is('purchase/compute') ? 'active' : ''}}">
               <a href="/purchase/compute">
                   <i class="now-ui-icons files_single-copy-04"></i>
@@ -147,7 +137,7 @@
               </a>
           </li>
 
-          @elseif($user == 'Finance')
+          @elseif(session()->get('dept') == 'Finance')
           <li class = "{{Request:: is('supplier/track') ? 'active' : ''}}">
               <a href="/supplier/track">
                   <i class="now-ui-icons travel_info"></i>

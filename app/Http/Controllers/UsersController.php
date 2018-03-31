@@ -38,22 +38,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-      $users = new User; //Create Order table
-
-      //if statement for customer
-      $users->first_name = $request->input('userFirstName');
-      $users->last_name = $request->input('userLastName');
-      $users->email = $request->input('userEmail');
-      $users->password = $request->input('userPassword');
-      $users->remember_token = $request->input('userRememberToken');
-
-      $users->agent_id = $request->input('agentId');
-      $users->user_type_id = $request->input('userTypeId');
-
-      $users->save();
-
-      //return redirect('directory of view')->with('condition', 'what happened');
-
+      
     }
 
     /**

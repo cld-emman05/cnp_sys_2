@@ -20,13 +20,18 @@ class DatabaseSeeder extends Seeder
 
     $this->call(DefaultUsersSeeder::class);
     $this->call(DefaultEmployeesSeeder::class);
-    $this->call(DefaultAgentsSeeder::class);
-    $this->call(DefaultCustomersSeeder::class);
+     $this->call(DefaultAgentsSeeder::class);
+     $this->call(DefaultCustomersSeeder::class);
 
     //Create Order Specification
-  /*  $this->call(PaperTypeSeeder::class);
-    $this->call(PaperColorSeeder::class);
+    $this->call(BindingSeeder::class);
     $this->call(LaminationSeeder::class);
-    $this->call(BindingSeeder::class); */
+    $this->call(ColorsSeeder::class);
+    $this->call(PaperTypeSeeder::class);
+    $this->call(InsidePapersSeeder::class);
+    $this->call(CoverPapersSeeder::class);
+    $this->call(SizesSeeder::class);
+    $this->call(SpecificationsSeeder::class);
+    $this->call(OrdersSeeder::class);
   }
 }

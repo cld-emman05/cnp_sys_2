@@ -37,14 +37,17 @@
     								</thead>
 
     								<tbody>
-      								<tr id = '1'>
-        								<td>{{auth::user()->id}}</td>
-        								<td>{{@auth::user()->user_types->type}}</td>
-                        <td><a href = 'profile'>{{auth::user()->first_name}} {{auth::user()->last_name}} </a></td>
-                        <td>{{auth::user()->contact}}</td>
-                        <td>{{auth::user()->email}}</td>
+                      @foreach($employees as $employee)
+      								<tr id = '{{$employee->id}}'>
+        								<td>{{$employee->id}}</td>
+        								<td>{{$employee->department->name}}
+                    </td>
+                        <td><a href = 'profile'>{{$employee->user->first_name}} {{$employee->user->last_name}} </a></td>
+                        <td>{{$employee->user->contact}}</td>
+                        <td>{{$employee->user->email}}</td>
                           <td>
                             <btn class = 'btn btn-danger' id = 'terminated'>Fire</btn>
+                            @endforeach
                           </td>
     								</tbody>
   								</table>

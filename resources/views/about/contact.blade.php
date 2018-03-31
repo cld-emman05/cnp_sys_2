@@ -1,10 +1,9 @@
 <div class="col-md-12">
-											 <div class="card">
 													 <div class="card-header">
-															 Our location
+															 <b>Our Location</b>
 													 </div>
 
-													 <div class="card-body">
+													<div class="card card-body" align = 'center'>
 															 <div id="map" class="map"></div>
 													 </div>
 
@@ -59,8 +58,4 @@
 								 </div>
 							 </div>
 						 </div>
-
-
-
-								 </div>
 							 </div>
