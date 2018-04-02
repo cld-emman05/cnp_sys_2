@@ -18,12 +18,9 @@ class DefaultUsersSeeder extends Seeder
           'contact' => '09221168711',
           'address' => 'Sta. Ana, Manila',
           'email' => 'administrator@gemc.com',
-          'password' => bcrypt('administrator'),
-          'created_at' => \Carbon\Carbon::now(),
-          'updated_at' => \Carbon\Carbon::now(),]
+          'password' => bcrypt('administrator')],
         ]);
 
-<<<<<<< HEAD
       DB::table('users')->insert([
         [
           'first_name' => 'Crisostomo',
@@ -83,7 +80,8 @@ class DefaultUsersSeeder extends Seeder
           'email' => 'customer2@gemc.com',
           'password' => bcrypt('customer')],
         ]);
-=======
+<<<<<<< HEAD
+
         DB::table('users')->insert([
           ['first_name' => 'Crisostomo',
             'last_name' => 'Ibarra',
@@ -138,6 +136,7 @@ class DefaultUsersSeeder extends Seeder
                   'created_at' => \Carbon\Carbon::now(),
                   'updated_at' => \Carbon\Carbon::now(),]
                 ]);
->>>>>>> af61d6418dfce95eef48a5d57d3e2fa7b44b2194
+=======
+>>>>>>> parent of aa44483... Merge branch 'master' of https://github.com/cld-emman05/cnp_sys_2
       }
     }
