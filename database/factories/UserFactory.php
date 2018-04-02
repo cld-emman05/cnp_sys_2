@@ -2,13 +2,6 @@
 
 use Faker\Generator as Faker;
 
-use App\User;
-use App\Employee;
-use App\Customer;
-use App\Agent;
-use App\Industry;
-use App\Department;
-
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -22,24 +15,9 @@ use App\Department;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        'first_name' => $faker->firstName,
-        'last_name' => $faker->lastName,
-        'address' => $faker->streetAddress,
-        'contact' => $faker->tollFreePhoneNumber ,
+        'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'password' => bcrypt('000000'),
+        'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
-        'created_at' => \Carbon\Carbon::now(),
-        'updated_at' => \Carbon\Carbon::now(),
     ];
-});
-
-$factory->define(App\Employee::class, function(Faker ($faker) use ($factory)){
-  $user = $factory->raw('App\User');
-
-  return[
-    'flag' => 1,
-    'user_id' => $faker->numberBetween(1, $user),
-    'department_id' => 2,
-  ];
 });

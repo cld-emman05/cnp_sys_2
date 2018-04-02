@@ -22,22 +22,18 @@
 
 					<div class = 'card-body'>
 						<div class col-lg-12 md-4>
-						<table class="table striped">
+						<table class="table table-hover">
 							<col width="130">
 							<col width="80">
 								<thead>
 									<th width="25%">Order #</th>
 									<th width="25%">Date</th>
-									<th width="25%">Requested by</th>
 								</thead>
 
 								<tbody>
 									<tr>
 										<td>1</td>
 										<td>{{ Carbon\Carbon::now() }}</td>
-										<td>{{DB::table('customers')->select('users.first_name')
-						                                          ->join('users', 'users.id', '=', 'customers.user_id')
-						                                          ->where('users.id', '=', session()->get('current'))->value('id') }}</td>
 									</tr>
 								</tbody>
 							</table>
@@ -57,7 +53,7 @@
 	<div class="col-lg-12 md-4">
 		<div class = 'card card-chart'>
 			<div class="content">
-				<form method='POST' url = '/order/store'>
+				<form>
 					<!-- JOB NAME -->
 						<div class= 'card-body'>
 							<div class="row">
@@ -148,7 +144,7 @@
 										<select class="form-control" id="cover_paper" name="cover_paper">
 											<option value= null> -- </option>
 											@foreach($cover_papers as $cover)
-												<option value="{{$cover->id}}"> {{$cover->paper_type->name
+												<option value="{{$cover['id']}}"> {{$cover['paper_type_id']
 																														}} </option>
 											@endforeach
 										</select>
@@ -180,10 +176,10 @@
 									<div class="form-group">
 									<!-- COVER PAPER -->
 									{{ Form::label('inside_paper', 'Paper Type') }}
-									<select class="form-control" id="inside_paper" name="inside_paper">
+									<select class="form-control" id="cover_paper" name="cover_paper">
 									<option value=null> -- </option>
 									@foreach($inside_papers as $inside)
-										<option value="{{$inside->id}}"> {{$inside->paper_type->name
+										<option value="{{$inside['id']}}"> {{$inside['paper_type_id']
 																												}} </option>
 									@endforeach
 									</select>
@@ -194,7 +190,7 @@
 								<div class="form-group">
 								<!-- INSIDE PAPER -->
 								{{ Form::label('inside_color', 'Paper Color') }}
-								<select class="form-control" id="inside_color" name="inside_color">
+								<select class="form-control" id="cover_color" name="cover_color">
 								<option value=null> -- </option>
 								@foreach($colors as $color)
 									<option value="{{$color['id']}}"> {{$color['name']}}: {{$color['description']}}  </option>
@@ -209,15 +205,19 @@
 								<div class="form-group">
 									<!-- JOB SAMPLE -->
 									{{ Form::label('job_sample', 'Job Sample') }}
-								</div>
-						</div>
+									<br>
+									{{ Form::open(array('url' => '/uploadfile','files'=>'true')) }}
+									<br>
+									{{ Form::file('job_sample') }}
 
-						<div class="row">
-							<div class="col-md-6">
-								<form action = 'UploadFileController@add' method = 'post' enctype= 'multipart/form-data'>
-									<input type= 'file' name = 'job_sample'>
-								</form>
-							</div>
+									{{ Form::submit('Upload File',  ['class' => 'btn btn-primary btn-fill btn-wd', 'id'=>'upload']) }}
+
+									@if(Request::hasFile('job_sample'))
+									{{ Request::file('job_sample')->getClientOriginalName() }}
+
+									@endif
+									{{ Form::close() }}
+									</div>
 							</div>
 						</div>
 
