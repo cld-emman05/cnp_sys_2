@@ -54,6 +54,18 @@ class PaperTypeSeeder extends Seeder
          'description'=> 'for Cover Paper'
         ],
 
+        ['name' => 'C2S140',
+         'description'=> 'for Cover Paper'
+        ],
+
+        ['name' => 'C2S160',
+         'description'=> 'for Cover Paper'
+        ],
+
+        ['name' => 'C2S180',
+         'description'=> 'for Cover Paper'
+        ],
+
 		    ['name' => 'C2S220',
          'description'=> 'for Cover Paper'
         ],
