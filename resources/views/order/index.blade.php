@@ -14,29 +14,27 @@
           </div>
 
           <!-- FORM CONTENT -->
-          <div class = 'card-body'>
-            <div class="col-md-12 pr-2">
-  							<div class="card card-chart">
+          <div class = 'card card-body'>
+            <div class="col-md-12 md-4">
 
-                  <div class = 'container'>
-                  <div class="col align-self-end">
-                        <a href = '/order/create'>
-                          <btn class = 'btn btn-primary' id = 'create'>
-                          <i class="now-ui-icons ui-1_simple-add"></i> Create</btn>
-                        </a>
-                    </div>
+              <div class="col-md-12 md-4">
+              <a href = '/order/create'>
+                <btn class = 'btn btn-primary' id = 'create'>
+                <i class="now-ui-icons ui-1_simple-add"></i> Create</btn>
+              </a>
+            </div>
 
-                  </div>
 
-  								<table class="table table-hover" id= 'print-table'>
+                <div class="card-chart">
+  								<table class="table stripe" id ='format-table'>
     								<thead>
                       <tr>
-        								<th>Order #</th>
+        								<th>Timestamp</th>
         								<th>Job Title</th>
-        								<th>Date of Order</th>
                         @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
                         <th>Customer</th>
                         @endif
+                        <th>Price</th>
                         <th>Status</th>
                         <th>Remarks</th>
       								</tr>
@@ -44,7 +42,8 @@
 
     								<tbody>
       								<tr id = '1'>
-        								<td>1</td>
+        								<td>{{Carbon\Carbon::now()->format('m/d/Y')}} <br>
+                            {{Carbon\Carbon::now()->format('H:i:m')}} </td>
         								<td>Job Sample</td>
                         <td> -- </td>
                         @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
@@ -57,7 +56,6 @@
                         <td>
 
                           @if(@session()->get('dept') == null)
-                          <a href = '/order/revise'> <btn class = 'btn btn-success' id = 'revise'>Revise</btn> </a>
                           <btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn>
                           @elseif(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
                           <a href = '/order/view'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
@@ -79,7 +77,6 @@
                         </div></td>
         								<td>
                           @if(@session()->get('dept') == null)
-                          <a href = '/order/revise'> <btn class = 'btn btn-success' id = 'revise'>Revise</btn> </a>
                           <btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn>
                           @elseif(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
                           <a href = '/order/view'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
@@ -101,7 +98,7 @@
                        </td>
                        <td>
                          @if(@session()->get('dept') == null)
-                         {{ Carbon\Carbon::now() }}
+                          <a href = '/order/schedule'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
                          @elseif(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
                          <a href = '/order/schedule'> <btn class = 'btn btn-success' id = 'view'>Schedule</btn> </a>
                        </td>
@@ -121,7 +118,7 @@
                               Rejected</btn> </a>
                        </td>
                        <td>
-                         {{ Carbon\Carbon::now() }}
+                        --
                        </td>
       								</tr>
 
@@ -130,19 +127,6 @@
               </div>
             </div>
           </div>
-
-								<div class="col-sm-12 ">
-									<div class="result pull-left"><strong>Showing 1 to 2 of max</strong></div>
-										<ul class="pagination pull-right">
-											<li><a href="#">«</a></li>
-											<li class = 'active'><a href="#1">1</a></li>
-											<li><a href="#2">2</a></li>
-											<li><a href="#3">3</a></li>
-											<li><a href="#4">4</a></li>
-											<li><a href="#5">5</a></li>
-											<li><a href="#2">»</a></li>
-										</ul>
-							</div>
 
             </div>
           </div>

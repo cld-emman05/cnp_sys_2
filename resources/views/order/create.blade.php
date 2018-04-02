@@ -144,7 +144,7 @@
 										<select class="form-control" id="cover_paper" name="cover_paper">
 											<option value= null> -- </option>
 											@foreach($cover_papers as $cover)
-												<option value="{{$cover['id']}}"> {{$cover['paper_type_id']
+												<option value="{{$cover->id}}"> {{$cover->paper_type->name
 																														}} </option>
 											@endforeach
 										</select>
@@ -179,7 +179,7 @@
 									<select class="form-control" id="cover_paper" name="cover_paper">
 									<option value=null> -- </option>
 									@foreach($inside_papers as $inside)
-										<option value="{{$inside['id']}}"> {{$inside['paper_type_id']
+										<option value="{{$inside->id}}"> {{$inside->paper_type->name
 																												}} </option>
 									@endforeach
 									</select>

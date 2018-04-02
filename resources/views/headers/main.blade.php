@@ -8,7 +8,7 @@
 		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
 		<!--   Core JS Files   -->
-		<script src="{{ asset('js/core/jquery.min.js') }}">></script>
+		<script src="{{ asset('js/core/jquery.min.js')  }}">></script>
 		<script src="{{ asset('js/core/popper.min.js')  }}">></script>
 		<script src="{{ asset('js/core/bootstrap.min.js')  }}">></script>
 		<script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js')  }}">></script>

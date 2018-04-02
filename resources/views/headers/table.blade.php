@@ -1,13 +1,19 @@
 @include('headers.main')
 
 <!--DataTables-->
+<script src="{{ asset('DataTables\DataTables-1.10.16\js\jquery.dataTables.min.js') }}">
+</script>
 
-
+<link href="{{ asset('DataTables\DataTables-1.10.16\css\jquery.dataTables.min.css') }}" rel = 'stylesheet'/>
 
 <style>
 .table thead{
   background-color: #E5E4E2;
 }
+
+div.container {
+        width: 80%;
+    }
 
 </style>
 
@@ -33,6 +39,15 @@ $(document).ready(function(){
     });
   });
 
+    $('#format-table').DataTable({
+      "language": {
+      "lengthMenu": "Display _MENU_ records per page",
+      "zeroRecords": "Nothing found - sorry",
+      "info": "Showing page _PAGE_ of _PAGES_",
+      "infoEmpty": "No records available",
+      "infoFiltered": "(filtered from _MAX_ total records)"
+  }
+    });
 
 });
 </script>
