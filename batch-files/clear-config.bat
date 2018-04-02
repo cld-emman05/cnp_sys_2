@@ -1,5 +1,6 @@
-cd ..
 @echo off
-start php artisan config:clear
+
+cd ..
+php artisan config:clear
 
 pause

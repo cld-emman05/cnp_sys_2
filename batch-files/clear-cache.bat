@@ -1,8 +1,9 @@
-cd ..
+
 @echo off
+cd ..
 title Clear Cache and Dump Autoload
 
-start composer clear-cache
+composer clear-cache
 start composer dump-autoload
 
 pause 
