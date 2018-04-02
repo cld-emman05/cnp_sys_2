@@ -20,8 +20,11 @@ class DatabaseSeeder extends Seeder
 
     $this->call(DefaultUsersSeeder::class);
     $this->call(DefaultEmployeesSeeder::class);
-    $this->call(DefaultAgentsSeeder::class);
-    $this->call(DefaultCustomersSeeder::class);
+     $this->call(DefaultAgentsSeeder::class);
+     $this->call(DefaultCustomersSeeder::class);
+
+     //ORDER
+     $this->call(PhaseSeeder::class);
 
     //Create Order Specification
     $this->call(BindingSeeder::class);

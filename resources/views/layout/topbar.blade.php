@@ -32,7 +32,7 @@
                         <ul class="navbar-nav">
                           @guest
                           <li><a class="nav-link" href="{{ route('login') }}">Login</a></li>
-                          <li><a class="nav-link" href="{{ route('register') }}">Register</a></li>
+                          <!-- <li><a class="nav-link" href="{{ route('register') }}">Register</a></li> -->
 
                           @else
                             <li class="nav-item dropdown">
@@ -53,7 +53,7 @@
                                     <p>
                                       <i class="now-ui-icons users_single-02"></i>
 
-                                      @if(session()->get('user') == null)
+                                      @if(session()->get('dept') == null)
                                         <span class = "font-weight-bold"> {{ auth::user()->first_name }} {{ auth::user()->last_name }}</span>
                                         <br>
                                         <small class= 'text-left font-italic'>{{ session()->get('company') }}</small>
@@ -62,7 +62,7 @@
 
                                       <span class = "font-weight-bold"> {{ auth::user()->first_name }} {{ auth::user()->last_name }}</span>
                                       <br>
-                                      <small class= 'text-left font-italic'>{{ session()->get('user') }}</small>
+                                      <small class= 'text-left font-italic'>{{ session()->get('dept') }}</small>
                                       @endif
                                     </p>
                                 </a>
