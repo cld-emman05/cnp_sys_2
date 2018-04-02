@@ -18,13 +18,6 @@ class DefaultCustomersSeeder extends Seeder
           'industry_id' => '1',
           'agent_id' => '1',
         ],
-
-        [
-          'company' => 'Ateneo University',
-          'user_id' => '7',
-          'industry_id' => '1',
-          'agent_id' => '1',
-        ],
      ]);
     }
 }
