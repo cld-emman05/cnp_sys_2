@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Department;
 use App\Employee;
 use App\User;
-use App\Agent;
 
 use DB;
 
@@ -40,12 +39,8 @@ class EmployeeController extends Controller
       $departments = Department::all();
       $data = json_encode($departments);
 
-      $agent = Agent::all();
-      $data_agent = json_encode($agent);
-
       return view('employee.register', [
         'departments' => json_decode($data, true),
-        'agents' => json_decode($data_agent, true),
       ]);
     }
 
@@ -64,11 +59,8 @@ class EmployeeController extends Controller
         'first_name' => $request->input('first_name'),
         'last_name' => $request->input('last_name'),
         'address' => $request->input('address'),
-        'contact' => $request->input('contact'),
         'email' => $request->input('email'),
         'password' => bcrypt($request->input('password')),
-        'created_at' => \Carbon\Carbon::now(),
-        'updated_at' => \Carbon\Carbon::now(),
       ]);
 
       $employee = DB::table('employees')->insertGetId([
@@ -77,10 +69,10 @@ class EmployeeController extends Controller
         'department_id' => $request->input('user_type'),
       ]);
 
-      if(Employee::where('department_id', 2)->get()){
+      if(App\Employee::find('department_id')->get() == 2){
         $agent = DB::table('agents')->insert([
           'employee_id' => $employee,
-          'industry_id' => null,
+          'user_id' => $user,
         ]);
       }
 

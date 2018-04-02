@@ -1,42 +1,35 @@
 <?php
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\File as FileEntry;
-use Illuminate\Support\Facades\Response;
-
-use App\File;
-
 class UploadFileController extends Controller {
-  public function index(){
-    $entries = File::all();
+  
+   public function showUploadFile(Request $request){
+      $file = $request->file('image');
 
-    return view('order.create', compact('entries'));
-  }
+      //Display File Name
+      {{'File Name: '.$file->getClientOriginalName()}}
+      {{ <br> }}
 
-  public function add(){
-    $file = Request::file('job_sample');
-    $extension = $file->getClientOriginalExtension();
+      //Display File Extension
+      {{'File Extension: '.$file->getClientOriginalExtension()}}
+      {{<br>}}
 
-    Storage::disk('local')->put($file->getFileName().'.'.$extension, File::get($file));
+      //Display File Real Path
+      {{'File Real Path: '.$file->getRealPath()}}
+      {{<br>}}
 
-    $entry = new File();
+      //Display File Size
+      {{'File Size: '.$file->getSize()}}
+      {{<br>}}
 
-    $entry->mime_type = $file->getClientMimeType();
-    $entry->name = $file->getFileName().'.'.$extension;
+      //Display File Mime Type
+      {{'File Mime Type: '.$file->getMimeType();}}
 
-    $entry->save();
-  }
-
-  public function get($filename){
-    $entry = File::where('name', '=', $filename)->findOrFail();
-    $file = Storage::disk('local')->get($entry->name);
-
-    return(new Response($file, 200))->header('Content-Type', $entry->mime_type);
-
-  }
+      //Move Uploaded File
+      $destinationPath = 'uploads';
+      $file->move($destinationPath,$file->getClientOriginalName());
+   }
 }

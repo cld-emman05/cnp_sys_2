@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
-use App\Agent;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -39,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest');
     }
 
     /**
@@ -54,7 +53,7 @@ class RegisterController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'company' => 'string|max:255|nullable',
-            'industry' => 'integer|min:1',
+            'industry' => 'int|max:1|nullable',
             'address' => 'string|nullable',
             'contact' => 'string|min:7|max:11|nullable',
             'email' => 'required|string|email|max:255|unique:users',
@@ -71,7 +70,6 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
       $newUser = new User;
-      $agent = new Agent;
 
       $user = DB::table('users')->insertGetId([
         'first_name' => $data['first_name'],
@@ -79,17 +77,14 @@ class RegisterController extends Controller
         'address' => $data['address'],
         'email' => $data['email'],
         'password' => bcrypt($data['password']),
-        'created_at' => \Carbon\Carbon::now(),
-        'updated_at' => \Carbon\Carbon::now(),
       ]);
 
-      $customer = DB::table('customers')->insertGetID([
+      $customer = DB::table('customers')->insert([
         'company' => $data['company'],
-        'industry_id' => $data['industry'],
+        'industry_id' => '6',
         'user_id' => $user,
-        'agent_id' => null,
       ]);
 
-      return $newUser;
-    }
+      return $newUser->save();
+      }
 }

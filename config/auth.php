@@ -65,45 +65,15 @@ return [
     */
 
     'providers' => [
-         'users' => [
+        'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
 
-        'customers' => [
-           'driver' => 'eloquent',
-           'model' => App\Customer::class,
-       ],
-
-       'employees' => [
-          'driver' => 'eloquent',
-          'model' => App\Employee::class,
-      ],
-
-      'agents' => [
-         'driver' => 'eloquent',
-         'model' => App\Agent::class,
-     ],
-
-        'users' => [
+        /* 'users' => [
            'driver' => 'database',
-           'table' => 'users',
-         ],
-
-         'customers' => [
-            'driver' => 'database',
-            'table' => 'customers',
-          ],
-
-          'employees' => [
-             'driver' => 'database',
-             'table' => 'employees',
-           ],
-
-           'agents' => [
-              'driver' => 'database',
-              'table' => 'agents',
-            ],
+           'table' => 'users', 'cusctomers', 'employees',
+         ], */
     ],
 
     /*

@@ -1,7 +1,5 @@
 @extends('layout.main')
 
-@include('headers.main')
-
 @section('title', 'Create Account')
 
 @section('main-content')
@@ -66,10 +64,7 @@
 
                             <div class="col-md-6">
         										<select class="form-control" id="industry" class="form-control {{ $errors->has('industry') ? ' is-invalid' : '' }}" name="industry">
-        										<option value=null> -- </option>
-                            @foreach($industries as $industry)
-                              <option value="{{$industry['id']}}"> {{$industry['type']}} </option>
-                            @endforeach
+        										<option value="0"> -- </option>
         										</select>
         									</div>
         								</div>
@@ -146,11 +141,9 @@
                         <div class="form-group row mb-0">
 
                             <div class="col-md-12 offset-md-4">
-                              <center>
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
-                              </center>
                             </div>
                         </div>
                     </form>

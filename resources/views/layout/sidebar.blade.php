@@ -11,13 +11,13 @@
 
 <!--  <div class="logo text-center">
     <br>
-    @if(session()->get('dept') == null)
+    @if(session()->get('user') == null)
       <h6 class = 'font-weight-bold'> {{ auth::user()->first_name }} {{ auth::user()->last_name }} </h6>
-
+    
 
       @else
       <h6 class = 'font-weight-bold'> {{ auth::user()->first_name }} {{ auth::user()->last_name }} </h6>
-      <small class = "font-weight-bold text-white text-uppercase"> {{ session()->get('dept') }} </small>
+      <small class = "font-weight-bold text-white text-uppercase"> {{ session()->get('user') }} </small>
     @endif
 
 
@@ -32,7 +32,7 @@
               </a>
           </li>
 
-          @if(session()->get('dept') == null)
+          @if(session()->get('user') == null)
           <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                       {{Request:: is('order') ? 'active' : ''}}">
               <a href= '/order/'>
@@ -70,7 +70,7 @@
               </a>
           </li>
 
-          @elseif(session()->get('dept') == 'Sales')
+          @elseif(session()->get('user') == 'Sales')
           <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                       {{Request:: is('order') ? 'active' : ''}}">
               <a href= '/order/'>
@@ -87,7 +87,7 @@
               </a>
           </li>
 
-          @elseif(session()->get('dept') == 'Administrator')
+          @elseif(session()->get('user') == 'Administrator')
           <li class = "{{Request:: is('quotation/*') ? 'active' : ''}}
                        {{Request:: is('quotation') ? 'active' : ''}}">
                        <a href="/quotation">
@@ -104,7 +104,7 @@
               </a>
           </li>
 
-		  @elseif(session()->get('dept') == 'Production')
+		  @elseif(session()->get('user') == 'Production')
       <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                   {{Request:: is('order') ? 'active' : ''}}">
           <a href= '/order/'>
@@ -113,7 +113,7 @@
           </a>
       </li>
 
-          @elseif(session()->get('dept') == 'Purchasing')
+          @elseif(session()->get('user') == 'Purchasing')
           <li class = "{{Request:: is('purchase/compute') ? 'active' : ''}}">
               <a href="/purchase/compute">
                   <i class="now-ui-icons files_single-copy-04"></i>
@@ -137,7 +137,7 @@
               </a>
           </li>
 
-          @elseif(session()->get('dept') == 'Finance')
+          @elseif(session()->get('user') == 'Finance')
           <li class = "{{Request:: is('supplier/track') ? 'active' : ''}}">
               <a href="/supplier/track">
                   <i class="now-ui-icons travel_info"></i>

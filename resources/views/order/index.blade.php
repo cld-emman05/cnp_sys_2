@@ -14,27 +14,28 @@
           </div>
 
           <!-- FORM CONTENT -->
-          <div class = 'card card-body'>
-            <div class="col-md-12 md-4">
-
-              <div class="col-md-12 md-4">
-              <a href = '/order/create'>
-                <btn class = 'btn btn-primary' id = 'create'>
-                <i class="now-ui-icons ui-1_simple-add"></i> Create</btn>
-              </a>
-            </div>
-
-
-                <div class="card-chart">
-  								<table class="table stripe" id ='format-table'>
+          <div class = 'card-body'>
+            <div class="col-lg-12 md-4">
+  							<div class="card card-chart">
+  								<table class="table table-hover">
     								<thead>
+                      @if(@session()->get('user') == 'Customer')
                       <tr>
-        								<th>Timestamp</th>
+                        <td></td><td></td><td></td><td></td>
+                        <td><a href = '/order/create'>
+                          <btn class = 'btn btn-primary' id = 'create'>
+                          <i class="now-ui-icons ui-1_simple-add"></i> Create</btn>
+                        </a></td>
+                      </tr>
+                      @endif
+
+      								<tr>
+        								<th>Order #</th>
         								<th>Job Title</th>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
+        								<th>Date of Order</th>
+                        @if(@session()->get('user') == 'Sales' || @session()->get('user') == 'Production')
                         <th>Customer</th>
                         @endif
-                        <th>Price</th>
                         <th>Status</th>
                         <th>Remarks</th>
       								</tr>
@@ -42,11 +43,10 @@
 
     								<tbody>
       								<tr id = '1'>
-        								<td>{{Carbon\Carbon::now()->format('m/d/Y')}} <br>
-                            {{Carbon\Carbon::now()->format('H:i:m')}} </td>
+        								<td>1</td>
         								<td>Job Sample</td>
                         <td> -- </td>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
+                        @if(@session()->get('user') == 'Sales' || @session()->get('user') == 'Production')
                         <td>Crisostomo Ibarra</td>
                         @endif
         								<td>
@@ -55,9 +55,10 @@
                               In Process </a></td>
                         <td>
 
-                          @if(@session()->get('dept') == null)
+                          @if(@session()->get('user') == 'Customer')
+                          <a href = '/order/revise'> <btn class = 'btn btn-success' id = 'revise'>Revise</btn> </a>
                           <btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn>
-                          @elseif(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
+                          @elseif(@session()->get('user') == 'Sales' || @session()->get('user') == 'Production')
                           <a href = '/order/view'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
                         </td>
                         @endif
@@ -67,7 +68,7 @@
         								<td id = '2'>2</td>
         								<td>New order</td>
         								<td><a> -- </a></td>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
+                        @if(@session()->get('user') == 'Sales' || @session()->get('user') == 'Production')
                         <td> -- </td>
                         @endif
                         <td>
@@ -76,9 +77,10 @@
                               Ongoing Production</btn> </a>
                         </div></td>
         								<td>
-                          @if(@session()->get('dept') == null)
+                          @if(@session()->get('user') == 'Customer')
+                          <a href = '/order/revise'> <btn class = 'btn btn-success' id = 'revise'>Revise</btn> </a>
                           <btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn>
-                          @elseif(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
+                          @elseif(@session()->get('user') == 'Sales' || @session()->get('user') == 'Production')
                           <a href = '/order/view'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
                         </td>
                         @endif
@@ -88,7 +90,7 @@
         								<td>3</td>
         								<td>Final order</td>
         								<td><a> -- </a></td>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
+                        @if(@session()->get('user') == 'Sales' || @session()->get('user') == 'Production')
                         <td> -- </td>
                         @endif
                         <td>
@@ -97,9 +99,9 @@
                               Ready for Delivery</btn> </a>
                        </td>
                        <td>
-                         @if(@session()->get('dept') == null)
-                          <a href = '/order/schedule'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
-                         @elseif(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
+                         @if(@session()->get('user') == 'Customer')
+                         {{ Carbon\Carbon::now() }}
+                         @elseif(@session()->get('user') == 'Sales' || @session()->get('user') == 'Production')
                          <a href = '/order/schedule'> <btn class = 'btn btn-success' id = 'view'>Schedule</btn> </a>
                        </td>
                        @endif
@@ -109,7 +111,7 @@
         								<td>4</td>
         								<td>Void order</td>
         								<td><a> -- </a></td>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
+                        @if(@session()->get('user') == 'Sales' || @session()->get('user') == 'Production')
                         <td> -- </td>
                         @endif
                         <td>
@@ -118,7 +120,7 @@
                               Rejected</btn> </a>
                        </td>
                        <td>
-                        --
+                         {{ Carbon\Carbon::now() }}
                        </td>
       								</tr>
 
@@ -127,6 +129,19 @@
               </div>
             </div>
           </div>
+
+								<div class="col-sm-12 ">
+									<div class="result pull-left"><strong>Showing 1 to 2 of max</strong></div>
+										<ul class="pagination pull-right">
+											<li><a href="#">«</a></li>
+											<li class = 'active'><a href="#1">1</a></li>
+											<li><a href="#2">2</a></li>
+											<li><a href="#3">3</a></li>
+											<li><a href="#4">4</a></li>
+											<li><a href="#5">5</a></li>
+											<li><a href="#2">»</a></li>
+										</ul>
+							</div>
 
             </div>
           </div>

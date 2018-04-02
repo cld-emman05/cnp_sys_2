@@ -9,24 +9,14 @@ use DB;
 use App\Order;
 use App\Specification;
 use App\Size; // size
-use App\PaperType;
 use App\CoverPaper; // cover_id
 use App\InsidePaper; // inside_id
 use App\Color;
 use App\LaminationType; // lamination
 use App\BindingType; // binding_type_id
 
-use App\Customer;
-use App\User;
-use App\Phase;
-use App\OrderStatus;
-
 class OrderController extends Controller
 {
-  public function __construct()
-  {
-      $this->middleware('auth');
-  }
     /**
      * Display a listing of the resource.
      *
@@ -47,16 +37,37 @@ class OrderController extends Controller
     public function create()
     {
       $specifications = Specification::all();
-      $sizes = Size::all();
-      $inside_papers = InsidePaper::with('paper_type')->get();
-      $cover_papers = CoverPaper::with('paper_type')->get();
-      $colors = Color::all();
-      $laminations = LaminationType::all();
-      $bindings = BindingType::all();
+      $data_specs = json_encode($specifications);
 
-        return view('order.create',compact('specifications', 'sizes',
-                                            'inside_papers', 'cover_papers',
-                                            'colors', 'laminations', 'bindings'));
+      $size = Size::all();
+      $data_size = json_encode($size);
+
+      $inside_paper = InsidePaper::all();
+      $data_inside = json_encode($inside_paper);
+
+      $cover_paper = CoverPaper::all();
+      $data_cover = json_encode($cover_paper);
+
+      $color = Color::all();
+      $data_color = json_encode($color);
+
+      $lamination = LaminationType::all();
+      $data_lam = json_encode($lamination);
+
+      $binding = BindingType::all();
+      $data_bind = json_encode($binding);
+
+
+        return view('order.create',
+                                  [
+                                   'specifications' =>json_decode($data_specs, true),
+                                   'sizes' => json_decode($data_size , true),
+                                   'inside_papers' => json_decode($data_inside, true),
+                                   'cover_papers' => json_decode($data_cover, true),
+                                   'colors' => json_decode($data_color, true),
+                                   'laminations' => json_decode($data_lam, true),
+                                   'bindings' => json_decode($data_bind , true),
+                                 ]);
     }
 
     /**
@@ -69,42 +80,33 @@ class OrderController extends Controller
     {
       $order = new Order;
       $specs = new Specification;
-      $order_status = new OrderStatus;
+      $size = new Size; // size
+      $cover_paper = new Cover_Paper; // cover_id
+      $inside_paper = new Inside_Paper; // inside_id
+      $cover_color = new Color;
+      $inside_color = new Color;
+      $lamination = new Lamination_Types; // lamination
+      $bind = new Binding_Types; // binding_type_id
 
-      $specs = DB::table('specifications')->insertGetId([
-        'type' => $request->input('job_type'),
-        'pages' => $request->input('page_count'),
-        'size_id' => $request->input('size'),
-        'cover_paper_id' => $request->input('cover_paper'),
-        'cover_color_id' => $request->input('cover_color'),
-        'inside_paper_id' => $request->input('inside_paper'),
-        'inside_color_id' => $request->input('inside_color'),
-        'lamination_id' => $request->input('lamination'),
-        'binding_id' => $request->input('binding'),
-      ]);
+      $order->customer_id = \Auth::user()->id;
+      $order->title = $request->input('job_name');
 
-      $order = DB::table('orders')->insertGetId([
-        'title' => $request->input('job_name'),
-        'quantity' => $request->input('quantity'),
-        'due_date' => $request->input('date_due'),
-        'comments' => $request->input('comments'),
-        'delivery_date' => null,
-        'customer_id' => DB::table('customers')->select('customers.id')
-                                          ->join('users', 'users.id', '=', 'customers.user_id')
-                                          ->where('users.id', '=', session()->get('current'))->value('id'),
-        'specification_id' => $specs,
-        'file_id' => null,
-      ]);
+      $order->quantity = $request->input('quantity');
+      $order->page_count = $request->input('page_count');
+      $order->date_due = $request->input('date_due');
+      $order->file = $request->input('myFile');
+      $order->comments = $request->input('comments');
 
-      $order_status = DB::table('order_statuses')->insert([
-        'remarks' => null,
-        'order_id' => $order,
-        'phase_id' => 1,
-        'created_at' => \Carbon\Carbon::now(),
-        'updated_at' => \Carbon\Carbon::now(),
-      ]);
+      $order->Specification_id = $request->input('Specification');
+      $order->type->specs->cover_specs->paper_type_id = $request->input('cover_paper');
+      $order->type->specs->cover_specs->paper_color_id = $request->input('cover_color');
+      $order->type->specs->inside_specs->paper_type_id = $request->input('inside_paper');
+      $order->type->specs->inside_specs->paper_color_id = $request->input('inside_color');
+      $order->specs->lamination_id = $request->input('lamination');
+      $order->specs->binding_id = $request->input('binding');
+      $order->specs->size_type_id = $request->input('size');
 
-      return redirect('/order')->with('success', "Order created");
+      $order->save();
 
     }
 

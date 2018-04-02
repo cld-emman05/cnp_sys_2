@@ -1,7 +1,2 @@
-
-@echo off
-cd ..
+cd .. 
 php artisan migrate:fresh --seed
-
-@echo.
-pause

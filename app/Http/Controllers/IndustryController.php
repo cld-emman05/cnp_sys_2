@@ -17,11 +17,9 @@ class IndustryController extends Controller
      */
     public function index()
     {
-      $industries = Industry::all();
+        $industries = Industry::all();
 
-      return view('auth.register', [
-        'industries' => $industries,
-      ]);
+        return view('/register')->with('industries', $industries);
     }
 
     /**
