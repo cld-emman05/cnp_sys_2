@@ -16,6 +16,11 @@ use App\Color;
 use App\LaminationType; // lamination
 use App\BindingType; // binding_type_id
 
+use App\Customer;
+use App\User;
+use App\Phase;
+use App\OrderStatus;
+
 class OrderController extends Controller
 {
   public function __construct()
@@ -64,20 +69,28 @@ class OrderController extends Controller
     {
       $order = new Order;
       $specs = new Specification;
-      $size = new Size; // size
-      $cover_paper = new Cover_Paper; // cover_id
-      $inside_paper = new Inside_Paper; // inside_id
-      $cover_color = new Color;
-      $inside_color = new Color;
-      $lamination = new Lamination_Types; // lamination
-      $bind = new Binding_Types; // binding_type_id
+
+      $specs = DB::table('specifications')->insertGetId([
+        'type' => $request->input('job_type'),
+        'pages' => $request->input('page_count'),
+        'size_id' => $request->input('size'),
+        'cover_paper_id' => $request->input('cover_paper'),
+        'cover_color_id' => $request->input('cover_color'),
+        'inside_paper_id' => $request->input('inside_paper'),
+        'inside_color_id' => $request->input('inside_color'),
+        'lamination_id' => $request->input('lamination'),
+        'binding_id' => $request->input('binding'),
+      ]);
 
       $order = DB::table('orders')->insertGetId([
-        'title'
-        'quantity'
-        'due_date'
-        'comments'
+        'title' => $request->input('job_name'),
+        'quantity' => $request->input('quantity'),
+        'due_date' => $request->input('quantity'),
+        'comments' =>
         'delivery_date' => null,
+        'customer_id', =>
+        'specification_id', =>
+        'file_id' => null,
       ]);
 
       $order->customer_id = \Auth::user()->id;

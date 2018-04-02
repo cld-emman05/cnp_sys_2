@@ -53,7 +53,7 @@
 	<div class="col-lg-12 md-4">
 		<div class = 'card card-chart'>
 			<div class="content">
-				<form>
+				<form >
 					<!-- JOB NAME -->
 						<div class= 'card-body'>
 							<div class="row">
@@ -176,7 +176,7 @@
 									<div class="form-group">
 									<!-- COVER PAPER -->
 									{{ Form::label('inside_paper', 'Paper Type') }}
-									<select class="form-control" id="cover_paper" name="cover_paper">
+									<select class="form-control" id="inside_paper" name="inside_paper">
 									<option value=null> -- </option>
 									@foreach($inside_papers as $inside)
 										<option value="{{$inside->id}}"> {{$inside->paper_type->name
@@ -190,7 +190,7 @@
 								<div class="form-group">
 								<!-- INSIDE PAPER -->
 								{{ Form::label('inside_color', 'Paper Color') }}
-								<select class="form-control" id="cover_color" name="cover_color">
+								<select class="form-control" id="inside_color" name="inside_color">
 								<option value=null> -- </option>
 								@foreach($colors as $color)
 									<option value="{{$color['id']}}"> {{$color['name']}}: {{$color['description']}}  </option>
