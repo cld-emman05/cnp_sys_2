@@ -39,6 +39,7 @@ Route::get('/profile', function(){
 
 Route::get('/order', 'OrderController@index');
 Route::get('/order/create', 'OrderController@create');
+Route::get('/order/store', 'OrderController@create');
 
 Route::post('/order/revise','UploadFileController@index');
 

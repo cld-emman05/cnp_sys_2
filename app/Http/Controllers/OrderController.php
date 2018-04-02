@@ -69,6 +69,7 @@ class OrderController extends Controller
     {
       $order = new Order;
       $specs = new Specification;
+      $order_status = new OrderStatus;
 
       $specs = DB::table('specifications')->insertGetId([
         'type' => $request->input('job_type'),
@@ -85,33 +86,25 @@ class OrderController extends Controller
       $order = DB::table('orders')->insertGetId([
         'title' => $request->input('job_name'),
         'quantity' => $request->input('quantity'),
-        'due_date' => $request->input('quantity'),
-        'comments' =>
+        'due_date' => $request->input('date_due'),
+        'comments' => $request->input('comments'),
         'delivery_date' => null,
-        'customer_id', =>
-        'specification_id', =>
+        'customer_id' => DB::table('customers')->select('customers.id')
+                                          ->join('users', 'users.id', '=', 'customers.user_id')
+                                          ->where('users.id', '=', session()->get('current'))->value('id'),
+        'specification_id' => $specs,
         'file_id' => null,
       ]);
 
-      $order->customer_id = \Auth::user()->id;
-      $order->title = $request->input('job_name');
+      $order_status = DB::table('order_statuses')->insert([
+        'remarks' => null,
+        'order_id' => $order,
+        'phase_id' => 1,
+        'created_at' => \Carbon\Carbon::now(),
+        'updated_at' => \Carbon\Carbon::now(),
+      ]);
 
-      $order->quantity = $request->input('quantity');
-      $order->page_count = $request->input('page_count');
-      $order->date_due = $request->input('date_due');
-      $order->file = $request->input('myFile');
-      $order->comments = $request->input('comments');
-
-      $order->Specification_id = $request->input('Specification');
-      $order->type->specs->cover_specs->paper_type_id = $request->input('cover_paper');
-      $order->type->specs->cover_specs->paper_color_id = $request->input('cover_color');
-      $order->type->specs->inside_specs->paper_type_id = $request->input('inside_paper');
-      $order->type->specs->inside_specs->paper_color_id = $request->input('inside_color');
-      $order->specs->lamination_id = $request->input('lamination');
-      $order->specs->binding_id = $request->input('binding');
-      $order->specs->size_type_id = $request->input('size');
-
-      $order->save();
+      return redirect('/order')->with('success', "Order created");
 
     }
 

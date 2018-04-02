@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
      $this->call(DefaultAgentsSeeder::class);
      $this->call(DefaultCustomersSeeder::class);
 
+     //ORDER
+     $this->call(PhaseSeeder::class);
+
     //Create Order Specification
     $this->call(BindingSeeder::class);
     $this->call(LaminationSeeder::class);
