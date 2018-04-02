@@ -29,6 +29,7 @@
 
       								<tr class = 'font-weight-bold'>
         								<th>Customer #</th>
+        								<th>Industry</th>
         								<th>Company</th>
         								<th>Representative</th>
                         <th>Contact Number</th>
@@ -41,6 +42,7 @@
                       @foreach($customers as $customer)
       								<tr id = '{{$customer->id}}'>
         								<td>{{$customer->id}}</td>
+                        <td>{{@$customer->industry->type}}</td>
         								<td>{{$customer->company}}</td>
                         <td><a href = 'profile'>{{$customer->user->first_name}} {{$customer->user->last_name}}</a></td>
                         <td>{{$customer->user->contact}}</td>

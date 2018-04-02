@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Customer;
 use App\User;
 use App\Industry;
+use App\Employee;
+use App\Agent;
 
 use DB;
 
@@ -64,15 +66,22 @@ class CustomerController extends Controller
         'first_name' => $request->input('first_name'),
         'last_name' => $request->input('last_name'),
         'address' => $request->input('address'),
+        'contact' => $request->input('contact'),
         'email' => $request->input('email'),
         'password' => bcrypt($request->input('password')),
+        'created_at' => \Carbon\Carbon::now(),
+        'updated_at' => \Carbon\Carbon::now(),
       ]);
 
-      $customer = DB::table('customer')->insert([
+      $customer = DB::table('customers')->insert([
         'company' => $request->input('company'),
-        'industry_id' => $request->input('industry_id'),
+        'industry_id' => $request->input('industry'),
         'user_id' => $user,
-        'agent_id' => \Auth::user()->employee()->agent->id,
+        'agent_id' => (DB::table('agents')->select('agents.id')
+                                          ->join('employees', 'agents.employee_id', '=', 'employees.id')
+                                          ->join('users', 'users.id', '=', 'employees.user_id')
+                                          ->where('users.id', '=', session()->get('current'))->value('id')
+                                        )
       ]);
 
       return redirect('/customer')->with('success', 'New Customer Added!');

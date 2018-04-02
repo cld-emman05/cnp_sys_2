@@ -2,7 +2,7 @@
 
 @section('title', "Dashboard")
 
-@include('headers.table')
+@include('headers.dashboard')
 
 @section('main-content')
 	<div class="row">

@@ -1,4 +1,5 @@
 @extends('layout.main')
+@include('headers.main')
 
 @section('title', 'Add New Employee')
 

@@ -11,8 +11,7 @@
 |
 */
 
-// Customer
-Route::get('/register', 'IndustryController@index');
+// Custome
 
 Route::get('/customer/register', 'CustomerController@create');
 Route::get('/customer', 'CustomerController@index');
@@ -37,10 +36,12 @@ Route::get('/profile', function(){
 });
 
 // Orders Function
+
 Route::get('/order', 'OrderController@index');
 Route::get('/order/create', 'OrderController@create');
+Route::get('/order/store', 'OrderController@create');
 
-Route::post('/uploadfile','UploadFileController@showUploadFile');
+Route::post('/order/revise','UploadFileController@index');
 
 Route::get('/order/view', function () {
     return view('order.view');
@@ -116,6 +117,11 @@ Route::get('/about-us#contact', function () {
 });
 
 Auth::routes();
+
+Route::get('/register', [
+  'as' => 'register',
+  'uses' => 'IndustryController@index',
+]);
 
 // Resources
 
