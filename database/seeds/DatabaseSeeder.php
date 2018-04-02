@@ -32,5 +32,7 @@ class DatabaseSeeder extends Seeder
     $this->call(CoverPapersSeeder::class);
     $this->call(SizesSeeder::class);
     $this->call(SpecificationsSeeder::class);
+    $this->call(OrdersSeeder::class);
+    $this->call(Order_StatusesSeeder::class);
   }
 }
