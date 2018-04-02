@@ -9,7 +9,7 @@ class Industry extends Model
   protected $guarded = [];
 
   public function agent(){
-    return $this->hasMany('App\Agent');
+    return $this->belongsTo('App\Agent');
   }
 
   public function customer(){

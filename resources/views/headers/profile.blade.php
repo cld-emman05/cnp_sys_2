@@ -1,4 +1,4 @@
-@include('headers.table')
+@include('headers.main')
 
 <script type = 'text/javascript'>
 $(document).ready(function(){
