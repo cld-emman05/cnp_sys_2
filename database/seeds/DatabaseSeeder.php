@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
 
      //ORDER
      $this->call(PhaseSeeder::class);
-
     //Create Order Specification
     $this->call(BindingSeeder::class);
     $this->call(LaminationSeeder::class);

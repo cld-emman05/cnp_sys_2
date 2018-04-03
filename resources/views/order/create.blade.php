@@ -57,7 +57,8 @@
 	<div class="col-lg-12 md-4">
 		<div class = 'card card-chart'>
 			<div class="content">
-				<form method='POST' url = '/order/store'>
+				<form method="POST" action = "/order/store">
+					{{ csrf_field() }}
 					<!-- JOB NAME -->
 						<div class= 'card-body'>
 							<div class="row">
@@ -81,7 +82,7 @@
 										<select class="form-control" id="jobtype" name="jobtype">
 										<option value= null> -- </option>
 									@foreach($specifications as $specs)
-										<option value="{{$specs['id']}}"> {{$specs['type']}} </option>
+										<option value="{{$specs->id}}"> {{$specs['type']}} </option>
 									@endforeach
 										</select>
 									</div>
@@ -205,24 +206,7 @@
 						</div>
 
 						<div class="row">
-							<div class="col-md-6">
-								<div class="form-group">
-									<!-- JOB SAMPLE -->
-									{{ Form::label('job_sample', 'Job Sample') }}
-								</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-6">
-								<form action = 'UploadFileController@add' method = 'post' enctype= 'multipart/form-data'>
-									<input type= 'file' name = 'job_sample'>
-								</form>
-							</div>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-lg-6">
+							<div class="col-lg-6 pr-1">
 								<div class="form-group">
 								<!-- LAMINATION -->
 									{{ Form::label('lamination', 'Lamination') }}
@@ -235,7 +219,7 @@
 								</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 pl-1">
 							<div class="form-group">
 							<!-- BINDING -->
 							{{ Form::label('binding', 'Binding') }}
@@ -249,16 +233,31 @@
 					</div>
 					</div>
 
-
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-6 pr-1">
 							<div class="form-group">
 								<!-- DATE DUE -->
 								{{ Form::label('date_due', 'Date Due') }}
-								{{ Form::date('date_due', '', ['class' => 'form-control border-input','id'=>'datedue'])}}
+								{{ Form::date('date_due', (\Carbon\Carbon::now()->addWeeks(1))->format('m/d/Y') , ['class' => 'form-control border-input','id'=>'datedue'])}}
 							</div>
 						</div>
 					</div>
+
+					<div class="row">
+						<div class="col-md-12 pr-1">
+							<div class="form-group">
+								<!-- JOB SAMPLE -->
+								{{ Form::label('job_sample', 'Job Sample') }}
+							</div>
+					</div>
+				</div>
+				<center>
+					<div class="row">
+						<div class="col-md-6 pr-1">
+								<input type= 'file' name = 'job_sample' class = 'form-control'>
+						</div>
+					</div>
+				</center>
 
 					<div class="row">
 						<div class="col-md-12">
@@ -270,14 +269,15 @@
 						</div>
 					</div>
 					</div>
+				</div>
 		</div>
 	</div>
 </div>
-	<div class="text-center">
-	<!-- SUBMUT BUTTON -->
-	{{Form::submit('Submit Order', ['class' => 'btn btn-info btn-fill btn-wd', 'id'=>'submit'])}}
-	</div>
-</form>
+				<div class="text-center">
+				<!-- SUBMUT BUTTON -->
+				{{Form::submit('Submit Order', ['class' => 'btn btn-info btn-fill btn-wd', 'id'=>'submit'])}}
+				</form>
+				</div>
 <div class="clearfix"></div>
 
 </div>

@@ -42,7 +42,7 @@ $(document).ready(function(){
     $('#format-table').DataTable({
       "language": {
       "lengthMenu": "Display _MENU_ records per page",
-      "zeroRecords": "Nothing found - sorry",
+      "zeroRecords": "No @yield('title') yet",
       "info": "Showing page _PAGE_ of _PAGES_",
       "infoEmpty": "No records available",
       "infoFiltered": "(filtered from _MAX_ total records)"

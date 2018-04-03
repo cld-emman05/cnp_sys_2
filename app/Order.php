@@ -28,7 +28,7 @@ class Order extends Model
     return $this->hasMany('App\RawMaterial');
   }
 
-  public function order_status(){
+  public function status(){
     return $this->hasMany('App\OrderStatus');
   }
 }

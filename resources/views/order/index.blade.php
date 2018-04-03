@@ -31,7 +31,7 @@
                       <tr>
         								<th>Timestamp</th>
         								<th>Job Title</th>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
+                        @if(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
                         <th>Customer</th>
                         @endif
                         <th>Price</th>
@@ -41,87 +41,39 @@
     								</thead>
 
     								<tbody>
-      								<tr id = '1'>
-        								<td>{{Carbon\Carbon::now()->format('m/d/Y')}} <br>
-                            {{Carbon\Carbon::now()->format('H:i:m')}} </td>
-        								<td>Job Sample</td>
+                      @foreach($orders as $order)
+      								<tr id = '{{ $order->id }}'>
+        								<td> {{ $order->status->pluck('created_at')->first() }} </td>
+        								<td> {{$order->title}} </td>
                         <td> -- </td>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
-                        <td>Crisostomo Ibarra</td>
+                        @if(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
+                        <td>{{ $order->customer->user->name }}</td>
                         @endif
-        								<td>
-                          <a href = '/order/monitor-status'
-                          class = 'text-info'>
-                              In Process </a></td>
+
+                        <td>
                         <td>
 
-                          @if(@session()->get('dept') == null)
-                          <btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn>
-                          @elseif(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
-                          <a href = '/order/view'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
+                            @if(session()->get('dept') == null)
+                              <btn class = 'btn btn-warning' id = 'revise'>Revise</btn>
+                            @elseif(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
+                              <a href = '/order/view'> <btn class = 'btn btn-primary' id = 'view'>View</btn> </a>
+                            @endif
+
+                            @if(session()->get('dept') == null || session()->get('dept') == 'Sales')
+                             <a href = '/order/monitor-status'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
+                             <btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn>
+                            @elseif(session()->get('dept') == 'Production')
+                              <a href = '/order/to-do'> <btn class = 'btn btn-success' id = 'view'>Schedule</btn> </a>
+                            @endif
+
+                              @if(session()->get('dept') == null)
+                                 <a href = '/order/schedule'> <btn class = 'btn btn-success' id = 'view'>View</btn> </a>
+                              @elseif(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
+                                <a href = '/order/schedule'> <btn class = 'btn btn-success' id = 'view'>Schedule</btn> </a>
+                            @endif
                         </td>
-                        @endif
                       </tr>
-
-                      <tr>
-        								<td id = '2'>2</td>
-        								<td>New order</td>
-        								<td><a> -- </a></td>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
-                        <td> -- </td>
-                        @endif
-                        <td>
-                          <a href = '/order/monitor-status'
-                          class = 'info-warning'>
-                              Ongoing Production</btn> </a>
-                        </div></td>
-        								<td>
-                          @if(@session()->get('dept') == null)
-                          <btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn>
-                          @elseif(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
-                          <a href = '/order/view'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
-                        </td>
-                        @endif
-      								</tr>
-
-                      <tr>
-        								<td>3</td>
-        								<td>Final order</td>
-        								<td><a> -- </a></td>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
-                        <td> -- </td>
-                        @endif
-                        <td>
-                          <a href = '/order/schedule'
-                          class = 'info-success'>
-                              Ready for Delivery</btn> </a>
-                       </td>
-                       <td>
-                         @if(@session()->get('dept') == null)
-                          <a href = '/order/schedule'> <btn class = 'btn btn-info' id = 'view'>View</btn> </a>
-                         @elseif(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
-                         <a href = '/order/schedule'> <btn class = 'btn btn-success' id = 'view'>Schedule</btn> </a>
-                       </td>
-                       @endif
-      								</tr>
-
-                      <tr>
-        								<td>4</td>
-        								<td>Void order</td>
-        								<td><a> -- </a></td>
-                        @if(@session()->get('dept') == 'Sales' || @session()->get('dept') == 'Production')
-                        <td> -- </td>
-                        @endif
-                        <td>
-                          <a href = '/order/schedule'
-                          class = 'info-danger'>
-                              Rejected</btn> </a>
-                       </td>
-                       <td>
-                        --
-                       </td>
-      								</tr>
-
+                      @endforeach
     								</tbody>
   								</table>
               </div>

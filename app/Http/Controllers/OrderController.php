@@ -34,9 +34,9 @@ class OrderController extends Controller
      */
     public function index()
     {
-      $orders = Order::all();
+      $orders = Order::with('status.phase')->get();
 
-      return view('order.index')->with('orders', $orders);
+      return view('order.index', compact('orders')) ;
     }
 
     /**
@@ -72,7 +72,7 @@ class OrderController extends Controller
       $order_status = new OrderStatus;
 
       $specs = DB::table('specifications')->insertGetId([
-        'type' => $request->input('job_type'),
+        'type' => $request->input('jobtype'),
         'pages' => $request->input('page_count'),
         'size_id' => $request->input('size'),
         'cover_paper_id' => $request->input('cover_paper'),
@@ -104,7 +104,7 @@ class OrderController extends Controller
         'updated_at' => \Carbon\Carbon::now(),
       ]);
 
-      return redirect('/order')->with('success', "Order created");
+      return redirect('/order/')->with('success', "Order created");
 
     }
 

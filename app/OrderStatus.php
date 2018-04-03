@@ -15,6 +15,6 @@ class OrderStatus extends Model
     }
 
     public function phase(){
-      return $this->hasMany('App\Phase', 'phase_id');
+      return $this->belongsTo('App\Phase', 'phase_id');
     }
 }

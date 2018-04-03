@@ -15,7 +15,7 @@ class CreateOrderStatusesTable extends Migration
     {
         Schema::create('order_statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('remarks');
+            $table->string('remarks')->nullable();
 
 
             $table->integer('order_id')->nullable()->unsigned();

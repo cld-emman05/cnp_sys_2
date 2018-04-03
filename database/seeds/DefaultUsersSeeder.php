@@ -28,13 +28,10 @@ class DefaultUsersSeeder extends Seeder
             'contact' => '09221168711',
             'address' => 'Intramuros, Manila',
             'email' => 'customer@gemc.com',
-<<<<<<< HEAD
             'password' => bcrypt('customer'),
             'created_at' => \Carbon\Carbon::now(),
-            'updated_at' => \Carbon\Carbon::now(),]
-=======
+            'updated_at' => \Carbon\Carbon::now(),
             'password' => bcrypt('customer')],
->>>>>>> parent of fcec799... Added More Seeders and added Another Customer
           ]);
 
           DB::table('users')->insert([
@@ -43,13 +40,10 @@ class DefaultUsersSeeder extends Seeder
               'contact' => '09221168711',
               'address' => 'Intramuros, Manila',
               'email' => 'sales@gemc.com',
-<<<<<<< HEAD
               'password' => bcrypt('salesagent'),
               'created_at' => \Carbon\Carbon::now(),
-              'updated_at' => \Carbon\Carbon::now(),]
-=======
+              'updated_at' => \Carbon\Carbon::now(),
               'password' => bcrypt('salesagent')],
->>>>>>> parent of fcec799... Added More Seeders and added Another Customer
             ]);
 
               DB::table('users')->insert([
@@ -58,13 +52,10 @@ class DefaultUsersSeeder extends Seeder
                   'contact' => '09221168711',
                   'address' => 'Nueva Ecija',
                   'email' => 'production@gemc.com',
-<<<<<<< HEAD
                   'password' => bcrypt('production'),
                   'created_at' => \Carbon\Carbon::now(),
-                  'updated_at' => \Carbon\Carbon::now(),]
-=======
+                  'updated_at' => \Carbon\Carbon::now(),
                   'password' => bcrypt('production')],
->>>>>>> parent of fcec799... Added More Seeders and added Another Customer
                 ]);
 
                 DB::table('users')->insert([
@@ -75,10 +66,8 @@ class DefaultUsersSeeder extends Seeder
                     'email' => 'purchasing@gemc.com',
                     'password' => bcrypt('purchasing'),
                     'created_at' => \Carbon\Carbon::now(),
-                    'updated_at' => \Carbon\Carbon::now(),]
-=======
+                    'updated_at' => \Carbon\Carbon::now(),
                     'password' => bcrypt('purchasing')],
->>>>>>> parent of fcec799... Added More Seeders and added Another Customer
                   ]);
 
               DB::table('users')->insert([
@@ -87,13 +76,10 @@ class DefaultUsersSeeder extends Seeder
                   'contact' => '09221168711',
                   'address' => 'Intramuros, Manila',
                   'email' => 'finance@gemc.com',
-<<<<<<< HEAD
                   'password' => bcrypt('finance'),
                   'created_at' => \Carbon\Carbon::now(),
-                  'updated_at' => \Carbon\Carbon::now(),]
-=======
+                  'updated_at' => \Carbon\Carbon::now(),
                   'password' => bcrypt('finance')],
->>>>>>> parent of fcec799... Added More Seeders and added Another Customer
                 ]);
       }
     }

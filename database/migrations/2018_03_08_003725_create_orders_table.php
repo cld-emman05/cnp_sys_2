@@ -18,8 +18,8 @@ class CreateOrdersTable extends Migration
             $table->string('title');
             $table->integer('quantity');
             $table->date('due_date');
-            $table->string('comments');
-            $table->date('delivery_date');
+            $table->string('comments')->nullable();
+            $table->date('delivery_date')->nullable();
 
             $table->integer('customer_id')->nullable()->unsigned();
             $table->integer('specification_id')->nullable()->unsigned();

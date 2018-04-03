@@ -9,6 +9,6 @@ class Phase extends Model
   protected $guarded = [];
 
   public function order_status(){
-    return $this->belongsTo('App\Order_Status');
+    return $this->hasMany('App\Order_Status')->withTimeStamps();
   }
 }
