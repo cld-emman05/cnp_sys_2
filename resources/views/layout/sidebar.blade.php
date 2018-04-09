@@ -41,10 +41,25 @@
               </a>
           </li>
 
+          <li class = "{{Request:: is('order/create') ? 'active' : ''}}">
+              <a href= '#'>
+                  <i class="now-ui-icons design_image"></i>
+                  <p>Create</p>
+              </a>
+          </li>
+
                 <li class = "{{Request:: is('order/revise') ? 'active' : ''}}">
                     <a href= '/order/revise'>
                         <i class="now-ui-icons design_image"></i>
-                        <p>Revisions</p>
+                        <p>Revise</p>
+                    </a>
+                </li>
+
+                <li class = "{{Request:: is('order/monitor-status') ? 'active' : ''}}
+                                          {{Request:: is('order/schedule') ? 'active' : ''}}">
+                    <a href= '#'>
+                        <i class="now-ui-icons design_image"></i>
+                        <p>Status</p>
                     </a>
                 </li>
 
@@ -65,8 +80,29 @@
               </a>
           </li>
 
-          <li class = "{{Request:: is('customer/*') ? 'active' : ''}}
-                        {{Request:: is(null) ? 'active' : ''}}">
+          <li class = "{{Request:: is('order/view') ? 'active' : ''}}">
+              <a href= '#'>
+                  <i class="now-ui-icons shopping_cart-simple"></i>
+                  <p>View</p>
+              </a>
+          </li>
+
+          <li class = "{{Request:: is('order/monitor-status') ? 'active' : ''}}">
+              <a href= '#'>
+                  <i class="now-ui-icons shopping_cart-simple"></i>
+                  <p>Status</p>
+              </a>
+          </li>
+
+          <li class = "{{Request:: is('order/schedule') ? 'active' : ''}}">
+              <a href= '#'>
+                  <i class="now-ui-icons shopping_cart-simple"></i>
+                  <p>Schedule Delivery</p>
+              </a>
+          </li>
+
+          <li class = "{{Request:: is('customer') ? 'active' : ''}}
+          {{Request:: is('customer/*') ? 'active' : ''}} ">
               <a href="/customer/">
                   <i class="now-ui-icons business_badge"></i>
                   <p>Customers</p>
@@ -82,12 +118,30 @@
                        </a>
           </li>
 
+          
+
+          <li class = "{{Request:: is('quotation/change-deals') ? 'active' : ''}}
+                       ">
+                       <a href="#">
+                           <i class="now-ui-icons ui-2_chat-round"></i>
+                           <p>Change Deals</p>
+                       </a>
+          </li>
+
           <li class = "{{Request:: is('employee/*') ? 'active' : ''}}
                        {{Request:: is('employee') ? 'active' : ''}}">
               <a href="/employee">
                   <i class="now-ui-icons business_badge"></i>
                   <p>Employees</p>
               </a>
+          </li>
+
+          <li class = "{{Request:: is('customer/') ? 'active' : ''}}
+                       ">
+                       <a href="#">
+                           <i class="now-ui-icons ui-2_chat-round"></i>
+                           <p>Assign Agent</p>
+                       </a>
           </li>
 
 		  @elseif(session()->get('dept') == 'Production')
@@ -99,19 +153,41 @@
           </a>
       </li>
 
+      <li class = "{{Request:: is('order/view') ? 'active' : ''}}">
+          <a href= '#'>
+              <i class="now-ui-icons shopping_cart-simple"></i>
+              <p>View</p>
+          </a>
+      </li>
+
+      <li class = "{{Request:: is('order/to-do') ? 'active' : ''}}">
+          <a href= '#'>
+              <i class="now-ui-icons shopping_cart-simple"></i>
+              <p>Checklist</p>
+          </a>
+      </li>
+
           @elseif(session()->get('dept') == 'Purchasing')
-          <li class = "{{Request:: is('purchase/compute') ? 'active' : ''}}">
-              <a href="/purchase/compute">
-                  <i class="now-ui-icons files_single-copy-04"></i>
-                  <p>Compute Supplies</p>
+          <li class = "{{Request:: is('purchase/*') ? 'active' : ''}}
+                        {{Request:: is('purchase/') ? 'active' : ''}}">
+
+              <a href="#">
+                  <i class="now-ui-icons shopping_cart-simple"></i>
+                  <p>Purchase Materials</p>
               </a>
           </li>
 
-          <li class = "{{Request:: is('purchase/*') ? 'active' : ''}}
-                        {{Request:: is('purchase/') ? 'active' : ''}}">
-              <a href="/purchase/">
+          <li class = "{{Request:: is('purchase/compute') ? 'active' : ''}}">
+              <a href="/purchase/compute">
                   <i class="now-ui-icons shopping_cart-simple"></i>
-                  <p>Purchase Supplies</p>
+                  <p>Compute</p>
+              </a>
+          </li>
+
+          <li class = "{{Request:: is('purchase/create') ? 'active' : ''}}">
+              <a href="/purchase/create">
+                  <i class="now-ui-icons shopping_cart-simple"></i>
+                  <p>Order</p>
               </a>
           </li>
 
@@ -127,14 +203,14 @@
           <li class = "{{Request:: is('supplier/track') ? 'active' : ''}}">
               <a href="/supplier/track">
                   <i class="now-ui-icons travel_info"></i>
-                  <p>Debt Tracker</p>
+                  <p>Debt Management</p>
               </a>
           </li>
 
           <li class = "{{Request:: is('supplier/pay') ? 'active' : ''}}">
               <a href="/supplier/pay">
                   <i class="now-ui-icons business_money-coins"></i>
-                  <p>Pay Supplier</p>
+                  <p>Cashflow</p>
               </a>
           </li>
 
