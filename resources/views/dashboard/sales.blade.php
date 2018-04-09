@@ -44,17 +44,17 @@
 										<table class="table table-hover">
 											<thead>
 												<tr>
-													<th>Company</th>
-													<th>Total sales</th>
-													<th>Orders made</th>
+													<th>Total Amount</th>
+													<th>Total Sales Needed</th>
+													<th>Days to reach quota</th>
 												</tr>
 											</thead>
 
 											<tbody>
 												<tr>
-													<td>De La Salle University</td>
-													<td>PhP 30</td>
-													<td><a href = 'order/view'>1</a></td>
+													<td>250,000</td>
+													<td>150,000</td>
+													<td>120 days</td>
 												</tr>
 											</tbody>
 										</table>
