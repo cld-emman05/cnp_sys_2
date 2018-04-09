@@ -199,7 +199,7 @@
 							</div>
 						</div>
 
-						@if(auth::user()->user_type == 2)
+						@if(session()->get('dept') == 'Sales')
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
@@ -259,17 +259,12 @@
 						</div>
 					</div>
 					</div>
-					<!-- <div v-if="errors.products_empty">
-					<p class="alert alert-danger"></p> -->
-					<!-- <hr> -->
+					@if(session()->get('dept') == 'Production')
 	<div class="text-center">
-	@if(session()->get('user') == 'Production')
-		<btn class = 'btn btn-primary' id = 'download'> Download File</btn>
-
-		<btn class = 'btn btn-success' id = 'production'> Submit for Production</btn>
-	</a>
-	@endif
+		<btn class = 'btn btn-primary' id = 'download'> Download File </btn>
+		<a href = '/order/to-do'> <btn class = 'btn btn-warning' id = 'production'> Manage Order </btn> </a>
 	</div>
+	@endif
 </form>
 <div class="clearfix"></div>
 

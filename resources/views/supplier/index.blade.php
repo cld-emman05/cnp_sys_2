@@ -14,24 +14,25 @@
           </div>
 
           <!-- FORM CONTENT -->
-          <div class = 'card-body'>
+          <div class = 'card card-body'>
             <div class="col-lg-12 md-4">
-  							<div class="card card-chart">
-  								<table class="table table-hover">
+
+              <div class="col-md-12 md-4">
+                <a href = '/supplier/register'>
+                  <btn class = 'btn btn-primary' id = 'create'>
+                  <i class="now-ui-icons ui-1_simple-add"></i> Add</btn>
+                </a>
+            </div>
+
+  							<div class="card-chart">
+  								<table class="table stripe" id = 'format-table'>
     								<thead>
-                      <tr>
-                        <td></td><td></td><td></td><td></td><td></td>
-                        <td><a href = '/supplier/register'>
-                          <btn class = 'btn btn-primary' id = 'create'>
-                          <i class="now-ui-icons ui-1_simple-add"></i> Add</btn>
-                        </a></td>
-                      </tr>
       								<tr>
-        								<th>Supplier #</th>
-        								<th>Supplier Name</th>
+        								<th>#</th>
+        								<th>Name</th>
         								<th>Credit Limit</th>
                         <th>Terms</th>
-        								<th>Contact #</th>
+        								<th>Contact</th>
                         <th>Remarks</th>
       								</tr>
     								</thead>
@@ -53,19 +54,6 @@
               </div>
             </div>
           </div>
-
-								<div class="col-sm-12 ">
-									<div class="result pull-left"><strong>Showing 1 to 2 of max</strong></div>
-										<ul class="pagination pull-right">
-											<li><a href="#">«</a></li>
-											<li class = 'active'><a href="#1">1</a></li>
-											<li><a href="#2">2</a></li>
-											<li><a href="#3">3</a></li>
-											<li><a href="#4">4</a></li>
-											<li><a href="#5">5</a></li>
-											<li><a href="#2">»</a></li>
-										</ul>
-							</div>
 
             </div>
           </div>

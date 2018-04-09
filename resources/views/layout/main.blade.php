@@ -1,5 +1,5 @@
 @auth
-{{session()->put('current', Auth::user()->id) }}
+{{session()->put('current', Auth::id()) }}
 
 {{session()->put('dept', DB::table('departments')
             ->join('employees', 'employees.department_id', '=', 'departments.id')

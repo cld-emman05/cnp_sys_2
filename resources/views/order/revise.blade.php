@@ -52,16 +52,25 @@
                         </div>
                       </div>
                       </div>
+										</div>
+										</div>
+									</div>
 
-                      <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                        <!-- JOB SAMPLE -->
-                      	  {{ Form::label('job_sample', 'Job Sample') }}
-                      		{{ Form::file('myFile') }}
-                        </div>
-                      </div>
-                      </div>
+										<div class="col-md-12">
+											<div class='card card-body'>
+												<div class="card-header">
+													<h4 class="card-title">Upload Revision</h4>
+												</div> <hr>
+
+											<div class="card-chart">
+												<div class="row">
+													<div class="col-md-6 pr-1">
+														{{ Form::label('job_sample', 'Job Sample') }}
+															<center>
+															<input type= 'file' name = 'job_sample' class = 'form-control'>
+														</center>
+													</div>
+												</div>
 
                       <div class="row">
                       <div class="col-md-12">
@@ -72,11 +81,12 @@
 													class = 'form-control border-input' row = 5 id = 'comments' readonly placeholder>This is a sample comment</textarea>
                         </div>
                       </div>
-                      	</div>
+                      </div>
+										</div>
 
-  											</div>
-                        </div>
-    								</div>
+  									</div>
+                  </div>
+
                     <div class="text-center">
                     <!-- SUBMUT BUTTON -->
                     {{Form::submit('Submit Revision', ['class' => 'btn btn-info btn-fill btn-wd', 'id'=>'submit'])}}

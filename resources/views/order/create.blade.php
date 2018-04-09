@@ -238,26 +238,19 @@
 							<div class="form-group">
 								<!-- DATE DUE -->
 								{{ Form::label('date_due', 'Date Due') }}
-								{{ Form::date('date_due', (\Carbon\Carbon::now()->addWeeks(1))->format('m/d/Y') , ['class' => 'form-control border-input','id'=>'datedue'])}}
+								{{ Form::date('date_due', \Carbon\Carbon::now()->addWeeks(1) , ['class' => 'form-control border-input','id'=>'datedue'])}}
 							</div>
 						</div>
 					</div>
 
 					<div class="row">
-						<div class="col-md-12 pr-1">
-							<div class="form-group">
-								<!-- JOB SAMPLE -->
-								{{ Form::label('job_sample', 'Job Sample') }}
-							</div>
-					</div>
-				</div>
-				<center>
-					<div class="row">
 						<div class="col-md-6 pr-1">
+							{{ Form::label('job_sample', 'Job Sample') }}
+								<center>
 								<input type= 'file' name = 'job_sample' class = 'form-control'>
+							</center>
 						</div>
 					</div>
-				</center>
 
 					<div class="row">
 						<div class="col-md-12">

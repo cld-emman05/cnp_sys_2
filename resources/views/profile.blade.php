@@ -72,7 +72,7 @@
 
                             <div class="col-md-6">
                                 <textarea id="address" row = '2' class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" required autofocus
-                                > {{auth::user()->address}}
+                                > {{ auth::user()->address }}
                                 </textarea>
 
                                 @if ($errors->has('address'))

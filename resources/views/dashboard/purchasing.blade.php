@@ -42,39 +42,6 @@
 				</div> !-->
 			</div>
 
-			<div class="row">
-				<div class="col-md-6">
-						<div class="card card-chart">
-								<div class="card-header">
-									<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
-										<h4 class="card-title">Recent Purchases</h4>
-									</div>
-									<div class="card card-chart">
-										<table class="table table-hover">
-											<thead>
-												<tr>
-													<th>Date</th>
-													<th>Paper Type</th>
-													<th>Component</th>
-													<th>Quantity (pcs)</th>
-													<th>Supplier</th>
-												</tr>
-											</thead>
-
-											<tbody>
-												<tr>
-													<td>{{Carbon\Carbon::now()->format('M d, Y')}}</td>
-													<td>BP50</td>
-													<td>Inside</td>
-													<td>25</td>
-													<td>Dhunwell</td>
-												</tr>
-											</tbody>
-										</table>
-								</div>
-						</div>
-					</div>
-
 						<div class="col-md-6">
 								<div class="card card-chart">
 										<div class="card-header">
@@ -95,19 +62,19 @@
 														<tr>
 															<td>Dhunwell</td>
 															<td>Available</td>
-															<td class = 'text-success'>Ready for orders</td>
+															<td class = 'text-success'>Available</td>
 														</tr>
 
 														<tr>
 															<td>Star Corp</td>
 															<td>Unavailable</td>
-															<td class = 'text-danger'>Balance not paid	</td>
+															<td class = 'text-danger'>Balance is at credit limit	</td>
 														</tr>
 
 														<tr>
 															<td>Cattleya</td>
 															<td class>At Risk</td>
-															<td class = 'text-warning'>Balance is at 90%</td>
+															<td class = 'text-warning'>Balance near credit limit</td>
 															</tr>
 													</tbody>
 												</table>

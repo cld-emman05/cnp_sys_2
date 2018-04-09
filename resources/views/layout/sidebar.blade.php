@@ -41,13 +41,6 @@
               </a>
           </li>
 
-          <li class = "{{Request:: is('order/create') ? 'active' : ''}}">
-              <a href= '#'>
-                  <i class="now-ui-icons design_image"></i>
-                  <p>Create</p>
-              </a>
-          </li>
-
                 <li class = "{{Request:: is('order/revise') ? 'active' : ''}}">
                     <a href= '/order/revise'>
                         <i class="now-ui-icons design_image"></i>
@@ -57,7 +50,7 @@
 
                 <li class = "{{Request:: is('order/monitor-status') ? 'active' : ''}}
                                           {{Request:: is('order/schedule') ? 'active' : ''}}">
-                    <a href= '#'>
+                    <a href= 'monitor-status'>
                         <i class="now-ui-icons design_image"></i>
                         <p>Status</p>
                     </a>
@@ -88,14 +81,14 @@
           </li>
 
           <li class = "{{Request:: is('order/monitor-status') ? 'active' : ''}}">
-              <a href= '#'>
+              <a href= 'monitor-status'>
                   <i class="now-ui-icons shopping_cart-simple"></i>
                   <p>Status</p>
               </a>
           </li>
 
           <li class = "{{Request:: is('order/schedule') ? 'active' : ''}}">
-              <a href= '#'>
+              <a href= 'schedule'>
                   <i class="now-ui-icons shopping_cart-simple"></i>
                   <p>Schedule Delivery</p>
               </a>
@@ -118,7 +111,7 @@
                        </a>
           </li>
 
-          
+
 
           <li class = "{{Request:: is('quotation/change-deals') ? 'active' : ''}}
                        ">

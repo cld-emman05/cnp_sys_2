@@ -46,7 +46,7 @@
                         <td>{{$employee->user->contact}}</td>
                         <td>{{$employee->user->email}}</td>
                           <td>
-                            <btn class = 'btn btn-danger' id = 'terminated'>Fire</btn>
+                            <btn class = 'btn btn-danger' id = 'terminated'>Disable</btn>
                             @endforeach
                           </td>
     								</tbody>

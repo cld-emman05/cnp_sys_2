@@ -2,7 +2,7 @@
 
 @include('headers.main')
 
-@section('title', 'Create Account')
+@section('title', 'Login')
 
 @section('main-content')
 

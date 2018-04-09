@@ -58,7 +58,6 @@
 					<div class="col-lg-6">
 						<div class="card card-chart">
 								<div class="card-header">
-									<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
 										<h4 class="card-title">Rejected orders</h4>
 									</div>
 									<div class="card card-chart">
@@ -90,7 +89,6 @@
 			<div class="col-lg-6">
 				<div class="card card-chart">
 						<div class="card-header">
-							<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
 								<h4 class="card-title">Debt Tracker</h4>
 							</div>
 							<div class="card card-chart">
@@ -120,7 +118,6 @@
 		<div class="col-lg-6">
 			<div class="card card-chart">
 					<div class="card-header">
-						<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
 							<h4 class="card-title">Cashflow</h4>
 						</div>
 						<div class="card card-chart">
@@ -161,7 +158,6 @@
 		<div class="col-lg-6">
 			<div class="card card-chart">
 					<div class="card-header">
-						<i class="card-category">Greetings, {{ auth::user()->first_name }} {{ auth::user()->last_name }} !</i>
 							<h4 class="card-title">Profit</h4>
 						</div>
 						<div class="card card-chart">

@@ -8,33 +8,34 @@
 <div class="content">
 	<div class="row">
 		<div class="col-md-6">
-				<div class="card card-chart">
-						<div class="card-header">
-
-								<h4 class="card-title">Recent orders</h4>
-							</div>
-							<div class="card card-chart">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<th>Date</th>
-											<th>Job Title</th>
-											<th>Company</th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<tr>
-											<td>{{Carbon\Carbon::now()->format('M d, Y')}}</td>
-											<td><a href = 'order/view'>Job Sample</a></td>
-											<td>De La Salle University<td>
-										</tr>
-									</tbody>
-								</table>
+			<div class="card card-chart">
+					<div class="card-header">
+							<h4 class="card-title">Recent Orders</h4>
 						</div>
+						<div class="card card-chart">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>Date</th>
+										<th>Job Title</th>
+										<th>Company</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>{{Carbon\Carbon::now()->format('M d, Y')}}</td>
+										<td><a href = 'order/view'>Job Sample</a></td>
+										<td>De La Salle University</td>
+										<td>In production</td
+									</tr>
+								</tbody>
+							</table>
+			</div>
 				</div>
 			</div>
-
+		</div>
 					<div class="col-lg-6">
 						<div class="card card-chart">
 								<div class="card-header">

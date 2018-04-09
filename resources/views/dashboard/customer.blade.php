@@ -6,7 +6,7 @@
 
 @section('main-content')
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-md-8">
 				<div class="card card-chart">
 						<div class="card-header">
 									<h4 class="card-title">Recent orders</h4>
@@ -35,43 +35,6 @@
 				</div>
 			</div>
 
-				<div class="col-md-3">
-					<div class="card card-chart">
-							<div class="card-header">
-									<h4 class="card-title">Sales Agent</h4>
-							</div>
-							<div class="card card-chart">
-								<table class="table table-hover">
-									<thead>
-										<tr>
-											<td><a href= '#'>{{ $agent =  DB::table('users')
-											  									->join('employees', 'employees.user_id', '=', 'users.id')
-																					->join('agents', 'agents.employee_id', '=', 'employees.id')
-																					->join('customers', 'customers.agent_id', '=', 'agents.id')
-																					->select('users.first_name')
-																					->value('users.first_name')
-																				}}
-																				{{ DB::table('users')
-																														->join('employees', 'employees.user_id', '=', 'users.id')
-																														->join('agents', 'agents.employee_id', '=', 'employees.id')
-																														->join('customers', 'customers.agent_id', '=', 'agents.id')
-																														->select('users.last_name')
-																														->value('users.last_name')
-																													}}
-																			</a></td>
-										</tr>
-									</thead>
-
-									<tbody>
-										<tr>
-											<td>09221168711</td>
-										</tr>
-									</tbody>
-							</table>
-					</div>
-							</div>
-				</div>
-				</div>
 
 
 			</div>
