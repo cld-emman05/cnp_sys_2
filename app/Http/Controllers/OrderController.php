@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\ResponseFactory;
 
 use DB;
 
@@ -54,9 +55,15 @@ class OrderController extends Controller
       $laminations = LaminationType::all();
       $bindings = BindingType::all();
 
-        return view('order.create',compact('specifications', 'sizes',
+        return view('order.create', compact('specifications', 'sizes',
                                             'inside_papers', 'cover_papers',
                                             'colors', 'laminations', 'bindings'));
+    }
+
+    public function assignSpecs(Request $request){
+      $specs = Specification::where('id', $request->id)->get();
+
+      return response()->json($specs);
     }
 
     /**
