@@ -32,7 +32,7 @@
     								<thead>
                       <tr>
         								<th>Timestamp</th>
-        								<th>Job Title</th>
+        								<th>Title</th>
                         @if(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
                         <th>Customer</th>
                         @endif

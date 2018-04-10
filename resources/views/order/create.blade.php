@@ -80,7 +80,7 @@
 										{{ Form::text('jobtype', '', ['class' => 'form-control border-input', 'placeholder' => 'Enter','id'=>'jobtype'])}} -->
 										{{ Form::label('job_type', 'Job Type:') }}
 										<select class="form-control" id="jobtype" name="jobtype">
-										<option value= null> -- </option>
+										<option value= 0> -- </option>
 									@foreach($specifications as $specs)
 										<option value="{{$specs->id}}"> {{$specs['type']}} </option>
 									@endforeach
@@ -126,7 +126,7 @@
 										<!-- SIZE -->
 										{{ Form::label('size', 'Size') }}
 										<select class="form-control" id="size" name="size">
-										<option value=null> -- </option>
+										<option value=0> -- </option>
 										@foreach($sizes as $size)
 											<option value="{{$size['id']}}"> {{$size['name']}} [{{$size['dimension']}}] </option>
 										@endforeach
@@ -147,7 +147,7 @@
 										<!-- COVER PAPER -->
 										{{ Form::label('cover_paper', 'Paper Type') }}
 										<select class="form-control" id="cover_paper" name="cover_paper">
-											<option value= null> -- </option>
+											<option value= 0> -- </option>
 											@foreach($cover_papers as $cover)
 												<option value="{{$cover->id}}"> {{$cover->paper_type->name
 																														}} </option>
@@ -161,7 +161,7 @@
 									<!-- INSIDE PAPER -->
 									{{ Form::label('cover_color', 'Paper Color') }}
 									<select class="form-control" id="cover_color" name="cover_color">
-									<option value=null> -- </option>
+									<option value=0> -- </option>
 									@foreach($colors as $color)
 										<option value="{{$color['id']}}"> {{$color['name']}}: {{$color['description']}}  </option>
 									@endforeach
@@ -182,7 +182,7 @@
 									<!-- COVER PAPER -->
 									{{ Form::label('inside_paper', 'Paper Type') }}
 									<select class="form-control" id="inside_paper" name="inside_paper">
-									<option value=null> -- </option>
+									<option value=0> -- </option>
 									@foreach($inside_papers as $inside)
 										<option value="{{$inside->id}}"> {{$inside->paper_type->name
 																												}} </option>
@@ -196,7 +196,7 @@
 								<!-- INSIDE PAPER -->
 								{{ Form::label('inside_color', 'Paper Color') }}
 								<select class="form-control" id="inside_color" name="inside_color">
-								<option value=null> -- </option>
+								<option value=0> -- </option>
 								@foreach($colors as $color)
 									<option value="{{$color['id']}}"> {{$color['name']}}: {{$color['description']}}  </option>
 								@endforeach
@@ -211,7 +211,7 @@
 								<!-- LAMINATION -->
 									{{ Form::label('lamination', 'Lamination') }}
 									<select class="form-control" id="lamination" name="lamination">
-									<option value=null> -- </option>
+									<option value=0> -- </option>
 									@foreach($laminations as $lam)
 										<option value="{{$lam['id']}}"> {{$lam['name']}}: {{$lam['description']}}  </option>
 									@endforeach
@@ -224,7 +224,7 @@
 							<!-- BINDING -->
 							{{ Form::label('binding', 'Binding') }}
 							<select class="form-control" id="binding" name="binding">
-								<option value=null> -- </option>
+								<option value=0> -- </option>
 								@foreach($bindings as $bind)
 									<option value="{{$bind['id']}}"> {{$bind['name']}}: {{$bind['description']}}  </option>
 								@endforeach

@@ -33,7 +33,7 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
       $orders = Order::with('status.phase')->get();
 
@@ -78,8 +78,7 @@ class OrderController extends Controller
       $specs = new Specification;
       $order_status = new OrderStatus;
 
-      $specs = DB::table('specifications')->insertGetId([
-        'type' => $request->input('jobtype'),
+      $specs = DB::table('specifications')->insert([
         'pages' => $request->input('page_count'),
         'size_id' => $request->input('size'),
         'cover_paper_id' => $request->input('cover_paper'),
@@ -99,7 +98,7 @@ class OrderController extends Controller
         'customer_id' => DB::table('customers')->select('customers.id')
                                           ->join('users', 'users.id', '=', 'customers.user_id')
                                           ->where('users.id', '=', session()->get('current'))->value('id'),
-        'specification_id' => $specs,
+        'specification_id' => $request->input('jobtype'),
         'file_id' => null,
       ]);
 

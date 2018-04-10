@@ -102,6 +102,7 @@ $(document).ready(function(){
          $('#binding').prop('value', data[0].binding_id);
        }
 
+
        else{
          $('#quan').attr('value', 1);
          $('#page_num').attr('value', 1);
