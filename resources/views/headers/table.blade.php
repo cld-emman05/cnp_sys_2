@@ -49,6 +49,15 @@ $(document).ready(function(){
   }
     });
 
+    $('#page_num').prop('readonly', true);
+    $('#size').prop('readonly', true);
+    $('#cover_paper').prop('readonly', true);
+    $('#cover_color').prop('readonly', true);
+    $('#inside_paper').prop('readonly', true);
+    $('#inside_color').prop('readonly', true);
+    $('#lamination').prop('readonly', true);
+    $('#binding').prop('readonly', true);
+
     $(document).on('change', '#jobtype', function(){
       var job = $(this).val();
       console.log(job);
@@ -56,6 +65,7 @@ $(document).ready(function(){
       $.ajax({
        url: '{!! URL::to('/order/assign') !!}',
        method: 'POST',
+       async: false,
        data: {'id': job},
        dataType: 'JSON',
        headers: {
@@ -63,7 +73,6 @@ $(document).ready(function(){
       },
 
        success:(function(data){
-
         if(data[0] != null)
          {
            console.log("Job Type: " + data[0].type);
@@ -94,39 +103,20 @@ $(document).ready(function(){
        }
 
        else{
-         $('#quan').prop('disabled', true);
-         $('#datedue').prop('disabled', true);
-         $('#job_sample').prop('disabled', true);
-         $('#comments').prop('disabled', true);
-
+         $('#quan').attr('value', 1);
          $('#page_num').attr('value', 1);
-         $('#page_num').prop('disabled', true);
-
          $('#size').prop('value', null);
-          $('#size').prop('disabled', true);
-
          $('#cover_paper').prop('value', null);
-         $('#cover_paper').prop('disabled', true);
-
          $('#cover_color').prop('value', null);
-         $('#cover_color').prop('disabled', true);
-
          $('#inside_paper').prop('value', null);
-         $('#inside_paper').prop('disabled', true);
-
          $('#inside_color').prop('value', null);
-         $('#inside_color').prop('disabled', true);
-
          $('#lamination').prop('value', null);
-         $('#lamination').prop('disabled', true);
-
          $('#binding').prop('value', null);
-         $('#binding').prop('disabled', true);
        }
        }),
 
         error:(function(xhr, status, error){
-          alert("An AJAX error occured: " + status + "\nError: " + error);
+          alert("An AJAX error occured: " + status + "\n Error: " + error);
         }),
     });
 

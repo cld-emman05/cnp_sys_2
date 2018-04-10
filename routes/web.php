@@ -40,6 +40,7 @@ Route::get('/profile', function(){
 Route::get('/order', 'OrderController@index');
 Route::get('/order/create', 'OrderController@create');
 Route::post('/order/store', 'OrderController@store');
+Route::post('/order/assign', 'OrderController@assignSpecs');
 
 Route::post('/order/revise','UploadFileController@index');
 
