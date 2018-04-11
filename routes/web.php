@@ -42,7 +42,7 @@ Route::get('/order/create', 'OrderController@create');
 Route::post('/order/store', 'OrderController@store');
 Route::post('/order/assign', 'OrderController@assignSpecs');
 
-Route::post('/order/revise','UploadFileController@index');
+Route::get('/order/revise','UploadFileController@index');
 
 Route::get('/order/view', function () {
     return view('order.view');
@@ -78,9 +78,7 @@ Route::get('/quotation/approve', function () {
     return view('quotation.approve');
 });
 
-Route::get('/quotation', function () {
-    return view('quotation.index');
-});
+Route::get('/quotation', 'QuotationController@index');
 
 //Purchase Function
 

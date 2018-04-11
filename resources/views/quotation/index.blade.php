@@ -22,34 +22,25 @@
     								<thead>
       								<tr>
         								<th>Quote #</th>
-        								<th>Job Title</th>
+        								<th>Title</th>
         								<th>Customer</th>
-                        <th>Status</th>
+                        <th>Salesman</th>
         								<th>Remarks</th>
       								</tr>
     								</thead>
 
     								<tbody>
-                      <tr>
-        								<td>1</td>
-        								<td>Job Sample</td>
-        								<td><a>Crisostomo Ibarra</a></td>
-        								<td>New order</i></td>
+                      @foreach($orders as $order)
+                      <tr id = '{{ $order->id }}'>
+        								<td> {{ $order->id }} </td>
+        								<td> {{ $order->title }} </td>
+        								<td>{{ $order->customer->user->first_name }} {{ $order->customer->user->last_name }}</td>
+                        <td> {{ $order->customer->agent->employee->user->first_name }} {{ $order->customer->agent->employee->user->last_name }} </td>
         								<td>
         									<a href = 'quotation/create'><btn class = 'btn btn-primary'>Create Quotation</btn></a>
         								</td>
       								</tr>
-
-      								<tr>
-        								<td>2</td>
-        								<td>Rejected for Haggling</td>
-        								<td><a>Crisostomo Ibarra</a></td>
-        								<td>Haggle</i></td>
-        								<td>
-        									<btn class = 'btn btn-warning' id = 'approved'>Update</btn>
-        									<btn class = 'btn btn-danger' id = 'terminated'>Reject</btn>
-        								</td>
-      								</tr>
+                      @endforeach
     								</tbody>
   								</table>
               </div>

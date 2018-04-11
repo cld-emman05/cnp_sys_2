@@ -44,10 +44,9 @@ class CustomerController extends Controller
     public function create()
     {
       $industries = Industry::all();
-      $data = json_encode($industries);
 
       return view('customer.register', [
-        'industries' => json_decode($data, true),
+        'industries' => compact('industries'),
       ]);
     }
 

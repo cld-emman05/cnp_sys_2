@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Order;
+use App\Quotation;
+use App\QuotationStatus;
+use App\Status;
+
 use DB;
 
 class QuotationController extends Controller
@@ -15,9 +20,9 @@ class QuotationController extends Controller
      */
     public function index()
     {
-      $quotation = Quotation::all();
+      $orders = Order::with('quotation.quotation_status.status')->get();
 
-      return view('order.index')->with('orders', $quotation);
+      return view('quotation.index', compact('orders'));
     }
 
     /**
@@ -27,7 +32,7 @@ class QuotationController extends Controller
      */
     public function create()
     {
-        return view('order.create');
+        return view('quotation.create');
     }
 
     /**

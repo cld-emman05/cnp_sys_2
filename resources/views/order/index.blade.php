@@ -43,6 +43,7 @@
                         <th>Price</th>
                         <th>Status</th>
                         @endif
+
                         <th>Remarks</th>
       								</tr>
     								</thead>
@@ -50,46 +51,61 @@
     								<tbody>
                       @foreach($orders as $order)
       								<tr id = '{{ $order->id }}'>
+
+                        <!-- Timestamp -->
         								<td> {{ $order->status->pluck('created_at')->first()->format('m/d/Y') }} <br>
                          {{ $order->status->pluck('created_at')->first()->format('H:i:s') }} </td>
 
+                         <!-- Title -->
                         <td> {{$order->title}} </td>
+
+                        <!-- Customer Name -->
                         @if(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
                         <td>{{ $order->customer->user->first_name }} {{ $order->customer->user->last_name }}</td>
                         @endif
 
+                        <!-- Sales Representative -->
                         @if(session()->get('dept') == 'Production')
                         <td> {{ $order->customer->agent->employee->user->first_name }} {{ $order->customer->agent->employee->user->last_name }} </td>
                         @endif
 
+                        <!-- Price -->
                         @if(session()->get('dept') == 'Sales' || session()->get('dept') == null)
                         <td>
                         </td>
 
+                        <!-- Status -->
                         <td>
+                          {{ $order->status->first()->phase->name }}
                         </td>
                         @endif
 
                         <td>
 
-
-                            @if(session()->get('dept') == null)
+                          @if($order->status->first()->phase->id != 2)
+                            @if(session()->get('dept') == null &&  $order->status->first()->phase->id == 1)
                               <btn class = 'btn btn-warning' id = 'revise'>Revise</btn>
-                              <a href= '/order/revise'><btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn></a>
-                            @elseif(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
+
+                            @elseif((session()->get('dept') == 'Sales' || session()->get('dept') == 'Production') && $order->status->first()->phase->id < 7)
                               <a href = '/order/view'> <btn class = 'btn btn-primary' id = 'view'>View</btn> </a>
                             @endif
 
-                            @if(session()->get('dept') == null || session()->get('dept') == 'Sales')
+                            @if(session()->get('dept') == null || session()->get('dept') == 'Sales' &&  $order->status->first()->phase->id < 11)
                              <a href = '/order/monitor-status'> <btn class = 'btn btn-info' id = 'view'>Status</btn> </a>
-                            @elseif(session()->get('dept') == 'Production')
+                            @elseif(session()->get('dept') == 'Production' &&  $order->status->first()->phase->id > 4 &&  $order->status->first()->phase->id < 11)
                               <a href = '/order/to-do'> <btn class = 'btn btn-warning' id = 'view'>Manage</btn> </a>
                             @endif
 
-                              @if(session()->get('dept') == null)
+                              @if(session()->get('dept') == null &&  $order->status->first()->phase->id > 10)
                                  <a href = '/order/schedule'> <btn class = 'btn btn-success' id = 'view'>Delivery</btn> </a>
-                              @elseif(session()->get('dept') == 'Sales')
+                              @elseif(session()->get('dept') == 'Sales' &&  $order->status->first()->phase->id > 10)
                                 <a href = '/order/schedule'> <btn class = 'btn btn-success' id = 'view'>Schedule</btn> </a>
+                            @endif
+
+                            @if(session()->get('dept') == null &&  $order->status->first()->phase->id < 8)
+                            <a href= '/order/revise'><btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn></a>
+                            @endif
+
                             @endif
                         </td>
                       </tr>

@@ -8,7 +8,7 @@ class Quotation extends Model
 {
   protected $guarded = [];
 
-  public function quotation_statuses(){
+  public function quotation_status(){
     return $this->hasMany('App\Quotation_Status');
   }
 

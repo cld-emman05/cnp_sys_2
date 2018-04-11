@@ -83,11 +83,15 @@ class RegisterController extends Controller
         'updated_at' => \Carbon\Carbon::now(),
       ]);
 
-      $customer = DB::table('customers')->insertGetID([
+      $agent = DB::table('agents')
+                  ->where('industry_id', '=', $data['industry'])
+                  ->inRandomOrder()->value('id');
+
+      $customer = DB::table('customers')->insertGetId([
         'company' => $data['company'],
         'industry_id' => $data['industry'],
         'user_id' => $user,
-        'agent_id' => null,
+        'agent_id' => $agent,
       ]);
 
       return $newUser;

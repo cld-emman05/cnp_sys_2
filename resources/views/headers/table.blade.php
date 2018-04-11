@@ -66,7 +66,7 @@ $(document).ready(function(){
        url: '{!! URL::to('/order/assign') !!}',
        method: 'POST',
        async: false,
-       data: {'id': job},
+       data: {'type': job},
        dataType: 'JSON',
        headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
