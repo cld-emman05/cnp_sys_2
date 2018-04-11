@@ -9,7 +9,7 @@ class Order extends Model
   protected $guarded = [];
 
   public function specification(){
-    return $this->hasOne('App\Specification', 'specification_id');
+    return $this->belongsTo('App\Specification', 'specification_id');
   }
 
   public function customer(){

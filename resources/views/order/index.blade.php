@@ -87,7 +87,7 @@
                               <btn class = 'btn btn-warning' id = 'revise'>Revise</btn>
 
                             @elseif((session()->get('dept') == 'Sales' || session()->get('dept') == 'Production') && $order->status->first()->phase->id < 7)
-                              <a href = '/order/view'> <btn class = 'btn btn-primary' id = 'view'>View</btn> </a>
+                              <a href = '/order/view/{{$order->id}}'> <btn class = 'btn btn-primary' id = 'view'>View</btn> </a>
                             @endif
 
                             @if(session()->get('dept') == null || session()->get('dept') == 'Sales' &&  $order->status->first()->phase->id < 11)

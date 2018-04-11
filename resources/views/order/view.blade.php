@@ -30,14 +30,16 @@
 									</tr>
 									<th width="25%">Order #</th>
 									<th width="25%">Customer</th>
+									<th width="25%">Salesman</th>
 									<th width="25%">Date</th>
 								</thead>
 
 								<tbody>
 									<tr>
-										<td>1</td>
-										<td>Crisostomo Ibarra</td>
-										<td>{{ Carbon\Carbon::now() }}</td>
+										<td>{{ $order->id }}</td>
+										<td>{{ $order->customer->company}}</td>
+										<td>{{ $order->customer->agent->employee->user->first_name }} {{ $order->customer->agent->employee->user->last_name }}</td>
+										<td>{{ $order->status->first()->updated_at->format('m-d-Y') }}</td>
 									</tr>
 								</tbody>
 							</table>
@@ -64,7 +66,7 @@
 								<div class="col-md-6 pr-5">
 									<div class="form-group">
 										{{ Form::label('job_name', 'Job Name') }}
-										{{ Form::text('job_name', 'Sample Job', [
+										{{ Form::text('job_name', $order->title, [
 											'class' => 'form-control border-input',
 											'readonly placeholder'
 										])}}
@@ -77,7 +79,7 @@
 										<!-- {{ Form::label('jobtype', 'Job Type') }}
 										{{ Form::text('jobtype', '', ['class' => 'form-control border-input', 'placeholder' => 'Enter','id'=>'jobtype'])}} -->
 										{{ Form::label('job_type', 'Job Type:') }}
-										{{ Form::text('job_type', 'Yearbook', [
+										{{ Form::text('jobtype', $order->specification->type, [
 											'class' => 'form-control border-input',
 											'readonly placeholder'
 										])}}
@@ -99,7 +101,7 @@
 											{{ Form::label('quantity', 'Quantity') }}
 											<div class="container">
 												<div class="count-input space-bottom">
-													{{ Form::text('quantity', '1', [
+													{{ Form::text('quantity', @$order->quantity, [
 														'class' => 'form-control border-input',
 														'readonly placeholder'
 													])}}
@@ -114,7 +116,7 @@
 											{{ Form::label('page_count', 'Number of Pages') }}
 											<div class="container">
 												<div class="count-input space-bottom">
-													{{ Form::text('page_count', '1', [
+													{{ Form::text('page_count', @$order->specification->pages, [
 														'class' => 'form-control border-input',
 														'readonly placeholder'
 													])}}
@@ -127,7 +129,7 @@
 									  <div class="form-group">
 									  <!-- SIZE -->
 										{{ Form::label('size', 'Size') }}
-										{{ Form::text('size', 'Letter', [
+										{{ Form::text('size', @$order->specification->size->name, [
 											'class' => 'form-control border-input',
 											'readonly placeholder'
 										])}}
@@ -147,7 +149,7 @@
 									<div class="form-group">
 										<!-- COVER PAPER -->
 										{{ Form::label('cover_paper', 'Paper Type') }}
-										{{ Form::text('cover_paper', '--', [
+										{{ Form::text('cover_paper', @$order->specification->coverPaper->paper_type->name, [
 											'class' => 'form-control border-input',
 											'readonly placeholder'
 										])}}
@@ -178,7 +180,7 @@
 								  <div class="form-group">
 								  <!-- COVER PAPER -->
 								  {{ Form::label('inside_paper', 'Paper Type') }}
-									{{ Form::text('inside_paper', '--', [
+									{{ Form::text('inside_paper', @$order->specification->insidePaper->paper_type->name, [
 										'class' => 'form-control border-input',
 										'readonly placeholder'
 									])}}
@@ -190,7 +192,7 @@
 								<div class="form-group">
 							  <!-- INSIDE PAPER -->
 								{{ Form::label('inside_color', 'Paper Color') }}
-								{{ Form::text('cover_paper', 'Grayscale', [
+								{{ Form::text('cover_paper', @$order->specification->insideColor->name, [
 									'class' => 'form-control border-input',
 									'readonly placeholder'
 								])}}
@@ -212,22 +214,22 @@
 						@endif
 
 						<div class="row">
-							<div class="col-lg-6">
+							<div class="col-lg-6 pr-1">
 								<div class="form-group">
 								<!-- LAMINATION -->
 									{{ Form::label('lamination', 'Lamination') }}
-									{{ Form::text('lamination', '--', [
+									{{ Form::text('lamination', @$order->specification->lamination->name, [
 										'class' => 'form-control border-input',
 										'readonly placeholder'
 									])}}
 								</div>
 						</div>
 
-						<div class="col-lg-6">
+						<div class="col-lg-6 pl-1">
 							<div class="form-group">
 							<!-- BINDING -->
 							{{ Form::label('binding', 'Binding') }}
-							{{ Form::text('binding', '--', [
+							{{ Form::text('binding',  @$order->specification->binding->name, [
 								'class' => 'form-control border-input',
 								'readonly placeholder'
 							])}}
@@ -241,7 +243,7 @@
 							<div class="form-group">
 								<!-- DATE DUE -->
 								{{ Form::label('date_due', 'Date Due') }}
-								<input type = 'text' name = 'date_due' value = {{ \Carbon\Carbon::now() }}
+								<input type = 'text' name = 'date_due' value = '{{ $order->due_date }}'
 									class = 'form-control border-input' readonly placeholder/>
 							</div>
 						</div>
@@ -253,7 +255,7 @@
 								<!-- COMMENTS -->
 								{{ Form::label('comments', 'Comments') }}
 								<textarea name = 'comments'
-									class = 'form-control border-input' row = 5 id = 'comments' readonly placeholder>This is a sample comment</textarea>
+									class = 'form-control border-input' row = 5 id = 'comments' readonly placeholder> {{$order->comment }}</textarea>
 								</div>
 							</div>
 						</div>

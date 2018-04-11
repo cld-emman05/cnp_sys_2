@@ -124,7 +124,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-      $order = Job_Order::find($id);
+      $order = Order::find($id);
 
       return view('order.view', compact('order'));
     }

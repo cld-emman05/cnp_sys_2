@@ -41,12 +41,8 @@ Route::get('/order', 'OrderController@index');
 Route::get('/order/create', 'OrderController@create');
 Route::post('/order/store', 'OrderController@store');
 Route::post('/order/assign', 'OrderController@assignSpecs');
-
 Route::get('/order/revise','UploadFileController@index');
-
-Route::get('/order/view', function () {
-    return view('order.view');
-});
+Route::get('/order/view/{id}', 'OrderController@show');
 
 Route::get('/order/to-do', function () {
     return view('order.to-do');
