@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quotation extends Model
 {
-  protected $guarded = [];
+  protected $fillable = ['id,TotalAmount,UnitCost'];
 
   public function quotation_status(){
     return $this->hasMany('App\Quotation_Status');
