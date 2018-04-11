@@ -32,6 +32,7 @@ class QuotationController extends Controller
      */
     public function create()
     {
+      $order = Order::find(1);
         return view('quotation.create');
     }
 
@@ -45,13 +46,22 @@ class QuotationController extends Controller
     {
       $quotation = new Quotation; //Create Order table
 
-      $quotation->unit_price = $request->input('UnitPrice');
-      $quotation->total_amount = $request->input('TotalAmount');
+      $quotation->unit_price = $request->input('UnitCost');
+      $quotation->total_amount = $request->input('TotalAll');
 
       $quotation->save();
+     $data = array(
+       'UnitCost'=> $a,
+       'TotalAll'=> $b
+     );
 
+     $quotation_status = DB::table('quotation_statuses')->insert([
+       'updated_at' => \Carbon\Carbon::now(),
+     ]);
       //return redirect('directory of view')->with('condition', 'what happened');
-
+      DB::table('quotations')->insert($data);
+      DB::table('quotation_statuses')->insert($data);
+      return redirect('quotations')->with('success','Quote submitted!');
     }
 
     /**
