@@ -41,21 +41,6 @@
               </a>
           </li>
 
-                <li class = "{{Request:: is('order/revise') ? 'active' : ''}}">
-                    <a href= '/order/revise'>
-                        <i class="now-ui-icons design_image"></i>
-                        <p>Revise</p>
-                    </a>
-                </li>
-
-                <li class = "{{Request:: is('order/monitor-status') ? 'active' : ''}}
-                                          {{Request:: is('order/schedule') ? 'active' : ''}}">
-                    <a href= 'monitor-status'>
-                        <i class="now-ui-icons design_image"></i>
-                        <p>Status</p>
-                    </a>
-                </li>
-
           <li class = "{{Request:: is('quotation/*') ? 'active' : ''}}
                       {{Request:: is('quotation') ? 'active' : ''}}">
               <a href= '/quotation/approve'>
@@ -73,26 +58,6 @@
               </a>
           </li>
 
-          <li class = "{{Request:: is('order/view') ? 'active' : ''}}">
-              <a href= '#'>
-                  <i class="now-ui-icons shopping_cart-simple"></i>
-                  <p>View</p>
-              </a>
-          </li>
-
-          <li class = "{{Request:: is('order/monitor-status') ? 'active' : ''}}">
-              <a href= 'monitor-status'>
-                  <i class="now-ui-icons shopping_cart-simple"></i>
-                  <p>Status</p>
-              </a>
-          </li>
-
-          <li class = "{{Request:: is('order/schedule') ? 'active' : ''}}">
-              <a href= 'schedule'>
-                  <i class="now-ui-icons shopping_cart-simple"></i>
-                  <p>Schedule Delivery</p>
-              </a>
-          </li>
 
           <li class = "{{Request:: is('customer') ? 'active' : ''}}
           {{Request:: is('customer/*') ? 'active' : ''}} ">
@@ -108,16 +73,6 @@
                        <a href="/quotation">
                            <i class="now-ui-icons ui-2_chat-round"></i>
                            <p>Quotations</p>
-                       </a>
-          </li>
-
-
-
-          <li class = "{{Request:: is('quotation/change-deals') ? 'active' : ''}}
-                       ">
-                       <a href="#">
-                           <i class="now-ui-icons ui-2_chat-round"></i>
-                           <p>Change Deals</p>
                        </a>
           </li>
 
@@ -143,20 +98,6 @@
           <a href= '/order/'>
               <i class="now-ui-icons files_single-copy-04"></i>
               <p>Orders</p>
-          </a>
-      </li>
-
-      <li class = "{{Request:: is('order/view') ? 'active' : ''}}">
-          <a href= '#'>
-              <i class="now-ui-icons shopping_cart-simple"></i>
-              <p>View</p>
-          </a>
-      </li>
-
-      <li class = "{{Request:: is('order/to-do') ? 'active' : ''}}">
-          <a href= '#'>
-              <i class="now-ui-icons shopping_cart-simple"></i>
-              <p>Checklist</p>
           </a>
       </li>
 

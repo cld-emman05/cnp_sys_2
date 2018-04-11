@@ -35,9 +35,7 @@
 									<tr>
 										<td> {{ $orders->count() + 1 }}</td>
 										<td>{{ Carbon\Carbon::now()->format('m-d-Y') }}</td>
-										<td>{{ DB::table('customers')->select('users.first_name')
-						                                          ->join('users', 'users.id', '=', 'customers.user_id')
-						                                          ->where('users.id', '=', session()->get('current'))->value('id') }}</td>
+										<td> -- </td>
 									</tr>
 								</tbody>
 							</table>
@@ -115,7 +113,7 @@
 											{{ Form::label('page_count', 'Number of Pages') }}
 											<div class="container">
 												<div class="count-input space-bottom">
-													{{ Form::number('page_count', '1', ['class' => 'form-control border-input', 'min' => '1'])}}
+													{{ Form::number('page_count', '1', ['class' => 'form-control border-input', 'min' => '1', 'id' => 'page_num'])}}
 												</div>
 											</div>
 										</div>

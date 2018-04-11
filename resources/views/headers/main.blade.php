@@ -15,6 +15,11 @@
 		<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 		<script src="{{ asset('js/plugins/bootstrap-switch.js')  }}">></script>
 
+		<!--DataTables-->
+		<script src="{{ asset('DataTables\DataTables-1.10.16\js\jquery.dataTables.min.js') }}">
+		</script>
+		<link href="{{ asset('DataTables\DataTables-1.10.16\css\jquery.dataTables.min.css') }}" rel = 'stylesheet'/>
+
 		<!-- Chart JS -->
 		<script src="{{ asset('js/plugins/chartjs.min.js')  }}">></script>
 		<!--  Notifications Plugin    -->

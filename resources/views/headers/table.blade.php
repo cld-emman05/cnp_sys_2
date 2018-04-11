@@ -1,11 +1,5 @@
 @include('headers.main')
 
-<!--DataTables-->
-<script src="{{ asset('DataTables\DataTables-1.10.16\js\jquery.dataTables.min.js') }}">
-</script>
-
-<link href="{{ asset('DataTables\DataTables-1.10.16\css\jquery.dataTables.min.css') }}" rel = 'stylesheet'/>
-
 <style>
 .table thead{
   background-color: #E5E4E2;
@@ -40,23 +34,18 @@ $(document).ready(function(){
   });
 
     $('#format-table').DataTable({
-      "language": {
-      "lengthMenu": "Display _MENU_ records per page",
-      "zeroRecords": "No @yield('title') yet",
-      "info": "Showing page _PAGE_ of _PAGES_",
-      "infoEmpty": "No records available",
-      "infoFiltered": "(filtered from _MAX_ total records)"
-  }
+        scrollY:        '50vh',
+        scrollCollapse: true,
+        paging:         false,
+        searching:     false,
     });
 
-    $('#page_num').prop('readonly', true);
-    $('#size').prop('readonly', true);
-    $('#cover_paper').prop('readonly', true);
-    $('#cover_color').prop('readonly', true);
-    $('#inside_paper').prop('readonly', true);
-    $('#inside_color').prop('readonly', true);
-    $('#lamination').prop('readonly', true);
-    $('#binding').prop('readonly', true);
+    $('.dash').DataTable({
+      paging:   false,
+        ordering: false,
+        info:     false
+    })
+
 
     $(document).on('change', '#jobtype', function(){
       var job = $(this).val();
@@ -78,7 +67,7 @@ $(document).ready(function(){
            console.log("Job Type: " + data[0].type);
 
          console.log("Number of Pages: " + data[0].pages);
-         $('#page_num').attr('value', data[0].pages);
+         $('#page_num').prop('value', data[0].pages);
 
          console.log("Size: " + data[0].size_id);
          $('#size').prop('value', data[0].size_id);
