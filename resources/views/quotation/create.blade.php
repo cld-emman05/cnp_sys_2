@@ -34,10 +34,12 @@
 
 								<tbody>
 									<tr>
-									<td>1</td>
-									<td>Journal</td>
-									<td><a>Crisostomo Ibarra</a></td>
-									<td><a>Nidora Zobeyala</a></td>
+										<input type = 'hidden' name = 'order_id' value = '{{ $orders-> id}}'> </input>
+									<td> 1 </td>
+									<td> {{ $orders->title }}</td>
+									<td><a>{{ $orders->customer->company }}</a></td>
+									<td> {{ $orders->first()->customer->agent->employee->user->first_name }}
+												{{ $orders->first()->customer->agent->employee->user->last_name }}</td>
 									</tr>
 								</tbody>
 							</table>
@@ -48,12 +50,12 @@
 							<center><h2 class="title">Price Computations</h2>
 							</center>
 						<div class="content table-responsive table-full-width">
-							<table class="table table-hover" style="width:100%">
+							<table class="table table-striped" style="width:100%">
 							<col width="130">
 							<col width="80">
 
-							<form>
-
+							<form method="POST" action = "/quotation/store/">
+								{{ csrf_field() }}
 							<thead>
 							<th width="25%"></th>
 							<th width="25%">Specification</th>
@@ -64,46 +66,46 @@
 
 							<tr>
 							<td><b>{{ Form::label('quantity', 'Quantity') }}<b></td>
-							<td width="25%">{{ Form::text('quantity', 1, ['class' => 'form-control border-input col-lg-6 col-lg-6', 'placeholder' => 'How many orders?', 'id'=>'quantity'])}}
-							<td></td>
+							<td width="25%">{{ Form::text('quantity', $orders->quantity , ['class' => 'form-control border-input col-lg-6 col-lg-6', 'placeholder' => 'How many orders?', 'id'=>'quantity'])}}
+							<td> </td>
 							</tr>
 
 							<tr>
-							<td><b>{{ Form::label('# Of Pages', '# Of Pages') }}<b></td>
-							<td width="25%">{{ Form::text('pagenumber', 1, ['class' => 'form-control border-input col-lg-6 col-lg-6', 'placeholder' => 'How many pages?', 'id'=>'pagenumber'])}}
+							<td><b>{{ Form::label('# Of Pages', 'Number of Pages') }}<b></td>
+							<td width="25%">{{ Form::text('pagenumber', $orders->specification->pages , ['class' => 'form-control border-input col-lg-6 col-lg-6', 'placeholder' => 'How many pages?', 'id'=>'pagenumber'])}}
 							<td></td>
 							</tr>
 
 
 							<tr>
-							<td>Stocks:</td>
+							<td><b>Stocks</b></td>
 							<td></td>
 							<td></td>
 							</tr>
 
 							<tr>
 							<td style="text-indent:30pt">{{ Form::label('cover_stock_price', 'Cover') }}</td>
-							<td>{{ @$order->cover_papers->type }}</td>
+							<td> {{ $orders->specification->coverPaper->paper_type->name }}/{{ $orders->specification->coverColor->name }} </td>
 							<td width="25%">{{ Form::text('cover_stock_price','', ['class' => 'form-control border-input col-lg-6', 'placeholder' => 'How much?', 'id'=>'coverstockP'])}}
 							</td>
 							</tr>
 
 							<tr>
 							<td style="text-indent:30pt">{{ Form::label('inside_stock_price', 'Inside') }}</td>
-							<td>{{ @$order->inside_papers->type }}</td>
+							<td>{{ $orders->specification->insidePaper->paper_type->name }}/{{ $orders->specification->insideColor->name }}</td>
 							<td width="25%">{{ Form::text('inside_stock_price', '', ['class' => 'form-control border-input col-lg-6', 'placeholder' => 'How much?', 'id'=>'insidestockP'])}}
 							</td>
 							</tr>
 
 							<tr>
-							<td>Offset Running</td>
-							<td></td>
+							<td><b>Offset Running</b></td>
+							<td>{{ $orders->specification->size->dimension }}</td>
 							<td></td>
 							</tr>
 
 							<tr>
 							<td style="text-indent:30pt">{{ Form::label('cover_offset_price', 'Cover') }}</td>
-							<td>  </td>
+							<td> </td>
 							<td width="25%">{{ Form::text('cover_offset_price', '', ['class' => 'form-control border-input col-lg-6', 'placeholder' => 'How much?', 'id'=>'coveroffsetP'])}}
 							</td>
 							</tr>
@@ -123,22 +125,22 @@
 							</tr>
 
 							<tr>
-							<td>{{ Form::label('lamination_price', 'Lamination') }}</td>
-							<td>{{ @$order->lamination->name }}</td>
+							<td><b>{{ Form::label('lamination_price', 'Lamination') }}</b></td>
+							<td>{{ $orders->specification->lamination->name }}</td>
 							<td width="25%">{{ Form::text('lamination_price', '', ['class' => 'form-control border-input col-lg-6', 'placeholder' => 'How much?', 'id'=>'laminationP'])}}
 							</td>
 							</tr>
 
 							<tr>
 							<td>{{ Form::label('letterpress_price', 'Letterpress Running') }}</td>
-							<td>  </td>
+							<td> </td>
 							<td width="25%">{{ Form::text('letterpress_price', '', ['class' => 'form-control border-input col-lg-6', 'placeholder' => 'How much?', 'id'=>'letterpressP'])}}
 							</td>
 							</tr>
 
 							<tr>
 							<td>{{ Form::label('binding_price', 'Binding') }}</td>
-							<td>{{ @$order->binding->name }}  </td>
+							<td>{{ $orders->specification->binding->name }}  </td>
 							<td width="25%">{{ Form::text('binding_price', '', ['class' => 'form-control border-input col-lg-6', 'placeholder' => 'How much?', 'id'=>'bindingP'])}}
 							</td>
 							</tr>

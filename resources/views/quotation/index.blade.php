@@ -32,12 +32,14 @@
     								<tbody>
                       @foreach($orders as $order)
                       <tr id = '{{ $order->id }}'>
-        								<td> {{ $order->id }} </td>
-        								<td> {{ $order->title }} </td>
-        								<td>{{ $order->customer->user->first_name }} {{ $order->customer->user->last_name }}</td>
-                        <td> {{ $order->customer->agent->employee->user->first_name }} {{ $order->customer->agent->employee->user->last_name }} </td>
+        								<td> {{ $order->order->id }} </td>
+        								<td> {{ $order->order->title }} </td>
+        								<td>{{ $order->order->customer->company }}</td>
+                        <td> {{ $order->order->customer->agent->employee->user->first_name }} {{ $order->order->customer->agent->employee->user->last_name }} </td>
         								<td>
-        									<a href = 'quotation/create'><btn class = 'btn btn-primary'>Create Quotation</btn></a>
+                          <form method="GET" action = "/quotation/create/{{$order->id}}">
+                            <button class = 'btn btn-primary' id = 'create'> Create Quotation </button> </a>
+                          </form>
         								</td>
       								</tr>
                       @endforeach

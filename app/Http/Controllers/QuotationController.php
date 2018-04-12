@@ -21,8 +21,9 @@ class QuotationController extends Controller
      */
     public function index()
     {
-      $status = OrderStatus::with('phase')->where('phase_id', '1');
-      $orders = Order::with('quotation.quotation_status.status')->where('phase_id', $status)->get();
+
+      $orders = OrderStatus::with('phase', 'order')->where('phase_id', 1)->get();
+
 
       return view('quotation.index', compact('orders'));
     }
@@ -32,10 +33,11 @@ class QuotationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-      $order = Order::find(1);
-        return view('quotation.create');
+      $orders = Order::find($id);
+
+      return view('quotation.create', compact('orders'));
     }
 
     /**
@@ -46,24 +48,23 @@ class QuotationController extends Controller
      */
     public function store(Request $request)
     {
-      $quotation = new Quotation; //Create Order table
+      $quotations = new Quotation; //Create Order table
 
-      $quotation->unit_price = $request->input('UnitCost');
-      $quotation->total_amount = $request->input('TotalAll');
+      $quotations = DB::table('quotations')->insertGetId([
+        'unit_price' => $request->input('UnitCost'),
+        'total_amount' => $request->input('TotalAll'),
+        'order_id' => $request->input('order'),
+      ]);
 
-      $quotation->save();
-     $data = array(
-       'UnitCost'=> $a,
-       'TotalAll'=> $b
-     );
+      $status = DB::table('quotation_statuses')->insertGetId([
+        'remarks' => 'Waiting for approval!',
+        'quotation_id' => $quotations,
+        'status_id' => 1,
+        'created_at' => \Carbon\Carbon::now(),
+        'updated_at' => \Carbon\Carbon::now(),
+      ]);
 
-     $quotation_status = DB::table('quotation_statuses')->insert([
-       'updated_at' => \Carbon\Carbon::now(),
-     ]);
-      //return redirect('directory of view')->with('condition', 'what happened');
-      DB::table('quotations')->insert($data);
-      DB::table('quotation_statuses')->insert($data);
-      return redirect('quotations')->with('success','Quote submitted!');
+      return redirect('/quotation/')->with('success','Quote submitted!');
     }
 
     /**

@@ -52,9 +52,8 @@ Route::get('/order/to-do', function () {
 
 //Quotations Function
 
-Route::get('/quotation/create', function () {
-    return view('quotation.create');
-});
+Route::get('/quotation/create/{id}', 'QuotationController@create');
+Route::post('/quotation/store/', 'QuotationController@store');
 
 Route::get('/quotation/approve', function () {
     return view('quotation.approve');
