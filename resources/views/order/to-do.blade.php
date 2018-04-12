@@ -66,7 +66,7 @@
 						</div>
 						<div class="card-chart">
 							<div class="table-full-width table-responsive">
-								<table class="table table-stripe">
+								<table class="table-striped">
 									<thead>
 										<th></th>
 										<th>Phase</th>

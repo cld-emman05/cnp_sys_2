@@ -1,5 +1,7 @@
 @include('headers.main')
 
+<link href = 'https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css'> </link>
+
 <style>
 .table thead{
   background-color: #E5E4E2;
@@ -11,11 +13,11 @@ div.container {
 
 </style>
 
-<script>
+<script type = 'text/javascript'>
 // for terminating button
 $(document).ready(function(){
-  $('btn#terminated').click(function(){
-    $('tr#1').fadeOut('slow', function(){
+  /*$('btn#terminated').click(function(){
+     ('tr').fadeOut('slow', function(){
 
       $.notify({
         icon: "now-ui-icons ui-1_bell-53",
@@ -31,25 +33,71 @@ $(document).ready(function(){
           }
       });
     });
-  });
+  }); */
 
+  $( "#start_date" ).datepicker({
+  goToCurrent: true,
+  currentText: "Today",
+  maxDate: 0,
+  defaultDate: 0,
+  showButtonPanel: true,
+  showAnim: 'fadeIn',
+  showOtherMonths: true,
+  autoSize: true,
+  dateFormat: 'yy-mm-dd',
+ });
+
+  $( "#end_date" ).datepicker({
+    goToCurrent: true,
+    currentText: "Today",
+    maxDate: 0,
+    defaultDate: 0,
+    showButtonPanel: true,
+    showAnim: 'fadeIn',
+    showOtherMonths: true,
+    autoSize: true,
+    dateFormat: 'yy-mm-dd',
+ });
+
+ $( "#datedue" ).datepicker({
+   goToCurrent: true,
+   currentText: "Today",
+   minDate: +7,
+   defaultDate: 0,
+   showButtonPanel: true,
+   showAnim: 'fadeIn',
+   showOtherMonths: true,
+   autoSize: true,
+   dateFormat: 'yy-mm-dd',
+});
+
+  // Datatables
     $('#format-table').DataTable({
-        scrollY:        '50vh',
-        scrollCollapse: true,
+      scrollY:        '200px',
+      scrollCollapse: true,
         paging:         false,
         searching:     false,
+
+        "language": {
+            "decimal": ".",
+            "thousands": ","
+        }
     });
 
-    $('.dash').DataTable({
-      paging:   false,
-        ordering: false,
-        info:     false
-    })
 
-
+    // create order auto-generate default specificaions -->
     $(document).on('change', '#jobtype', function(){
       var job = $(this).val();
       console.log(job);
+        $('#quan').removeProp();
+        $('#page_num').removeProp();
+        $('#size').removeProp();
+        $('#cover_paper').removeProp();
+        $('#cover_color').removeProp();
+        $('#inside_paper').removeProp();
+        $('#inside_color').removeProp();
+        $('#lamination').removeProp();
+        $('#binding').removeProp();
 
       $.ajax({
        url: '{!! URL::to('/order/assign') !!}',
@@ -62,46 +110,54 @@ $(document).ready(function(){
       },
 
        success:(function(data){
+        console.log("Id: " + data[0].id);
         if(data[0] != null)
          {
-           console.log("Job Type: " + data[0].type);
 
-         console.log("Number of Pages: " + data[0].pages);
-         $('#page_num').prop('value', data[0].pages);
+           $('#page_num').prop("disabled", false);
 
-         console.log("Size: " + data[0].size_id);
-         $('#size').prop('value', data[0].size_id);
+           $('#size').prop("disabled", false);
 
-         console.log("Cover Paper: " + data[0].cover_paper_id);
-         $('#cover_paper').prop('value', data[0].cover_paper_id);
+           $('#cover_paper').prop("disabled", false);
 
-         console.log("Cover Color: " + data[0].cover_color_id);
-         $('#cover_color').prop('value', data[0].cover_color_id);
+           $('#cover_color').prop("disabled", false);
 
-         console.log("Inside Paper: " + data[0].inside_paper_id);
-         $('#inside_paper').prop('value', data[0].inside_paper_id);
+           $('#inside_paper').prop("disabled", false);
 
-         console.log("Inside Color: " + data[0].inside_color_id);
-         $('#inside_color').prop('value', data[0].inside_color_id);
+           $('#inside_color').prop("disabled", false);
 
-         console.log("Lamination: " + data[0].lamination_id);
-         $('#lamination').prop('value', data[0].lamination_id);
+           $('#lamination').prop("disabled", false);
 
-         console.log("Binding: " + data[0].binding_id);
-         $('#binding').prop('value', data[0].binding_id);
-       }
+           $('#binding').prop("disabled", false);
 
+             console.log("Job Type: " + data[0].type);
 
-       else{
-         $('#quan').attr('value', 1);
-         $('#page_num').attr('value', 1);
-         $('#size').prop('value', null);
-         $('#cover_paper').prop('value', null);
-         $('#cover_color').prop('value', null);
-         $('#inside_paper').prop('value', null);
-         $('#inside_color').prop('value', null);
-         $('#lamination').prop('value', null);
-         $('#binding').prop('value', null);
+              $('#page_num').prop('value', data[0].pages);
+
+              $('#size').prop('value', data[0].size_id);
+
+              $('#cover_paper').prop('value', data[0].cover_paper_id);
+
+              $('#cover_color').prop('value', data[0].cover_color_id);
+
+              $('#inside_paper').prop('value', data[0].inside_paper_id);
+
+              $('#inside_color').prop('value', data[0].inside_color_id);
+
+              $('#lamination').prop('value', data[0].lamination_id);
+
+              $('#binding').prop('value', data[0].binding_id);
+
+              if(data[0].id == 2 || data[0].id == 5){
+                $('#inside_paper').prop("disabled", true);
+                $('#inside_color').prop("disabled", true);
+                $('#page_num').prop("disabled", true);
+              }
+
+              else if(data[0].id == 1 || data[0].id == 3){
+                $('#cover_color').prop("disabled", true);
+                $('#inside_color').prop("disabled", true);
+              }
        }
        }),
 
@@ -111,6 +167,12 @@ $(document).ready(function(){
     });
 
     });
+
+    $('form').submit(function(e) {
+    $(':disabled').each(function(e) {
+        $(this).removeAttr('disabled');
+    })
+});
 });
 
 </script>

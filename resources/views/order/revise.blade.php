@@ -18,41 +18,33 @@
 											<h4 class="card-title">Revise Order</h4>
 									</div>
 
-              <div class="col-md-12">
-    							<div class="card card-chart">
-                    <div class="card-body">
-                      <div class="row">
-                  			<div class="col-md-6 pr-5">
-                  				<div class="form-group">
-                  					{{ Form::label('job_name', 'Job Name') }}
-                  					<input type = 'text' name = 'job_name' value = 'Sample Job'
-                  						class = 'form-control border-input' readonly placeholder/>
-                  				</div>
-                  			</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class = 'card-header'>
+												<table  class="table table-hover" style="width:100%">
+												<col width="130">
+												<col width="80">
+													<thead>
+														<th width="25%">Order #</th>
+														<th width="25%">Title</th>
+														<th width="25%">Salesman</th>
+														<th width="25%">Updated at</th>
+													</thead>
 
-                  			<!-- JOB TYPE -->
-                  			<div class="col-md-6 pl-1">
-                  				<div class="form-group">
-                  					<!-- {{ Form::label('jobtype', 'Job Type') }}
-                  					{{ Form::text('jobtype', '', ['class' => 'form-control border-input', 'placeholder' => 'Enter','id'=>'jobtype'])}} -->
-                  					{{ Form::label('job_type', 'Job Type') }}
-														<input type = 'text' name = 'job_type' value = 'Yearbook'
-                  						class = 'form-control border-input' readonly placeholder/>
-                  				</div>
-                  			</div>
-                  		</div>
-
-                      <div class="row">
-                      <div class="col-md-6 pr-5">
-                        <div class="form-group">
-                        <!-- DATE DUE -->
-                      	  {{ Form::label('date_due', 'Date Due') }}
-													<input type = 'text' name = 'date_due' value = {{ \Carbon\Carbon::now() }}
-														class = 'form-control border-input' readonly placeholder/>
-                        </div>
-                      </div>
-                      </div>
-										</div>
+													<tbody>
+														<tr>
+														<td>{{ $order->id }}</td>
+														<td>{{ $order->title }}</td>
+														@if(session()->get('dept') == 'Sales')
+														<td><a>{{ $order->customer->company}}</a></td>
+														@elseif(session()->get('dept') == null)
+														<td><a>{{ $order->customer->agent->employee->user->first_name }} {{ $order->customer->agent->employee->user->last_name }}</a></td>
+														@endif
+														<td>{{ $order->status->first()->updated_at->format('m-d-Y') }}</a></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
 										</div>
 									</div>
 
@@ -78,7 +70,7 @@
                         <!-- COMMENTS -->
                       	{{ Form::label('comments', 'Comments') }}
 												<textarea name = 'comments'
-													class = 'form-control border-input' row = 5 id = 'comments' readonly placeholder>This is a sample comment</textarea>
+													class = 'form-control border-input' row = 5 id = 'comments'> </textarea>
                         </div>
                       </div>
                       </div>
@@ -91,6 +83,7 @@
                     <!-- SUBMUT BUTTON -->
                     {{Form::submit('Submit Revision', ['class' => 'btn btn-info btn-fill btn-wd', 'id'=>'submit'])}}
                     </div>
+
     							</div>
 								</div>
 				</div>

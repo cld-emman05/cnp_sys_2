@@ -26,21 +26,21 @@
 													<col width="80">
 														<thead>
 															<th width="25%">Order #</th>
-															<th width="25%">Title of Job</th>
+															<th width="25%">Title</th>
 															<th width="25%">Salesman</th>
                               <th width="25%">Updated at</th>
 														</thead>
 
 														<tbody>
 															<tr>
-															<td>1</td>
-															<td>Journal</td>
-															@if(@auth::user()->user_types->type == 'Sales')
-															<td><a>Crisostomo Ibarra</a></td>
-															@elseif(@auth::user()->user_types->type == 'Customer')
-															<td><a>Nidora Zobeyala</a></td>
+															<td>{{ $order->id }}</td>
+															<td>{{ $order->title }}</td>
+															@if(session()->get('dept') == 'Sales')
+															<td><a>{{ $order->customer->company}}</a></td>
+															@elseif(session()->get('dept') == null)
+															<td><a>{{ $order->customer->agent->employee->user->first_name }} {{ $order->customer->agent->employee->user->last_name }}</a></td>
 															@endif
-                              <td>{{ Carbon\Carbon::now() }}</a></td>
+                              <td>{{ $order->status->first()->updated_at->format('m-d-Y') }}</a></td>
 															</tr>
 														</tbody>
 													</table>
@@ -54,17 +54,43 @@
 											<div class="row">
 												<div class="col-md-12">
                   			<!-- JOB TYPE -->
-												<table class="table table-hover">
+												<table class="table table-striped">
 													<thead>
 														<th>Job Status</th>
+														@if($order->status->first()->phase->id >= 4 && $order->status->first()->phase->id < 8)
+														<th></th>
+														@elseif($order->status->first()->phase->id >= 8 && $order->status->first()->phase->id <= 10)
 														<th></th>
 														<th></th>
+														@elseif($order->status->first()->phase->id > 10)
+														<th></th>
+														<th></th>
+														<th></th>
+														@endif
 													</thead>
 
 													<tbody class = 'col-md-12'>
-													<td class = 'alert alert-info'><i class = 'now-ui-icons ui-1_check'></i> In Process</td>
-													<td class = 'alert alert-warning'><i class="now-ui-icons loader_refresh spin"></i> Ongoing Production</td>
-													<td class = 'alert alert-success'>Ready for Delivery</td>
+													@if($order->status->first()->phase->id == 1)
+													<td class = 'alert alert-info'><i class="now-ui-icons loader_refresh spin"></i>
+															For Quotation </td>
+													@elseif($order->status->first()->phase->id >= 4 && $order->status->first()->phase->id < 8)
+													<td class = 'alert alert-info'><i class = 'now-ui-icons ui-1_check'></i> For Quotation</td>
+													<td class = 'alert alert-primary'><i class= "now-ui-icons loader_refresh spin"></i> For Layoutting</td>
+													@elseif($order->status->first()->phase->id >= 8 && $order->status->first()->phase->id <= 10)
+														<td class = 'alert alert-info'><i class = 'now-ui-icons ui-1_check'></i> For Quotation</td>
+														<td class = 'alert alert-primary'><i class = 'now-ui-icons ui-1_check'></i> For Layoutting</td>
+														<td class = 'alert alert-warning'><i class="now-ui-icons loader_refresh spin"></i> Ongoing Production</td>
+													@elseif($order->status->first()->phase->id > 10 && $order->status->first()->phase->id < 12)
+														<td class = 'alert alert-info'><i class = 'now-ui-icons ui-1_check'></i> For Quotation</td>
+														<td class = 'alert alert-primary'><i class = 'now-ui-icons ui-1_check'></i> For Layoutting</td>
+														<td class = 'alert alert-warning'><i class = 'now-ui-icons ui-1_check'></i> Ongoing Production</td>
+														<td class = 'alert alert-success'><i class="now-ui-icons loader_refresh spin"></i> <a href = '/order/delivery/{{$order->id}}'> Ready for Delivery </a></td>
+													@elseif($order->status->first()->phase->id == 12)
+													<td class = 'alert alert-info'><i class = 'now-ui-icons ui-1_check'></i> For Quotation</td>
+													<td class = 'alert alert-primary'><i class = 'now-ui-icons ui-1_check'></i> For Layoutting</td>
+													<td class = 'alert alert-warning'><i class = 'now-ui-icons ui-1_check'></i> Ongoing Production</td>
+													<td class = 'alert alert-success'><i class = 'now-ui-icons ui-1_check'></i> <a href = '/order/delivery/{{$order->id}}'> Ready for Delivery </a></td>
+													@endif
 												</tbody>
 												</table>
 													</div>
@@ -73,14 +99,15 @@
 												<div class="row">
 													<div class="col-md-12">
 	                  			<!-- JOB TYPE -->
-													<table class="table table-hover">
+													<table class="table table-striped">
 														<thead>
-															<th>Date</th>
+															<th>Timestamp</th>
 															<th>Status</th>
 														</thead>
 
 														<tbody class = 'col-md-12'>
-														<td>{{Carbon\Carbon::now()->format('M d, Y')}}</td>
+														<td>{{Carbon\Carbon::now()->format('M d, Y')}} <br>
+																{{Carbon\Carbon::now()->format('H:i:s')}}</td>
 														<td>Your order has sent for produced.</td>
 													</tbody>
 													</table>

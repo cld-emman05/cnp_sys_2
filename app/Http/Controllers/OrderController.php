@@ -129,6 +129,24 @@ class OrderController extends Controller
       return view('order.view', compact('order'));
     }
 
+    public function monitor($id){
+      $order = Order::find($id);
+
+      return view('order.monitor-status', compact('order'));
+    }
+
+    public function revise($id){
+      $order = Order::find($id);
+
+      return view('order.revise', compact('order'));
+    }
+
+    public function delivery($id){
+      $order = Order::find($id);
+
+      return view('order.delivery', compact('order'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -160,6 +178,11 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $order = Order::find($id);
+
+      $order->status->first()->phase_id = 2;
+
+      $order->status->first()->save();
+      return redirect('/order/')->with('success', 'Order has been rejected!');
     }
 }

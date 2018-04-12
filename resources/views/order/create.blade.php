@@ -11,10 +11,12 @@
 		<div class="card card-chart">
 			<div class = 'card-header'>
 				<table class="table table-hover" style="width:100%">
-					<a href = '/order'>
-						<btn class = 'btn btn-primary' id = 'return'>
-						<i class="now-ui-icons arrows-1_minimal-left"></i> Return</btn>
-					</a>
+
+				 <form method="GET" action = "/order">
+					<button type='submit' class = 'btn btn-primary' id = 'return'>
+						<i class="now-ui-icons arrows-1_minimal-left"></i> Return </button>
+				</form>
+
 					<div class="card-header">
           <h5 class='card-category'>Orders</h5>
             <h4 class="card-title">Create Request</h4>
@@ -34,8 +36,9 @@
 								<tbody>
 									<tr>
 										<td> {{ $orders->count() + 1 }}</td>
-										<td>{{ Carbon\Carbon::now()->format('m-d-Y') }}</td>
-										<td> -- </td>
+										<td> {{ Carbon\Carbon::now()->format('m-d-Y') }}</td>
+										<td> {{ $orders->first()->customer->agent->employee->user->first_name }}
+										 			{{ $orders->first()->customer->agent->employee->user->last_name }}</td>
 									</tr>
 								</tbody>
 							</table>
@@ -74,8 +77,6 @@
 								<!-- JOB TYPE -->
 								<div class="col-md-6 pl-1">
 									<div class="form-group">
-										<!-- {{ Form::label('jobtype', 'Job Type') }}
-										{{ Form::text('jobtype', '', ['class' => 'form-control border-input', 'placeholder' => 'Enter','id'=>'jobtype'])}} -->
 										{{ Form::label('job_type', 'Job Type:') }}
 										<select class="form-control" id="jobtype" name="jobtype">
 										<option value = 0> </option>
@@ -236,7 +237,7 @@
 							<div class="form-group">
 								<!-- DATE DUE -->
 								{{ Form::label('date_due', 'Date Due') }}
-								{{ Form::date('date_due', \Carbon\Carbon::now()->addWeeks(1) , ['class' => 'form-control border-input','id'=>'datedue'])}}
+								{{ Form::text('date_due', '', ['class' => 'form-control border-input','id'=>'datedue', 'placeholder' => 'Must be set on or later than '. \Carbon\Carbon::now()->addWeek(1)->format('m/d/Y')])}}
 							</div>
 						</div>
 					</div>
@@ -266,7 +267,8 @@
 </div>
 				<div class="text-center">
 				<!-- SUBMUT BUTTON -->
-				{{Form::submit('Submit Order', ['class' => 'btn btn-info btn-fill btn-wd', 'id'=>'submit'])}}
+				{{Form::reset('Reset', ['class' => 'btn btn-danger btn-fill btn-wd', 'id'=>'submit'])}}
+				{{Form::submit('Submit Order', ['class' => 'btn btn-success btn-fill btn-wd', 'id'=>'submit'])}}
 				</form>
 				</div>
 <div class="clearfix"></div>

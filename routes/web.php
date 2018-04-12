@@ -41,27 +41,13 @@ Route::get('/order', 'OrderController@index');
 Route::get('/order/create', 'OrderController@create');
 Route::post('/order/store', 'OrderController@store');
 Route::post('/order/assign', 'OrderController@assignSpecs');
-Route::get('/order/revise','UploadFileController@index');
+Route::get('/order/revise/{id}','OrderController@revise');
 Route::get('/order/view/{id}', 'OrderController@show');
-
+Route::get('/order/monitor-status/{id}', 'OrderController@monitor');
+Route::post('/order/cancel/{id}', 'OrderController@destroy');
+Route::get('/order/delivery/{id}', 'OrderController@delivery');
 Route::get('/order/to-do', function () {
     return view('order.to-do');
-});
-
-Route::get('/order/revise', function () {
-    return view('order.revise');
-});
-
-Route::get('/order/monitor-status', function () {
-    return view('order.monitor-status');
-});
-
-Route::get('/order/update-status', function () {
-    return view('order.update-status');
-});
-
-Route::get('/order/schedule', function () {
-    return view('order.schedule');
 });
 
 //Quotations Function

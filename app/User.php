@@ -31,10 +31,10 @@ class User extends Authenticatable
     ];
 
     public function customer(){
-      return $this->hasMany('App\Customer');
+      return $this->belongsTo('App\Customer');
     }
 
     public function employee(){
-      return $this->hasMany('App\Employee');
+      return $this->belongsTo('App\Employee');
     }
 }

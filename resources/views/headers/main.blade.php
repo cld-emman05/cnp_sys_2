@@ -11,14 +11,11 @@
 		<script src="{{ asset('js/core/jquery.min.js')  }}">></script>
 		<script src="{{ asset('js/core/popper.min.js')  }}">></script>
 		<script src="{{ asset('js/core/bootstrap.min.js')  }}">></script>
-		<script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js')  }}">></script>
+		<script src="{{ asset('js/core/jquery-ui.min.js')  }}">></script>
+		<script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js')  }}"></script>
 		<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 		<script src="{{ asset('js/plugins/bootstrap-switch.js')  }}">></script>
 
-		<!--DataTables-->
-		<script src="{{ asset('DataTables\DataTables-1.10.16\js\jquery.dataTables.min.js') }}">
-		</script>
-		<link href="{{ asset('DataTables\DataTables-1.10.16\css\jquery.dataTables.min.css') }}" rel = 'stylesheet'/>
 
 		<!-- Chart JS -->
 		<script src="{{ asset('js/plugins/chartjs.min.js')  }}">></script>
@@ -28,6 +25,8 @@
 		<script src="{{ asset('js/now-ui-dashboard.js?v=1.0.0')  }}">></script>
 
 		<!-- CSS Files -->
+		<link href="{{ asset('css/jquery-ui.min.css')  }}" rel="stylesheet" />
+		<link href="{{ asset('css/jquery-ui.structure.min.css')  }}" rel="stylesheet" />
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
 		<link href="{{ asset('css/now-ui-dashboard.css?v=1.0.0') }}" rel="stylesheet" />
 
@@ -40,6 +39,15 @@
 
 		<link href="{{ asset('css/all.css') }}" rel="stylesheet" />
 		<link href="{{ asset('css/montserrat.css') }}" rel="stylesheet" />
+
+		<!--DataTables-->
+		<script src="{{ asset('DataTables\DataTables-1.10.16\js\jquery.dataTables.min.js') }}">
+		</script>
+		<link href="{{ asset('DataTables\DataTables-1.10.16\css\jquery.dataTables.min.css') }}" rel = 'stylesheet'/>
+
+		<script src="{{ asset('DataTables\DataTables-1.10.16\js\dataTables.jqueryui.min.js') }}">
+		</script>
+		<link href="{{ asset('DataTables\DataTables-1.10.16\css\dataTables.jqueryui.min.css') }}" rel = 'stylesheet'/>
 
 		<script type ='text/javascript'>
 				$(document).ready(function(){

@@ -17,31 +17,49 @@
           <div class = 'card card-body'>
             <div class="col-md-12 md-4">
 
+              <div class = 'row'>
+                <div class="col-md-4">
+                  {{ Form::label('start_date', 'Start Date') }}
+                 <input type="input" name="start_date" id="start_date" max = {{ \Carbon\Carbon::now() }}  class="form-control" />
+                </div>
+
+                <div class="col-md-4">
+                  {{ Form::label('end_date', 'End Date') }}
+                 <input type="input" name="end_date" id="end_date"  max = {{ \Carbon\Carbon::now() }}  class="form-control" />
+                </div>
+
+               <div class="col-md-2 pl-1">
+                <input type="button" name="search" id="search" value="Search" class="btn btn-info" />
+               </div>
+
             @if(session()->get('dept') == null)
-              <div class="col-md-12 md-4">
-              <a href = '/order/create'>
-                <btn class = 'btn btn-primary' id = 'create'>
-                <i class="now-ui-icons ui-1_simple-add"></i> Create</btn>
-              </a>
+            <div class = 'ext-right'>
+              <div class="col-md-2 pl-1">
+                <form method="GET" action = "/order/create">
+                <button type = 'submit' class = 'btn btn-primary' id = 'create'>
+                <i class="now-ui-icons ui-1_simple-add"></i> Create</button>
             </div>
+          </div>
             @endif
+          </div>
 
 
                 <div class="card-chart">
-  								<table class="table stripe" id ='format-table'>
+  								<table class="table-striped" id ='format-table'>
     								<thead>
                       <tr>
-        								<th>Timestamp</th>
-        								<th>Title</th>
+        								<th class = 'td-actions text-center'>Timestamp</th>
+        								<th class = 'td-actions text-center'>Title</th>
+                        <th class = 'td-actions text-center'>Type</th>
                         @if(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
-                        <th>Customer</th>
+                        <th class = 'td-actions text-center'>Customer</th>
                         @endif
                         @if(session()->get('dept') == 'Production')
-                        <th> Agent </th>
+                        <th class = 'td-actions text-center'> Agent </th>
                         @endif
                         @if(session()->get('dept') == 'Sales' || session()->get('dept') == null)
-                        <th>Price</th>
-                        <th>Status</th>
+                        <th class = 'td-actions text-center'>Price</th>
+                        <th class = 'td-actions text-center'>Status</th>
                         @endif
 
                         <th>Remarks</th>
@@ -53,11 +71,14 @@
       								<tr id = '{{ $order->id }}'>
 
                         <!-- Timestamp -->
-        								<td> {{ $order->status->pluck('created_at')->first()->format('m/d/Y') }} <br>
-                         {{ $order->status->pluck('created_at')->first()->format('H:i:s') }} </td>
+        								<td> {{ $order->status->pluck('updated_at')->first()->format('m/d/Y') }} <br>
+                         {{ $order->status->pluck('updated_at')->first()->format('H:i:s') }} </td>
 
                          <!-- Title -->
                         <td> {{$order->title}} </td>
+
+                        <!-- Type -->
+                       <td> {{$order->specification->type}} </td>
 
                         <!-- Customer Name -->
                         @if(session()->get('dept') == 'Sales' || session()->get('dept') == 'Production')
@@ -80,32 +101,39 @@
                         </td>
                         @endif
 
-                        <td>
+                        <td class = 'td-actions text-right'>
 
                           @if($order->status->first()->phase->id != 2)
                             @if(session()->get('dept') == null &&  $order->status->first()->phase->id == 1)
-                              <btn class = 'btn btn-warning' id = 'revise'>Revise</btn>
-
+                            <form method="GET" action = "/order/revise/{{$order->id}}">
+                              <button class = 'btn btn-warning' id = 'revise'> Revise </button> </a>
+                            </form>
                             @elseif((session()->get('dept') == 'Sales' || session()->get('dept') == 'Production') && $order->status->first()->phase->id < 7)
+                            <form method="GET" action = "/order/view/{{$order->id}}">
                               <a href = '/order/view/{{$order->id}}'> <btn class = 'btn btn-primary' id = 'view'>View</btn> </a>
+                            </form>
                             @endif
 
-                            @if(session()->get('dept') == null || session()->get('dept') == 'Sales' &&  $order->status->first()->phase->id < 11)
-                             <a href = '/order/monitor-status'> <btn class = 'btn btn-info' id = 'view'>Status</btn> </a>
-                            @elseif(session()->get('dept') == 'Production' &&  $order->status->first()->phase->id > 4 &&  $order->status->first()->phase->id < 11)
+                            @if((session()->get('dept') == null || session()->get('dept') == 'Sales') || ($order->status->first()->phase->id == 1 || $order->status->first()->phase->id > 3 &&  $order->status->first()->phase->id < 11))
+                            <form method="GET" action = "/order/monitor-status/{{$order->id}}">
+                              <button type ='submit' class = 'btn btn-info' id = 'view'> Status </button>
+                           </form>
+
+                            @elseif(session()->get('dept') == 'Production' && $order->status->first()->phase->id > 4 &&  $order->status->first()->phase->id < 11)
                               <a href = '/order/to-do'> <btn class = 'btn btn-warning' id = 'view'>Manage</btn> </a>
                             @endif
 
-                              @if(session()->get('dept') == null &&  $order->status->first()->phase->id > 10)
-                                 <a href = '/order/schedule'> <btn class = 'btn btn-success' id = 'view'>Delivery</btn> </a>
-                              @elseif(session()->get('dept') == 'Sales' &&  $order->status->first()->phase->id > 10)
-                                <a href = '/order/schedule'> <btn class = 'btn btn-success' id = 'view'>Schedule</btn> </a>
-                            @endif
-
                             @if(session()->get('dept') == null &&  $order->status->first()->phase->id < 8)
-                            <a href= '/order/revise'><btn class = 'btn btn-danger' id = 'terminated'>Terminate</btn></a>
+                            <form method="POST" action = "/order/cancel/{{$order->id}}">
+                    					{{ csrf_field() }}
+                              <button type = 'submit' class = 'btn btn-danger' id = 'terminated'>Cancel</button>
+                            </form>
                             @endif
 
+
+                            @else
+
+                            {{ $order->status->first()->remarks }}
                             @endif
                         </td>
                       </tr>

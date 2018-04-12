@@ -8,6 +8,7 @@ use App\Order;
 use App\Quotation;
 use App\QuotationStatus;
 use App\Status;
+use App\OrderStatus;
 
 use DB;
 
@@ -20,7 +21,8 @@ class QuotationController extends Controller
      */
     public function index()
     {
-      $orders = Order::with('quotation.quotation_status.status')->get();
+      $status = OrderStatus::with('phase')->where('phase_id', '1');
+      $orders = Order::with('quotation.quotation_status.status')->where('phase_id', $status)->get();
 
       return view('quotation.index', compact('orders'));
     }
