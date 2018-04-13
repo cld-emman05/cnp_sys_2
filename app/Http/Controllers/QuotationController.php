@@ -118,17 +118,14 @@ class QuotationController extends Controller
     }
 
     public function confirmed($id){
-      $quotation = Quotation::find($id);
+      $quotation = QuotationStatus::where('quotation_id', $id)
+                  ->update(['status_id' => 2]);
 
-      $quotation->quotation_status->status_id = 2;
-      $quotation->order->status->phase_id = 4;
+      $status = OrderStatus::where('order_id', Quotation::find($id)->order_id)->update(['phase_id' => 4]);
 
-      $quotation->quotation_status->first()->save();
-      $quotation->order->status->first()->save();
+      $order = Quotation::find($id)->order->value('id');
 
-      $order = $quotation->order->value('id');
-
-      return redirect('/order/monitor-status/{$order}')->with('Quotation Approved!');
+    return redirect('/order/monitor-status/'.$order)->with('Quotation Approved!');
 
     }
 
@@ -140,6 +137,11 @@ class QuotationController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $quotation = QuotationStatus::where('quotation_id', $id)
+                  ->update(['status_id' => 4]);
+
+      $status = OrderStatus::where('order_id', Quotation::find($id)->order_id)->update(['phase_id' => 2]);
+
+    return redirect('/quotation/approve/')->with('success', 'Order has been cancelled!');
     }
 }

@@ -28,7 +28,6 @@
 								<thead>
 									<th width="25%">Quotation #</th>
 									<th width="25%">Title of Job</th>
-									<th width="25%">Customer</th>
 								</thead>
 
 								<tbody>
@@ -36,7 +35,6 @@
 										<input type = 'hidden' name = 'order_id' value = '{{ $orders-> id}}'> </input>
 									<td> 1 </td>
 									<td> {{ $orders->title }}</td>
-									<td><a>{{ $orders->customer->company }}</a></td>
 								</tbody>
 							</table>
 						</div>
@@ -55,7 +53,7 @@
 							<thead>
 							<th width="25%"></th>
 							<th width="25%">Specification</th>
-							<th width="25%">Price (in PhP)</th>
+							<th width="25%">Price</th>
 							</thead>
 
 							<tbody>

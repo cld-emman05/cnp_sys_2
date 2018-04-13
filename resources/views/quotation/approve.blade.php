@@ -45,7 +45,11 @@
                           </form>
 
                           <btn class = 'btn btn-info' id = 'change'>Change Deal</btn>
-                          <btn class = 'btn btn-danger' id = 'terminated'> Terminate </btn>
+
+                          <form method="POST" action = "/quotation/destroy/{{$quotation->id}}">
+                            {{ csrf_field() }}
+                          <button class = 'btn btn-danger' id = 'terminated'> Terminate </button>
+                        </form>
                             </div>
 
                             </btn>

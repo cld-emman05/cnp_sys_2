@@ -30,14 +30,12 @@
 								<thead>
 									<th width="25%">Order #</th>
 									<th width="25%">Date</th>
-									<th width="25%">Salesman</th>
 								</thead>
 
 								<tbody>
 									<tr>
 										<td> {{ $orders->count() + 1 }}</td>
 										<td> {{ Carbon\Carbon::now()->format('m-d-Y') }}</td>
-										<td> -- </tr>
 								</tbody>
 							</table>
 			</div>

@@ -23,8 +23,6 @@
       								<tr>
         								<th>Quote #</th>
         								<th>Title</th>
-        								<th>Customer</th>
-                        <th>Salesman</th>
         								<th>Remarks</th>
       								</tr>
     								</thead>
@@ -34,9 +32,7 @@
                       <tr id = '{{ $order->order->id }}'>
         								<td> {{ $order->order->id }} </td>
         								<td> {{ $order->order->title }} </td>
-        								<td>{{ $order->order->customer->company }}</td>
-                        <td> {{ $order->order->customer->agent->employee->user->first_name }} {{ $order->order->customer->agent->employee->user->last_name }} </td>
-        								<td>
+        							  <td>
                           <form method="GET" action = "/quotation/create/{{$order->id}}">
                             <button class = 'btn btn-primary' id = 'create'> Create Quotation </button> </a>
                           </form>
