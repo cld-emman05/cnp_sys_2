@@ -74,7 +74,7 @@ class EmployeeController extends Controller
         'department_id' => $request->input('user_type'),
       ]);
 
-      if(Employee::where('department_id', 2)->get()){
+      if($request->input('user_type') == 2 && $request->input('industry') != null){
         $agent = DB::table('agents')->insert([
           'employee_id' => $employee,
           'industry_id' => $request->input('industry'),

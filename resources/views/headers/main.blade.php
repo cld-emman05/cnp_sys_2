@@ -57,5 +57,21 @@
 					$('.container-fluid').hide(5);
 					$('.container-fluid').fadeIn(500);
 					$('.number').formatNumber();
+
+
+				$('#industry').detach();
+
+				$(document).on('change', '#user_type', function(){
+					var type = $(this).val();
+
+					if(type == 2){
+						$('#industry').appendTo('label');
+					}
+
+					else{
+						$('#industry').detach();
+						$('#industry').prop('value', null);
+					}
+				});
 				});
 		</script>

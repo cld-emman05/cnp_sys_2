@@ -29,7 +29,6 @@
 									<th width="25%">Quotation #</th>
 									<th width="25%">Title of Job</th>
 									<th width="25%">Customer</th>
-									<th width="25%">Salesman</th>
 								</thead>
 
 								<tbody>
@@ -38,8 +37,6 @@
 									<td> 1 </td>
 									<td> {{ $orders->title }}</td>
 									<td><a>{{ $orders->customer->company }}</a></td>
-									<td> {{ $orders->first()->customer->agent->employee->user->first_name }}
-												{{ $orders->first()->customer->agent->employee->user->last_name }}</td>
 									</tr>
 								</tbody>
 							</table>
