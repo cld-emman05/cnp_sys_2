@@ -112,9 +112,24 @@ class QuotationController extends Controller
 
     public function approve(){
       $id = QuotationStatus::with('quotations', 'status')->where('status_id', 1)->value('id');
-      $quotation = Quotation::with('quotation_status.status')->where('id', $id)->get();
+      $quotations = Quotation::with('quotation_status.status')->where('id', $id)->get();
 
-      return view('quotation.approve', compact('quotation'));
+      return view('quotation.approve', compact('quotations'));
+    }
+
+    public function confirmed($id){
+      $quotation = Quotation::find($id);
+
+      $quotation->quotation_status->status_id = 2;
+      $quotation->order->status->phase_id = 4;
+
+      $quotation->quotation_status->first()->save();
+      $quotation->order->status->first()->save();
+
+      $order = $quotation->order->value('id');
+
+      return redirect('/order/monitor-status/{$order}')->with('Quotation Approved!');
+
     }
 
     /**

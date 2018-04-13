@@ -56,6 +56,7 @@ Route::get('/quotation/create/{id}', 'QuotationController@create');
 Route::post('/quotation/store/', 'QuotationController@store');
 Route::get('/quotation/manage/', 'QuotationController@manage');
 Route::get('/quotation/approve', 'QuotationController@approve');
+Route::post('/quotation/confirmed/{id}', 'QuotationController@confirmed');
 
 Route::get('/quotation', 'QuotationController@index');
 

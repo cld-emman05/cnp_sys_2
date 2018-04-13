@@ -18,7 +18,7 @@
             <div class="col-lg-12 md-4">
 
                 <div class="card-chart">
-  								<table class="table stripe" id = 'format-table'>
+  								<table class="table-striped" id = 'format-table'>
     								<thead>
       								<tr>
         								<th>Quote #</th>

@@ -16,9 +16,9 @@
           <!-- FORM CONTENT -->
           <div class = 'card card-body'>
             <div class="col-md-12 md-4">
-              
+
             @if(session()->get('dept') == null)
-            <div class = 'ext-right'>
+          <div class = 'ext-right'>
               <div class="col-md-2 pl-1">
                 <form method="GET" action = "/order/create">
                 <button type = 'submit' class = 'btn btn-primary' id = 'create'>
@@ -26,8 +26,6 @@
             </div>
           </div>
             @endif
-          </div>
-
 
                 <div class="card-chart">
   								<table class="table-striped" id ='format-table'>

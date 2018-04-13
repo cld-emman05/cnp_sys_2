@@ -74,7 +74,7 @@ $(document).ready(function(){
       scrollY:        '200px',
       scrollCollapse: true,
       paging:         false,
-      searching:     false,
+      searching:     true,
 
         "language": {
             "decimal": ".",

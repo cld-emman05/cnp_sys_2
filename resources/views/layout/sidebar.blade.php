@@ -68,11 +68,17 @@
           </li>
 
           @elseif(session()->get('dept') == 'Administrator')
-          <li class = "{{Request:: is('quotation/*') ? 'active' : ''}}
-                       {{Request:: is('quotation') ? 'active' : ''}}">
-                       <a href="/quotation">
+          <li class = "{{Request:: is('quotation') ? 'active' : ''}}"">
+                       <a href="/quotation/">
                            <i class="now-ui-icons ui-2_chat-round"></i>
-                           <p>Quotations</p>
+                           <p>Quotation Requests</p>
+                       </a>
+          </li>
+
+          <li class = "{{Request:: is('quotation/manage') ? 'active' : ''}}">
+                       <a href="/quotation/manage">
+                           <i class="now-ui-icons ui-2_chat-round"></i>
+                           <p>Ongoing Quotation</p>
                        </a>
           </li>
 

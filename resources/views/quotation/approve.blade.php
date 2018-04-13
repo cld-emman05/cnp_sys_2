@@ -23,20 +23,27 @@
       								<tr>
         								<th>Timestamp</th>
         								<th>Title</th>
+                        <th>Unit Price</th>
         								<th>Total Price</th>
         								<th>Remarks</th>
       								</tr>
     								</thead>
 
     								<tbody>
-      								<tr id = '1'>
-        								<td>{{Carbon\Carbon::now()->format('m/d/y')}} <br>
-                          {{Carbon\Carbon::now()->format('H:i:s')}}
+                      @foreach($quotations as $quotation)
+      								<tr id = '{{ $quotation-> id }}'>
+        								<td>{{ $quotation->quotation_status->first()->updated_at->format('m/d/y')}} <br>
+                          {{ $quotation->quotation_status->first()->updated_at->format('H:i:s')}}
                         </td>
-        								<td>{{ $quotation->orders->title }}</td>
-        								<td><a>{{ $quotation->total_amount }}</a></td>
+        								<td>{{ $quotation -> order->title }}</td>
+                        <td class = 'number'> PhP {{ $quotation -> unit_price }} </td>
+                        <td class = 'number'> PhP {{ $quotation -> total_amount }} </td>
         								<td>
-        									<btn class = 'btn btn-success' id = 'approved'>Approve</btn>
+                          <form method="POST" action = "/quotation/confirmed/{{$quotation->id}}">
+                            {{ csrf_field() }}
+        									  <button type = 'submit' class = 'btn btn-success' id = 'approved'>Approve</button>
+                          </form>
+
                           <btn class = 'btn btn-info' id = 'change'>Change Deal</btn>
                           <btn class = 'btn btn-danger' id = 'terminated'> Terminate </btn>
                             </div>
@@ -44,6 +51,7 @@
                             </btn>
         								</td>
       								</tr>
+                      @endforeach
     								</tbody>
   								</table>
               </div>
