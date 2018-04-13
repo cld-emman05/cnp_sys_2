@@ -21,12 +21,10 @@ class QuotationController extends Controller
      */
     public function index()
     {
-      $status = OrderStatus::with('order')->where('phase_id', 1)->get();
+      $orders = OrderStatus::with('order')->where('phase_id', 1)->get();
 
-      $orders = Order::with('quotation', 'status')->get($status->first());
-
-      dd($orders);
-      //return view('quotation.index', compact('orders'));
+      //dd($orders);
+      return view('quotation.index', compact('orders'));
     }
 
     /**
@@ -69,8 +67,9 @@ class QuotationController extends Controller
     }
 
     public function manage(){
-      $quotations = Quotation::all(); //Create Order table
+      $quotations = QuotationStatus::with('quotations', 'status')->get(); //Create Order table
 
+      //dd($quotations);
       return view('quotation.manage', compact('quotations'));
     }
 

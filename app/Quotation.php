@@ -13,6 +13,6 @@ class Quotation extends Model
   }
 
   public function order(){
-    return $this->belongsTo('App\Orders', 'order_id');
+    return $this->belongsTo('App\Order', 'order_id');
   }
 }
