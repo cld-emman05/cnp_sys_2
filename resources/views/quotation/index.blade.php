@@ -25,7 +25,7 @@
         								<th>Title</th>
         								<th>Customer</th>
                         <th>Salesman</th>
-        								<th>Action</th>
+        								<th>Remarks</th>
       								</tr>
     								</thead>
 

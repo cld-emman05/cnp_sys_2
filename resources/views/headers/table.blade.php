@@ -1,7 +1,5 @@
 @include('headers.main')
 
-<link href = 'https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css'> </link>
-
 <style>
 .table thead{
   background-color: #E5E4E2;
@@ -75,13 +73,13 @@ $(document).ready(function(){
     $('#format-table').DataTable({
       scrollY:        '200px',
       scrollCollapse: true,
-        paging:         false,
-        searching:     false,
+      paging:         false,
+      searching:     false,
 
         "language": {
             "decimal": ".",
             "thousands": ","
-        }
+        },
     });
 
 

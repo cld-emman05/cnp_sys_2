@@ -51,6 +51,7 @@
 		<script src="{{ asset('DataTables\DataTables-1.10.16\js\dataTables.jqueryui.min.js') }}">
 		</script>
 		<link href="{{ asset('DataTables\DataTables-1.10.16\css\dataTables.jqueryui.min.css') }}" rel = 'stylesheet'/>
+		<link href = 'https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css' rel = 'stylesheet'> </link>
 
 		<script type ='text/javascript'>
 				$(document).ready(function(){
@@ -73,5 +74,5 @@
 						$('#industry').prop('value', null);
 					}
 				});
-				});
+			});
 		</script>

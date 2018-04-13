@@ -37,7 +37,6 @@
 									<td> 1 </td>
 									<td> {{ $orders->title }}</td>
 									<td><a>{{ $orders->customer->company }}</a></td>
-									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -156,12 +155,6 @@
 							</td>
 							</tr>
 
-							<tr>
-							<td>{{ Form::label('other_price', 'Others') }}</td>
-							<td>  </td>
-							<td width="25%">{{ Form::text('other_price', '', ['class' => 'form-control border-input col-lg-6', 'placeholder' => 'How much?', 'id'=>'othersP'])}}
-							</td>
-							</tr>
 
 							<tr></tr>
 							<tr></tr>

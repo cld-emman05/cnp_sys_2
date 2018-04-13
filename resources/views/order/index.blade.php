@@ -16,22 +16,7 @@
           <!-- FORM CONTENT -->
           <div class = 'card card-body'>
             <div class="col-md-12 md-4">
-
-              <div class = 'row'>
-                <div class="col-md-4">
-                  {{ Form::label('start_date', 'Start Date') }}
-                 <input type="input" name="start_date" id="start_date" max = {{ \Carbon\Carbon::now() }}  class="form-control" />
-                </div>
-
-                <div class="col-md-4">
-                  {{ Form::label('end_date', 'End Date') }}
-                 <input type="input" name="end_date" id="end_date"  max = {{ \Carbon\Carbon::now() }}  class="form-control" />
-                </div>
-
-               <div class="col-md-2 pl-1">
-                <input type="button" name="search" id="search" value="Search" class="btn btn-info" />
-               </div>
-
+              
             @if(session()->get('dept') == null)
             <div class = 'ext-right'>
               <div class="col-md-2 pl-1">

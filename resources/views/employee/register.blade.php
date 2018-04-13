@@ -110,7 +110,7 @@
 
                             <div class="col-md-6">
                                 <input id="contact" type="text" class="form-control{{ $errors->has("contact") ? ' is-invalid' : '' }}" name="contact" value="{{ old("contact") }}"
-                                placeholder="09xxxxxxxxx">
+                                placeholder="09xxxxxxxxx/xxx-xxxx">
 
                                 @if ($errors->has("contact"))
                                     <span class="invalid-feedback">

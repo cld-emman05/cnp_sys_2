@@ -9,7 +9,7 @@ class Quotation extends Model
   protected $fillable = ['TotalAmount', 'UnitCost'];
 
   public function quotation_status(){
-    return $this->hasMany('App\Quotation_Status');
+    return $this->hasMany('App\QuotationStatus');
   }
 
   public function order(){
