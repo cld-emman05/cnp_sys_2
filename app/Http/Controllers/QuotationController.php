@@ -21,11 +21,10 @@ class QuotationController extends Controller
      */
     public function index()
     {
+      $orders = Order::with('quotations', 'order_status')->where('order_status.id', 1)->get();
 
-      $orders = OrderStatus::with('phase', 'order')->where('phase_id', 1)->get();
-
-
-      return view('quotation.index', compact('orders'));
+      dd($orders);
+      // return view('quotation.index', compact('orders'));
     }
 
     /**
@@ -64,7 +63,13 @@ class QuotationController extends Controller
         'updated_at' => \Carbon\Carbon::now(),
       ]);
 
-      return redirect('/quotation/')->with('success','Quote submitted!');
+      return redirect('/quotation/manage')->with('success','Quote submitted!');
+    }
+
+    public function manage(){
+      $quotations = Quotation::all(); //Create Order table
+
+      return view('quotation.manage', compact('quotations'));
     }
 
     /**
@@ -102,6 +107,13 @@ class QuotationController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function approve(){
+      $id = QuotationStatus::with('quotations', 'status')->where('status_id', 1)->value('id');
+      $quotation = Quotation::with('quotation_status.status')->where('id', $id)->get();
+
+      return view('quotation.approve', compact('quotation'));
     }
 
     /**

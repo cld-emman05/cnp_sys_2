@@ -15,6 +15,6 @@ class QuotationStatus extends Model
   }
 
   public function status(){
-    return $this->hasOne('App\Status', 'status_id');
+    return $this->belongsTo('App\Status');
   }
 }

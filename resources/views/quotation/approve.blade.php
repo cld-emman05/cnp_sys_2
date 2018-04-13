@@ -22,8 +22,8 @@
     								<thead>
       								<tr>
         								<th>Timestamp</th>
-        								<th>Job Title</th>
-        								<th>Job Price</th>
+        								<th>Title</th>
+        								<th>Total Price</th>
         								<th>Remarks</th>
       								</tr>
     								</thead>
@@ -33,8 +33,8 @@
         								<td>{{Carbon\Carbon::now()->format('m/d/y')}} <br>
                           {{Carbon\Carbon::now()->format('H:i:s')}}
                         </td>
-        								<td>Job Sample</td>
-        								<td><a>PhP 30.00</a></td>
+        								<td>{{ $quotation->orders->title }}</td>
+        								<td><a>{{ $quotation->total_amount }}</a></td>
         								<td>
         									<btn class = 'btn btn-success' id = 'approved'>Approve</btn>
                           <btn class = 'btn btn-info' id = 'change'>Change Deal</btn>

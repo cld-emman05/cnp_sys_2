@@ -37,9 +37,7 @@
 									<tr>
 										<td> {{ $orders->count() + 1 }}</td>
 										<td> {{ Carbon\Carbon::now()->format('m-d-Y') }}</td>
-										<td> {{ $orders->first()->customer->agent->employee->user->first_name }}
-										 			{{ $orders->first()->customer->agent->employee->user->last_name }}</td>
-									</tr>
+										<td> -- </tr>
 								</tbody>
 							</table>
 			</div>

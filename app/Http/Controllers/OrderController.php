@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
+use Illuminate\Support\Facade\Auth;
 
 use DB;
 
@@ -35,6 +36,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
+
       $orders = Order::with('status.phase')->get();
 
       return view('order.index', compact('orders')) ;

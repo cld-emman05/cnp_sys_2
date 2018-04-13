@@ -1,7 +1,7 @@
 @extends('layout.main')
 
 @section('title', 'Add New Suppliers')
-@includes(headers.main)
+@include('headers.main')
 
 @section('main-content')
     <div class="row justify-content-center">
@@ -39,8 +39,7 @@
                             <label for="cred_limit" class="col-md-4 col-form-label text-md-right">Credit Limit (in PhP)</label>
 
                             <div class="col-md-6">
-                                <input id="cred_limit" type="number" min = '1000000' class="form-control{{ $errors->has('cred_limit') ? ' is-invalid' : '' }}" name="cred_limit" required autofocus
-                                value = '1000000'/>
+                                <input id="cred_limit" type="number" min = '1000000' class="number form-control{{ $errors->has('cred_limit') ? ' is-invalid' : '' }}" name="cred_limit" required autofocus></input>
 
                                 @if ($errors->has('cred_limit'))
                                     <span class="invalid-feedback">

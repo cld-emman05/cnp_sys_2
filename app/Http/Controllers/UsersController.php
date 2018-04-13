@@ -16,8 +16,6 @@ class UsersController extends Controller
     public function index()
     {
       $users = User::all();
-
-      return view('order.index')->with('orders', $users);
     }
 
     /**
@@ -38,7 +36,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-      
+
     }
 
     /**
@@ -63,7 +61,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        // return view('order.revise', compact('order'));
+        return view('.profile');
     }
 
     /**
@@ -75,7 +73,19 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      DB::table('users')
+            ->where('id', $id)
+            ->update([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'address' => $request->input('address'),
+            'contact' => $request->input('contact'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+            'updated_at' => \Carbon\Carbon::now(),
+          ]);
+
+        return redirect('/')->with('success', 'Profile Updated!');
     }
 
     /**

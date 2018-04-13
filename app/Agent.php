@@ -11,7 +11,7 @@ class Agent extends Model
   }
 
   public function industry(){
-    return $this->hasMany('App\Industry', 'industry_id');
+    return $this->belongsTo('App\Industry', 'industry_id');
   }
 
   public function employee(){

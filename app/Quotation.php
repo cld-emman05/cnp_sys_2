@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quotation extends Model
 {
-  protected $fillable = ['id,TotalAmount,UnitCost'];
+  protected $fillable = ['TotalAmount', 'UnitCost'];
 
   public function quotation_status(){
     return $this->hasMany('App\Quotation_Status');
   }
 
-  public function orders(){
+  public function order(){
     return $this->belongsTo('App\Orders', 'order_id');
   }
 }

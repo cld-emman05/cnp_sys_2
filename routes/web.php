@@ -11,7 +11,7 @@
 |
 */
 
-// Custome
+// Customer
 
 Route::get('/customer/register', 'CustomerController@create');
 Route::get('/customer', 'CustomerController@index');
@@ -21,6 +21,7 @@ Route::post('/customer/store', 'CustomerController@store');
 Route::post('/employee/store', 'EmployeeController@store');
 Route::get('/employee/register', 'EmployeeController@create');
 Route::get('/employee', 'EmployeeController@index');
+Route::get('/industries', 'IndustriesController@index');
 
 // Suppliers
 Route::get('/supplier/register', function () {
@@ -31,9 +32,8 @@ Route::get('/supplier/', function () {
     return view('supplier.index');
 });
 
-Route::get('/profile', function(){
-  return view('profile');
-});
+Route::get('/profile/{id}', 'UsersController@edit');
+Route::patch('/profile/update', 'UsersController@update');
 
 // Orders Function
 
@@ -54,10 +54,8 @@ Route::get('/order/to-do', function () {
 
 Route::get('/quotation/create/{id}', 'QuotationController@create');
 Route::post('/quotation/store/', 'QuotationController@store');
-
-Route::get('/quotation/approve', function () {
-    return view('quotation.approve');
-});
+Route::get('/quotation/manage/', 'QuotationController@manage');
+Route::get('/quotation/approve', 'QuotationController@approve');
 
 Route::get('/quotation', 'QuotationController@index');
 

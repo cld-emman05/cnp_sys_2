@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class DefaultSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,16 +15,31 @@ class DatabaseSeeder extends Seeder
     //$this->call(UserTypesTableSeeder::class);
 
     // for users
-   $this->call(DepartmentsSeeder::class);
+    $this->call(DepartmentsSeeder::class);
     $this->call(IndustrySeeder::class);
 
-    $this->call(DefaultUsersSeeder::class);
-    $this->call(DefaultEmployeesSeeder::class);
-     $this->call(DefaultAgentsSeeder::class);
-     $this->call(DefaultCustomersSeeder::class);
+    // Creating the administrator's account
+    DB::table('users')->insert([
+      ['first_name' => 'Juan',
+        'last_name' => 'Dela Cruz',
+        'contact' => '09221168711',
+        'address' => 'Sta. Ana, Manila',
+        'email' => 'administrator@gemc.com',
+        'password' => bcrypt('administrator'),
+        'created_at' => \Carbon\Carbon::now(),
+        'updated_at' => \Carbon\Carbon::now(),]
+      ]);
+
+      DB::table('employees')->insert([
+        ['flag' => '1', // employee is still hired
+         'user_id' => '1',
+         'department_id' => '1',
+       ]
+     ]);
 
      //ORDER
      $this->call(PhaseSeeder::class);
+
     //Create Order Specification
     $this->call(BindingSeeder::class);
     $this->call(LaminationSeeder::class);
@@ -38,11 +53,8 @@ class DatabaseSeeder extends Seeder
     //QUOTATION
     $this->call(StatusesSeeder::class);
 
-    //SUPPLIERS
-    $this->call(TermsSeeder::class);
 
-    /*$this->call(DefaultSeeder::class); */
-
-
+        //SUPPLIERS
+        $this->call(TermsSeeder::class);
   }
 }

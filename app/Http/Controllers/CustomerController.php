@@ -45,9 +45,7 @@ class CustomerController extends Controller
     {
       $industries = Industry::all();
 
-      return view('customer.register', [
-        'industries' => compact('industries'),
-      ]);
+      return view('customer.register', compact('industries'));
     }
 
     /**

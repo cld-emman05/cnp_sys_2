@@ -41,6 +41,10 @@
       								<tr id = '{{$employee->id}}'>
         								<td>{{$employee->id}}</td>
         								<td>{{$employee->department->name}}
+
+                          @if($employee->department_id == 2)
+                            [{{ $employee->agent->first()->industry->type }}]
+                          @endif
                     </td>
                         <td><a href = 'profile'>{{$employee->user->first_name}} {{$employee->user->last_name}} </a></td>
                         <td>{{$employee->user->contact}}</td>

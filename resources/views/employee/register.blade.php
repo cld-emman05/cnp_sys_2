@@ -70,6 +70,25 @@
                         </div>
 
                       </div>
+
+                      <div class="form-group row">
+                        {{ Form::label('industry', 'Industry', ['class' => 'col-md-4 col-form-label text-md-right']) }}
+                        <div class="col-md-6">
+                          <select class="form-control" id="industry" name="industry" required autofocus>
+                            <option value = null> -- </option>
+                              @foreach($industries as $industry)
+                               <option value="{{$industry['id']}}"> {{$industry['type']}} </option>
+                            @endforeach
+                          </select>
+
+                        @if ($errors->has('industry'))
+                              <span class="invalid-feedback">
+                                  <strong>{{ $errors->first('industry') }}</strong>
+                              </span>
+                          @endif
+                      </div>
+                    </div>
+
                         <div class="form-group row">
                             <label for="address" class="col-md-4 col-form-label text-md-right">Residential Address</label>
 

@@ -13,8 +13,8 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+                    <form method="PATCH" action="/profile/update">
+                      {{ csrf_field() }}
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">First Name</label>

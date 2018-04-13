@@ -8,6 +8,7 @@ use App\Department;
 use App\Employee;
 use App\User;
 use App\Agent;
+use App\Industry;
 
 use DB;
 
@@ -24,7 +25,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-      $employees = Employee::all();
+      $employees = Employee::with('agent.industry')->get();
 
       return view('employee.index')->with('employees', $employees);
     }
@@ -38,15 +39,11 @@ class EmployeeController extends Controller
     {
 
       $departments = Department::all();
-      $data = json_encode($departments);
+      $industries = Industry::all();
 
       $agent = Agent::all();
-      $data_agent = json_encode($agent);
 
-      return view('employee.register', [
-        'departments' => json_decode($data, true),
-        'agents' => json_decode($data_agent, true),
-      ]);
+      return view('employee.register', compact('departments', 'industries', 'agent'));
     }
 
     /**
@@ -80,7 +77,7 @@ class EmployeeController extends Controller
       if(Employee::where('department_id', 2)->get()){
         $agent = DB::table('agents')->insert([
           'employee_id' => $employee,
-          'industry_id' => null,
+          'industry_id' => $request->input('industry'),
         ]);
       }
 
