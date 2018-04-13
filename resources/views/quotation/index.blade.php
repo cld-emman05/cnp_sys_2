@@ -24,7 +24,6 @@
         								<th>Quote #</th>
         								<th>Title</th>
         								<th>Customer</th>
-                        <th>Salesman</th>
         								<th>Remarks</th>
       								</tr>
     								</thead>
@@ -32,10 +31,9 @@
     								<tbody>
                       @foreach($orders as $order)
                       <tr id = '{{ $order->id }}'>
-        								<td> {{ $order->id }} </td>
-        								<td> {{ $order->title }} </td>
-        								<td>{{ $order->customer->company }}</td>
-                        <td> {{ $order->customer->agent->employee->user->first_name }} {{ $order->customer->agent->employee->user->last_name }} </td>
+        								<td> {{ $order->order->id }} </td>
+        								<td> {{ $order->order->title }} </td>
+        								<td>{{ $order->order->customer->company }}</td>
         								<td>
                           <form method="GET" action = "/quotation/create/{{$order->id}}">
                             <button class = 'btn btn-primary' id = 'create'> Create Quotation </button> </a>
