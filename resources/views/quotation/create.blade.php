@@ -48,7 +48,7 @@
 							<col width="130">
 							<col width="80">
 
-							<form method="POST" action = "/quotation/store/">
+							<form method="POST" action = "/quotation/store/{{$orders->id}}">
 								{{ csrf_field() }}
 							<thead>
 							<th width="25%"></th>

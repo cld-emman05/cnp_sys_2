@@ -47,12 +47,14 @@ Route::get('/order/monitor-status/{id}', 'OrderController@monitor');
 Route::post('/order/cancel/{id}', 'OrderController@destroy');
 Route::get('/order/delivery/{id}', 'OrderController@delivery');
 Route::get('/order/to-do/{id}', 'OrderController@todo');
+
+Route::post('/order/update/{id}', 'OrderController@update');
 Route::post('/order/update/{id}', 'OrderController@update');
 
 //Quotations Function
 
 Route::get('/quotation/create/{id}', 'QuotationController@create');
-Route::post('/quotation/store/', 'QuotationController@store');
+Route::post('/quotation/store/{id}', 'QuotationController@store');
 Route::get('/quotation/manage/', 'QuotationController@manage');
 Route::get('/quotation/approve', 'QuotationController@approve');
 Route::post('/quotation/confirmed/{id}', 'QuotationController@confirmed');

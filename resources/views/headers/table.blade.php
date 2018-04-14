@@ -71,7 +71,7 @@ $(document).ready(function(){
 
   // Datatables
     $('#format-table').DataTable({
-      scrollY:        '200px',
+      scrollY:        '500px',
       scrollCollapse: true,
       paging:         false,
 

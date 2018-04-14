@@ -45,14 +45,14 @@ class QuotationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
       $quotations = new Quotation; //Create Order table
 
       $quotations = DB::table('quotations')->insertGetId([
         'unit_price' => $request->input('UnitCost'),
         'total_amount' => $request->input('TotalAll'),
-        'order_id' => $request->input('order'),
+        'order_id' => $id,
       ]);
 
       $status = DB::table('quotation_statuses')->insertGetId([
@@ -85,29 +85,6 @@ class QuotationController extends Controller
 
       //return view associated
       //return view('order.view', compact('order'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        // return view('order.revise', compact('order'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     public function approve(){
