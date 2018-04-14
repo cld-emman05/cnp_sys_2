@@ -90,14 +90,6 @@
               </a>
           </li>
 
-          <li class = "{{Request:: is('customer/') ? 'active' : ''}}
-                       ">
-                       <a href="#">
-                           <i class="now-ui-icons ui-2_chat-round"></i>
-                           <p>Assign Agent</p>
-                       </a>
-          </li>
-
 		  @elseif(session()->get('dept') == 'Production')
       <li class = "{{Request:: is('order/*') ? 'active' : ''}}
                   {{Request:: is('order') ? 'active' : ''}}">

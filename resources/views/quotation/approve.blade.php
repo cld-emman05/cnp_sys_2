@@ -44,7 +44,7 @@
         									  <button type = 'submit' class = 'btn btn-success' id = 'approved'>Approve</button>
                           </form>
 
-                          <btn class = 'btn btn-info' id = 'change'>Change Deal</btn>
+                          <btn class = 'btn btn-info' id = 'change'>Change Deal</btn> <!-- Not functional -->
 
                           <form method="POST" action = "/quotation/destroy/{{$quotation->id}}">
                             {{ csrf_field() }}

@@ -74,13 +74,26 @@ $(document).ready(function(){
       scrollY:        '200px',
       scrollCollapse: true,
       paging:         false,
-      searching:     true,
 
         "language": {
             "decimal": ".",
             "thousands": ","
         },
     });
+
+    $('#fixed-table').DataTable( {
+        "paging":   false,
+        "ordering": false,
+        "info":     false,
+        "searching": false
+    } );
+
+    // for to-do list
+    $( "input:checkbox" ).each(function(phase) {
+        var id =  $("#" + (phase + 5)).val();
+        console.log(id);
+        $("#" + id).prop('disabled ', true);
+      })
 
 
     // create order auto-generate default specificaions -->

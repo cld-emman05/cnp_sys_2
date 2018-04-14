@@ -52,6 +52,8 @@
     								<tbody>
                       @foreach($orders as $order)
       								<tr id = '{{ $order->id }}'>
+                        @if((session()->get('dept') == 'Sales' || session()->get('dept') == null) || (session()->get('dept') == 'Production'
+                        && $order->status->first()->phase->id > 3 &&  $order->status->first()->phase->id < 11 ))
 
                         <!-- Timestamp -->
         								<td> {{ $order->status->pluck('updated_at')->first()->format('m/d/Y') }} <br>
@@ -97,13 +99,15 @@
                             </form>
                             @endif
 
-                            @if((session()->get('dept') == null || session()->get('dept') == 'Sales') || ($order->status->first()->phase->id == 1 || $order->status->first()->phase->id > 3 &&  $order->status->first()->phase->id < 11))
+                            @if((session()->get('dept') == null || session()->get('dept') == 'Sales') && ($order->status->first()->phase->id == 1 || $order->status->first()->phase->id > 3 &&  $order->status->first()->phase->id < 11))
                             <form method="GET" action = "/order/monitor-status/{{$order->id}}">
                               <button type ='submit' class = 'btn btn-info' id = 'view'> Status </button>
                            </form>
 
-                            @elseif(session()->get('dept') == 'Production' && $order->status->first()->phase->id > 4 &&  $order->status->first()->phase->id < 11)
-                              <a href = '/order/to-do'> <btn class = 'btn btn-warning' id = 'view'>Manage</btn> </a>
+                            @elseif(session()->get('dept') == 'Production' && $order->status->first()->phase->id > 3 &&  $order->status->first()->phase->id < 11)
+                            <form method="GET" action = "/order/to-do/{{$order->id}}">
+                              <button type = "submit" class = 'btn btn-warning' id = 'view'>Manage</button> </a>
+                            </form>
                             @endif
 
                             @if(session()->get('dept') == null &&  $order->status->first()->phase->id < 8)
@@ -115,10 +119,10 @@
 
 
                             @else
-
                             {{ $order->status->first()->remarks }}
                             @endif
                         </td>
+                        @endif
                       </tr>
                       @endforeach
     								</tbody>

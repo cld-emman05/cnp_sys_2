@@ -143,21 +143,17 @@ class OrderController extends Controller
       return view('order.revise', compact('order'));
     }
 
+    public function todo($id){
+      $order = Order::with('status.phase')->get()->find($id);
+      $phase = Phase::all();
+
+      return view('order.to-do', compact('order', 'phase'));
+    }
+
     public function delivery($id){
       $order = Order::find($id);
 
       return view('order.delivery', compact('order'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        return view('order.revise', compact('order'));
     }
 
     /**
@@ -169,7 +165,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

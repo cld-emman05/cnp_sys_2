@@ -46,9 +46,8 @@ Route::get('/order/view/{id}', 'OrderController@show');
 Route::get('/order/monitor-status/{id}', 'OrderController@monitor');
 Route::post('/order/cancel/{id}', 'OrderController@destroy');
 Route::get('/order/delivery/{id}', 'OrderController@delivery');
-Route::get('/order/to-do', function () {
-    return view('order.to-do');
-});
+Route::get('/order/to-do/{id}', 'OrderController@todo');
+Route::post('/order/update/{id}', 'OrderController@update');
 
 //Quotations Function
 
